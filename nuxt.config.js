@@ -1,6 +1,6 @@
 // const VUE_APP_API_URL = "http://api.glofinerittech.com/"; //spa 模式无需配置 15.207.106.154
 
-const VUE_APP_API_URL = "http://front.glofinerittech.com/"
+const VUE_APP_API_URL = "http://front.glofinerittech.com"
 const MODE = "universal"; //服务器渲染模式 (需要独立部署) 打包命令 npm run build
 //const MODE = "spa"; //单页面形式渲染模式 (打包后将 dist目录覆盖到 public/pc 目录下) 打包命令: npm run generate
 
