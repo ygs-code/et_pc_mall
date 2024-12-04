@@ -11,7 +11,7 @@ export default {
 			{name:'Langues'}
 		],
 		language:[
-			{name:'En chinois'},
+			// {name:'En chinois'},
 			{name:'Anglais'},
 			{name:'Français'},
 			{name:'Le thaï'},

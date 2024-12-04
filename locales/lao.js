@@ -11,7 +11,7 @@ export default {
 			{name:'ພາສາ'},
 		],
 		language:[
-			{name:'ຈີນ'},
+			// {name:'ຈີນ'},
 			{name:'ພາສາອັງກິດ'},
 			{name:'ພາສາຝຣັ່ງ'},
 			{name:'ໄທ'},

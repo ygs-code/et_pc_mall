@@ -12,7 +12,7 @@ module.exports = {
   mode: MODE,
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "CrmebJavaWebMerPC",
+    title: "AMBA Shop",
     htmlAttrs: {
       lang: "en",
     },
@@ -21,14 +21,12 @@ module.exports = {
       {
         hid: "description",
         name: "description",
-        content:
-          "CRMEB开源商城系统，围绕新零售、品牌连锁、商家入驻等多种商业模式，自主研发B2C商城系统、B2B2C多商户商城系统、连锁多门店商城系统、跨境电商系统等；应用于直播电商、社交新零售、商家入驻等多种应用场景，系统支持多语言、多端登录，代码开源、独立部署、永久免费升级。咨询：400-8888-794",
+        content:"AMBA Shop description",
       },
       {
         hid: "keywords",
         name: "keywords",
-        content:
-          "CRMEB官网,新零售社交电商,小程序商城,公众号商城,免费商城系统源码,商城系统开发,开源商城系统,微商城源码,多店商城系统,直播商城系统,多商户商城,B2B2C,私域电商,分销商城,高性能商城系统,陀螺匠企业助手",
+        content:"AMBA Shop Keys",
       },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       {
