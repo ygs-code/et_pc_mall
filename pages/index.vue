@@ -79,7 +79,7 @@
             <div class="title line2">
               {{ item.storeName }}
             </div>
-            <span class="price">{{ GLOBAL.shopPayCurrency }}{{ item.price }}</span>
+            <span class="price">{{ item.price }}</span>
           </div>
         </div>
       </div>
@@ -199,7 +199,7 @@ export default {
     };
   },
   async asyncData({ app, error, store }) {
-    typeof localstorage !== 'undefined' && window.localStorage.clear();
+    typeof localStorage !== 'undefined' && window.localStorage.clear();
     let [
       list,
       storeList,
@@ -219,7 +219,7 @@ export default {
       }),
       app.$axios.get("/api/front/activity/index/list")
     ]);
-    typeof localstorage !== 'undefined' && localStorage.setItem("homeDataPc", JSON.stringify(list.data));
+    typeof localStorage !== 'undefined' && localStorage.setItem("homeDataPc", JSON.stringify(list.data));
     return {
       list: list.data,
       bannerList: list.data.banner,

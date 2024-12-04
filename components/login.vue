@@ -76,14 +76,14 @@
             </nuxt-link>
           </div>
           <!-- 第三方登录 -->
-          <div class="bottom">
+          <!-- <div class="bottom">
             <span class="sign_type">{{$t(`page.users.login.with`)}}</span>
             <div class="sign_type_list">
               <img src="@/assets/images/twitter.png" @click="twitterGetToken()"/>
               <img src="@/assets/images/facebook.png" @click="fbLogin()" />
               <img src="@/assets/images/goggle.png" v-google-signin-button="clientId"/>
             </div>
-          </div>
+          </div> -->
         </div>
         <!--忘记邮箱密码-->
         <div class="wrapper" v-show="emailPassword && current === 4">

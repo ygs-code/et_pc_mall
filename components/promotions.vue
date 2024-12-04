@@ -16,7 +16,7 @@
               {{item.storeName}}
             </div>
             <div class="price">
-              <div class="current-price">{{GLOBAL.shopPayCurrency}}{{item.price}}</div>
+              <div class="current-price">1{{GLOBAL}}{{GLOBAL.shopPayCurrency}}{{item.price}}</div>
               <div class="original-price">{{GLOBAL.shopPayCurrency}}{{item.otPrice}}</div>
             </div>
           </div>

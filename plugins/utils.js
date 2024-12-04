@@ -154,7 +154,7 @@ Vue.use(comsys);
 const global = {
   //获取币种配置
   shopPayCurrency:
-    typeof localstorage !== "undefined" &&
+    typeof localStorage !== "undefined" &&
     localStorage.getItem("homeDataPc") &&
     JSON.parse(localStorage.getItem("homeDataPc")).shopPayCurrency
       ? JSON.parse(
