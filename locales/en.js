@@ -1,4 +1,9 @@
-//英语
+//英语 
+// {name:'Chinese'},
+// {name:'English'},
+// {name:'French'},
+// {name:'Thai'},
+// {name:'Lao'},
 export default {
 	userDrawer:{
 		data:[
@@ -11,11 +16,7 @@ export default {
 			{name:'Language'}
 		],
 		language:[
-			// {name:'Chinese'},
-			{name:'English'},
-			{name:'French'},
-			{name:'Thai'},
-			{name:'Lao'},
+			{name:'English'}
 		]
 	},
 	page:{

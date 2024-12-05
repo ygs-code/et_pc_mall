@@ -1,4 +1,4 @@
-//老挝语
+//老挝语 
 export default {
 	userDrawer:{ //抽屉导航
 		data:[
@@ -11,7 +11,7 @@ export default {
 			{name:'ພາສາ'},
 		],
 		language:[
-			// {name:'ຈີນ'},
+			{name:'ຈີນ'},
 			{name:'ພາສາອັງກິດ'},
 			{name:'ພາສາຝຣັ່ງ'},
 			{name:'ໄທ'},

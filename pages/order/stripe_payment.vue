@@ -14,15 +14,7 @@
 </template>
 
 <script>
-  // +----------------------------------------------------------------------
-  // | CRMEB [ CRMEB赋能开发者，助力企业发展 ]
-  // +----------------------------------------------------------------------
-  // | Copyright (c) 2016~2023 https://www.crmeb.com All rights reserved.
-  // +----------------------------------------------------------------------
-  // | Licensed CRMEB并不是自由软件，未经许可不能去掉CRMEB相关版权
-  // +----------------------------------------------------------------------
-  // | Author: CRMEB Team <admin@crmeb.com>
-  // +----------------------------------------------------------------------
+  // AMAB - ZS
   const stripe = Stripe("pk_test_51L3yjJEWHO5x2V9imoNsOaIqvDVK8p2IQpW3TR8CnaDbXLdIEXMYGjE5W6eJ40ib0qbZvmaxAz1SftWsqI3RNhth00JVX6v71Q");
   // const stripe = Stripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 

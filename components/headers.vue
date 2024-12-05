@@ -141,8 +141,9 @@ export default {
       langList: [
         {
           name: '语言',
-          current: 1,
-          intro: ['zh-CN', 'en', 'fr', 'th', 'lao']
+          current: 0,
+          intro: ['en']
+          // intro: ['zh-CN', 'en', 'fr', 'th', 'lao']
         }
       ],
       menus: [],
@@ -270,7 +271,7 @@ export default {
     },
     //跳入移动商城地址
     go(url) {
-      window.open('https://h5.et.crmeb.xbdzz.cn');
+      window.open('https://mobile.glofinerittech.com');
     },
     // 商品分类
     goCate(items) {
