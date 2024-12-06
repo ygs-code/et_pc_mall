@@ -3,7 +3,7 @@
     <div class="order-detail wrapper_1200">
       <div class="header">
         <nuxt-link to="/">{{$t(`userDrawer.data[0].name`)}}></nuxt-link>
-        <nuxt-link :to="{path:'/users/order_list',query:{menuCur:111}}">个人中心></nuxt-link>
+        <nuxt-link :to="{path:'/users/order_list',query:{menuCur:111}}">Individual Center</nuxt-link>
         <span>{{$t(`page.orderDetails.navTitle`)}}</span>
       </div>
       <!--流程-->
@@ -31,7 +31,7 @@
       </div>
       <!--订单信息-->
       <div class="section mb15">
-        <div class="section-hd">订单信息</div>
+        <div class="section-hd">Order Information</div>
         <div class="section-bd">
           <ul>
             <li class="acea-row row-middle">
@@ -69,21 +69,21 @@
           </ul>
         </div>
       </div>
-      <!--收货信息-->
+      <!--Delivery Information-->
       <div class="section mb15">
-        <div class="section-hd">收货信息</div>
+        <div class="section-hd">Delivery Information</div>
         <div class="section-bd">
           <ul>
             <li class="acea-row row-middle">
-              <div>收货人：</div>
+              <div>Consignee：</div>
               <div>{{ orderInfo.realName }}</div>
             </li>
             <li class="acea-row row-middle">
-              <div>联系电话：</div>
+              <div>Phone Number：</div>
               <div>{{ orderInfo.userPhone }}</div>
             </li>
             <li class="acea-row">
-              <div>收货地址：</div>
+              <div>Delivery Address：</div>
               <div>{{ orderInfo.userAddress }}</div>
             </li>
           </ul>

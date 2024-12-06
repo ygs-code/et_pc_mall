@@ -2,7 +2,7 @@
   <div class="order-detail wrapper_1200">
     <div class="header">
       <nuxt-link to="/">{{$t(`userDrawer.data[0].name`)}}></nuxt-link>
-      <nuxt-link :to="{path:'/users',query:{type:0}}">个人中心></nuxt-link>
+      <nuxt-link :to="{path:'/users',query:{type:0}}">Individual Center></nuxt-link>
       <span>{{$t(`page.users.goodsReturn.detal`)}}</span>
     </div>
     <div class="section reject">

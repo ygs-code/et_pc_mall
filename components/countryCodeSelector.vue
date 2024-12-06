@@ -1,14 +1,14 @@
 <template>
   <div class="intl-tel-input-container">
     <div class="selected-flag" @click.stop="handleShowAndFlyTo"
-         :title="`${currentData.name}: + ${currentData.dialCode}`">
+         :title="$t('currentdata-name-currentdata-dialcode', [currentData.name, currentData.dialCode])">
       <div :class="['flag', `flag-${currentData.code}`, 'cur-flag']"></div>
-      <span class="area-codeNum" :title="`${currentData.name}: + ${currentData.dialCode}`">+{{currentData.dialCode}}</span>
+      <span class="area-codeNum" :title="$t('currentdata-name-currentdata-dialcode-0', [currentData.name, currentData.dialCode])">+{{currentData.dialCode}}</span>
       <i class="tran"></i>
     </div>
     <transition name="fade">
       <div v-if="hideSubMenu" class="flag-list-box scroll-bar" @click.stop="hideSubMenu = true">
-        <el-input v-model="countryName" type="text" placeholder="国家名字(The Country Name)" />
+        <el-input v-model="countryName" type="text" placeholder="$t('guo-jia-ming-zi-the-country-name')" />
         <ul class="country-list">
           <li v-for="(item, index) in filterCountries"
               :key="index"
@@ -17,7 +17,7 @@
           >
             <div :class="['flag', `flag-${item.code}`]"></div>
             <span class="country-name">{{item.CNName}}-{{ item.name }}</span>
-            <span class="dial-code"> +{{ item.dialCode }}</span>
+            <span class="dial-code"> {{ $t('item-dialcode', [item.dialCode]) }}</span>
           </li>
         </ul>
       </div>

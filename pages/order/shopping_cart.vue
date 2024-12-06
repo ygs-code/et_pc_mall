@@ -127,7 +127,7 @@
         <div class="noCart" v-if="isShow">
           <div class="pictrue"><img src="../../assets/images/noCart1.png"></div>
           <div class="tip">{{$t(`page.goodsAddcart.emptyCart`)}}</div>
-          <nuxt-link to="/" class="goIndex">继续逛</nuxt-link>
+          <nuxt-link to="/" class="goIndex">Keep shopping</nuxt-link>
         </div>
       </div>
     </div>

@@ -7,8 +7,8 @@
         <div class="acea-row row-column row-middle">
           <div class="pic"><img :src="status===1 || redirect_status ?require('../../assets/images/paysuccessful.png'):require('../../assets/images/payFailed.png')"></div>
           <div class="status font-color">{{status===1 || redirect_status ? $t(`page.orderPayStatus.success`):$t(`page.orderPayStatus.fail`)}}</div>
-          <div class="tips">{{status===1 || redirect_status ? '您的订单将会尽快发货': '订单支付失败，请重新下单'}}</div>
-          <el-button type="primary" @click="goList">确定</el-button>
+          <div class="tips">{{status===1 || redirect_status ? 'Your order will be dispatched as soon as possible.': 'The order payment failed. Please place the order again.'}}</div>
+          <el-button type="primary" @click="goList">confirm</el-button>
         </div>
 
       </el-dialog>

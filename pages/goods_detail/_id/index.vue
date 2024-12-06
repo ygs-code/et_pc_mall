@@ -16,11 +16,11 @@
                   loading<span class="dot">...</span>
                 </div>
               </el-image>
-<!--              <el-image :src="JSON.parse(productInfo.sliderImage)[slideIndex]" class="preview">-->
-<!--                <div slot="placeholder" class="image-slot">-->
-<!--                  loading<span class="dot">...</span>-->
-<!--                </div>-->
-<!--              </el-image>-->
+             <el-image :src="JSON.parse(productInfo.sliderImage)[slideIndex]" class="preview">
+               <div slot="placeholder" class="image-slot">
+                 loading<span class="dot">...</span>
+               </div>
+             </el-image>
               <client-only>
                 <div v-swiper:carousel="swiperOption">
                   <div class="swiper-wrapper">

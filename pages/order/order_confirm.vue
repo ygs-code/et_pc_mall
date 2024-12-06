@@ -272,7 +272,7 @@ export default {
     SubOrder: Debounce(function (event) {
       let that = this;
       let data = {};
-      MessageBox.confirm("确定支付该订单吗？", "提示").then(res => {
+      MessageBox.confirm("Are you sure to pay for this order? ", "提示").then(res => {
         that.loading = true
         if (!that.addressInfo.id) return Message.error(that.$t(`message.orderConfirm.emptyAddress`))
         let btn = event.target;

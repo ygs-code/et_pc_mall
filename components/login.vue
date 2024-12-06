@@ -285,7 +285,7 @@ export default {
         if(res.data.facebookOpen && !!res.data.facebookAppId){
           facebookWebLogin.init(res.data.facebookAppId, status => {
             if (status) {
-              console.log('Facebook授权登录环境配置成功');
+              console.log('The configuration of the Facebook authorized login environment was successful.  ');
             }
           });
         }
@@ -316,7 +316,7 @@ export default {
         if(res.data.facebookOpen && !!res.data.facebookAppId){
           facebookWebLogin.init(res.data.facebookAppId, status => {
             if (status) {
-              console.log('Facebook授权登录环境配置成功');
+              console.log('The configuration of the Facebook authorized login environment was successful.  ');
             }
           });
         }
