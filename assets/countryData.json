@@ -4,13 +4,13 @@
     "name": "India (भारत)",
     "dialCode": 91,
     "phoneFormat": "099876 54321",
-    "CNName": "印度"
+    "CNName": "IN"
   },
   {
     "code": "cn",
-    "name": "China (中国)",
+    "name": "China",
     "dialCode": 86,
     "phoneFormat": "131 2345 6789",
-    "CNName": "中国"
+    "CNName": "CN"
   }
 ]
