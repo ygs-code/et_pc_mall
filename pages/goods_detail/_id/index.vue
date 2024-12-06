@@ -11,11 +11,6 @@
         <div class="goods-main">
           <div class="acea-row row-top" style="position: relative;">
             <div class="carousel">
-              <el-image :src="checkedImage" class="preview">
-                <div slot="placeholder" class="image-slot">
-                  loading<span class="dot">...</span>
-                </div>
-              </el-image>
              <el-image :src="JSON.parse(productInfo.sliderImage)[slideIndex]" class="preview">
                <div slot="placeholder" class="image-slot">
                  loading<span class="dot">...</span>
