@@ -83,6 +83,14 @@
               </div>
               <div class="iconfont icon-xuanzhong4 font-color" v-if="payStatus === 2"></div>
             </div>
+            <div v-if="payInfo.codSwitch" class="item acea-row row-center-wrapper"
+                 :class="payStatus === 3 ? 'on' : ''" @click="currentPay(3)">
+              <div class="iconfont icon-weixinzhifu1"><img class="img" src="../../assets/images/delivery_man.png" /></div>
+              <div>
+                <div class="name">COD</div>
+              </div>
+              <div class="iconfont icon-xuanzhong4 font-color" v-if="payStatus === 3"></div>
+            </div>
           </div>
           <div class="line"></div>
         </div>
@@ -155,7 +163,7 @@ export default {
       dialogVisible: false,
       addressList: [],
       current: 0,
-      payStatus: 0, // 0stripe支付，1PayPal支付，2微信支付
+      payStatus: 0, // 0stripe支付，1PayPal支付，2微信支付,3 cod
       mark: '',//备注信息
       addressInfo: {},
       couponIndex: 0, //选择商铺优惠券索引
@@ -182,7 +190,7 @@ export default {
     }
   },
   mounted() {
-    if (this.payInfo.paypalStatus && this.payInfo.stripeStatus && this.payInfo.wechatPaySwitch) {
+    if (this.payInfo.paypalStatus && this.payInfo.stripeStatus && this.payInfo.wechatPaySwitch && this.payInfo.codSwitch) {
       this.payStatus = 0
       this.payType = 'stripe'
     } else if (!this.payInfo.paypalStatus && this.payInfo.stripeStatus) {
@@ -191,7 +199,10 @@ export default {
     } else if (!this.payInfo.paypalStatus && !this.payInfo.stripeStatus && this.payInfo.wechatPaySwitch) {
       this.payStatus = 2
       this.payType = 'wechat'
-    } else {
+    } else if (!this.payInfo.paypalStatus && !this.payInfo.stripeStatus && !this.payInfo.wechatPaySwitch && this.payInfo.codSwitch) {
+      this.payStatus = 3
+      this.payType = 'cod'
+    }else {
       this.payStatus = 0
       this.payType = ''
     }
@@ -217,7 +228,15 @@ export default {
   methods: {
     currentPay(index) {
       this.payStatus = index;
-      this.payType = index === 0 ? 'stripe' : index === 1 ? 'paypal' : 'wechat';
+      if (index === 0){
+        this.payType ='stripe';
+      }else if (index === 1){
+        this.payType ='paypal';
+      }else if (index === 2){
+        this.payType ='wechat';
+      }else{
+        this.payType ='cod';
+      }
     },
     getloadPreOrder() {
       this.$axios.get(`/api/front/order/load/pre/${this.preOrderNo}`).then(res => {
@@ -272,7 +291,7 @@ export default {
     SubOrder: Debounce(function (event) {
       let that = this;
       let data = {};
-      MessageBox.confirm("Are you sure to pay for this order? ", "提示").then(res => {
+      MessageBox.confirm("Are you sure to pay for this order? ", "tips").then(res => {
         that.loading = true
         if (!that.addressInfo.id) return Message.error(that.$t(`message.orderConfirm.emptyAddress`))
         let btn = event.target;
@@ -310,12 +329,14 @@ export default {
             path: `/order/stripe_payment`,
             query: { clientSecret: res.data.stripeClientSecret }
           });
-        } else {
+        } else if (this.payType === 'wechat') {
           this.loadingQrcode = true;
           this.dialogVisibleQrcode = true;
           setTimeout(() => {
             this.getQRcode(res.data.redirect)
           }, 800)
+        }else{
+          this.$router.push({ path: '/users/order_list?orderStatus=0' });
         }
       })
     },
