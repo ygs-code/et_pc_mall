@@ -48,7 +48,7 @@
             class="demo-ruleForm"
             @submit.native.prevent
           >
-            <el-form-item label="验证码:">
+            <el-form-item label="validation code:">
               <el-input
                 v-model="verCodeValue"
                 :placeholder="$t(`page.user.qunCode`)"
@@ -97,7 +97,7 @@ export default {
   },
   head() {
     return {
-      title: "用户协议与隐私政策"
+      title: "User Agreement and Privacy Policy"
     };
   },
   beforeMount() {},
@@ -113,12 +113,12 @@ export default {
       let that = this;
       if (that.verCodeValue) {
         if (this.show_num !== this.verCodeValue) {
-          return that.$message.error('请填写正确的验证码');
+          return that.$message.error('Please fill in the correct verification code');
         } else {
           this.isShow  =true;
         }
       } else {
-        that.$message.error("请输入验证码");
+        that.$message.error("Please enter the verification code");
       }
     },
     codeChange(num) {

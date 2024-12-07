@@ -71,7 +71,7 @@
     <div class="wrapper_1200">
       <NuxtChild/>
     </div>
-    <FloatWindow></FloatWindow>
+    <!-- <FloatWindow></FloatWindow> -->
   </div>
 </template>
 

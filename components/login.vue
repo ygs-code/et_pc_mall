@@ -6,8 +6,10 @@
       <div class="wrapper-count">
         <span class="closeBtn iconfont icon-guanbi" @click="closeLogin"></span>
         <div class="wrapper" v-show="current === 1 || current === 3">
-          <div class="title"><span class="item_title" @click="current = 2">{{$t(`page.users.register.tabNav[0].name`)}}</span><span class="font_red item_title">{{$t(`page.users.register.tabNav[1].name`)}}</span>
-          </div>
+          <!-- <div class="title">
+            <span class="item_title" @click="current = 2">{{$t(`page.users.register.tabNav[0].name`)}}</span>
+            <span class="font_red item_title">{{$t(`page.users.register.tabNav[1].name`)}}</span>
+          </div> -->
           <div class="item phone acea-row row-middle">
             <span class="iconfont icon-shouji"></span>
             <div class="tel-container">
@@ -35,9 +37,9 @@
           </div>
         </div>
         <div class="wrapper" v-show="current === 2" style="margin-bottom: 39px">
-          <div class="title"><span class="item_title font_red" @click="current = 2">
-            {{ $t(`page.users.userInfo.email`) }}
-          </span><span class="item_title" @click="current = 1">{{ $t(`page.users.register.tabNav[1].name`) }}</span>
+          <div class="title">
+            <span class="item_title font_red" @click="current = 2"> {{ $t(`page.users.userInfo.email`) }} &nbsp;&nbsp; Login</span>
+            <!-- <span class="item_title" @click="current = 1">{{ $t(`page.users.register.tabNav[1].name`) }}</span> -->
           </div>
           <div class="item phone acea-row row-middle">
             <span class="iconfont icon-youxiang"></span>
@@ -124,9 +126,9 @@
         </div>
         <!--注册-->
         <div class="wrapper" v-show="current === 6">
-          <div class="tabs">
+          <!-- <div class="tabs">
             <span v-for="(item,index) in tabList" :key="index" :class="{ 'active': active == index}" @click="tab(index)">{{item}}</span>
-          </div>
+          </div> -->
           <div v-if="active===0" class="item acea-row row-middle">
             <span class="iconfont icon-youxiang"></span>
             <input type="text" :placeholder="$t(`page.users.login.placeEmail`)" v-model="email">

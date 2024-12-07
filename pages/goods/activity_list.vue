@@ -50,7 +50,7 @@
         :total="total">
       </el-pagination>
     </div>
-    <FloatWindow></FloatWindow>
+    <!-- <FloatWindow></FloatWindow> -->
   </div>
 </template>
 

@@ -412,7 +412,7 @@
 
       </div>
     </div>
-    <float-window></float-window>
+    <!-- <float-window></float-window> -->
   </div>
 </template>
 
@@ -420,7 +420,7 @@
   import { getPreOrder, followPro, followMer, goMerchant } from '@/utils/order.js';
   import { Debounce } from '@/utils/validate.js'
   import coupon from "@/components/coupon";
-  import FloatWindow from "../../../components/floatWindow";
+  // import FloatWindow from "../../../components/floatWindow";
   export default {
     name: "index",
     auth: false,
@@ -463,7 +463,8 @@
         checkedImage: '' //选中的大图展示
       }
     },
-    components: {FloatWindow, coupon },
+    // components: {FloatWindow, coupon },
+    components: {coupon },
     watch: {
       productAttr: {
         immediate: true,

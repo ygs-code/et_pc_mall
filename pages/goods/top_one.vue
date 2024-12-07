@@ -28,7 +28,7 @@
         </div>
       </div>
     </div>
-    <FloatWindow></FloatWindow>
+    <!-- <FloatWindow></FloatWindow> -->
   </div>
 </template>
 

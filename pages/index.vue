@@ -152,7 +152,7 @@
       <span class="loading iconfont icon-jiazai" v-if="!pullRefreshss"></span>
     </div>
     <!--右侧浮窗-->
-    <FloatWindow></FloatWindow>
+    <!-- <FloatWindow></FloatWindow> -->
   </div>
 </template>
 

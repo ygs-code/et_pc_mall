@@ -43,7 +43,7 @@
     </div>
     <el-pagination v-if="storeList.length && storeList.length>0" background layout="prev, pager, next" :total="total"
                    :pageSize="limits" @current-change="bindPageCur"></el-pagination>
-    <FloatWindow></FloatWindow>
+    <!-- <FloatWindow></FloatWindow> -->
   </div>
 </template>
 

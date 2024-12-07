@@ -123,7 +123,7 @@
       </div>
     </div>
     <!-- 右侧浮标 -->
-    <FloatWindow></FloatWindow>
+    <!-- <FloatWindow></FloatWindow> -->
     <!-- 微信支付弹窗 -->
     <el-dialog :close-on-click-modal="false" :visible.sync="dialogVisibleQrcode" width="380px"
       :title="$t(`page.users.orderConfirm.payment`)" center :show-close="false" :before-close="handleCloseQrcode">
