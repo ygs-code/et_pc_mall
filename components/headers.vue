@@ -358,6 +358,7 @@
             <div class="pic">
               <img :src="$auth.user ? $auth.user.avatar : defaultPic" />
             </div>
+
             <div v-if="!$auth.loggedIn" class="login" @click="longin">
               {{ $t(`page.users.login.sign`) }}
             </div>
@@ -1068,6 +1069,37 @@ export default {
         }
         .login:hover {
           color: rgb(233, 51, 35);
+        }
+
+    
+        .login {
+          font-size: 14px;
+          font-family: Arial-BoldMT, Arial;
+          font-weight: normal;
+          color: #333333;
+          line-height: 33px;
+          cursor: pointer;
+          width: 90px;
+          display: block;
+
+        }    
+   
+
+
+        .pic {
+          width: 30px;
+          height: 30px;
+          background: #eeeeee;
+          border-radius: 50%;
+          margin-right: 10px;
+          text-align: center;
+          line-height: 30px;
+          overflow: hidden;
+
+          img {
+            width: 100%;
+            height: 100%;
+          }
         }
       }
 
