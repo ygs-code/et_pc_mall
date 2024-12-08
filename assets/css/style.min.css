@@ -119,7 +119,7 @@
     transition: var(--transition)
 }
 
-.axil-mainmenu.axil-sticky .mainmenu>li>a {
+.axil-mainmenu.axil-sticky .mainmenu>li a{
     height: 80px;
     line-height: 80px
 }
@@ -235,7 +235,7 @@
     }
 }
 
-.header-style-4 .mainmenu>li>a {
+.header-style-4 .mainmenu>li a{
     line-height: 60px;
     height: 60px
 }
@@ -331,7 +331,7 @@
     }
 }
 
-.header-style-7 .header-action>ul>li>a {
+.header-style-7 .header-action>ul>li a{
     font-size: 19px
 }
 
@@ -409,14 +409,14 @@
     }
 }
 
-.header-style-7 .mainmenu>li>a {
+.header-style-7 .mainmenu>li a{
     font-size: 16px;
     font-weight: 500;
     line-height: 1 !important;
     height: auto !important
 }
 
-.header-style-7 .mainmenu>li>a i {
+.header-style-7 .mainmenu>li ai {
     margin-right: 10px;
     color: var(--color-body);
     transition: .3s
@@ -592,7 +592,7 @@
     }
 }
 
-.header-action>ul>li>a {
+.header-action>ul>li a{
     font-size: 24px;
     font-weight: 500;
     color: var(--color-heading);
@@ -604,7 +604,7 @@
 }
 
 @media only screen and (max-width: 479px) {
-    .header-action>ul>li>a {
+    .header-action>ul>li a{
         font-size: 22px
     }
 }
@@ -1464,7 +1464,7 @@
     margin-right: 0
 }
 
-.axil-mainmenu.aside-category-menu .mainmenu>li>a {
+.axil-mainmenu.aside-category-menu .mainmenu>li a{
     line-height: 60px;
     height: 60px
 }
@@ -1503,7 +1503,7 @@
         transition: all .3s ease-in-out
     }
 
-    .header-main-nav .mainmenu-nav .mainmenu>li>a {
+    .header-main-nav .mainmenu-nav .mainmenu>li a{
         color: var(--color-body);
         line-height: var(--line-height-b2) !important;
         height: auto !important;
@@ -1622,7 +1622,7 @@
     }
 }
 
-.mainmenu>li>a {
+.mainmenu>li a{
     color: var(--color-heading);
     font-weight: 700;
     font-size: 15px;

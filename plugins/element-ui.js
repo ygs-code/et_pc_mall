@@ -34,8 +34,12 @@ import {
   Step,
   Dropdown,
   DropdownMenu,
-  DropdownItem
+  DropdownItem,
+  Menu,
+  Submenu,
+  MenuItem
 } from 'element-ui'
+
 import locale from 'element-ui/lib/locale/lang/en'
 
 const components = [
@@ -69,7 +73,10 @@ const components = [
   Step,
   Dropdown,
   DropdownMenu,
-  DropdownItem
+  DropdownItem,
+  Menu,
+  Submenu,
+  MenuItem
 ];
 
 const Element = {

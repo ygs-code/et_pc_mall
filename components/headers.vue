@@ -269,9 +269,11 @@
               }}</nuxt-link>
             </li>
             <li class="menu-item-has-children">
-              <nuxt-link :to="{ path: '/goods/goods_search' }" class="home">
+              <!-- <nuxt-link :to="{ path: '/goods/goods_search' }" class="home">
                 {{ $t(`page.index.menus.shop`) }}
               </nuxt-link>
+
+
               <i class="el-icon-arrow-down"></i>
               <ul class="axil-submenu">
                 <li
@@ -289,7 +291,33 @@
                     {{ item.title }}
                   </nuxt-link>
                 </li>
-              </ul>
+              </ul> -->
+
+              <el-menu
+                class="el-menu-demo"
+                mode="horizontal"
+                @select="() => {}"
+              >
+                <el-submenu index="2">
+                  <template slot="title">
+                    
+
+                    <nuxt-link :to="{ path: '/goods/goods_search' }" class="home">
+                      {{ $t(`page.index.menus.shop`) }}
+                    </nuxt-link>
+                  </template>
+                  <el-menu-item index="2-1">选项1</el-menu-item>
+                  <el-menu-item index="2-2">选项2</el-menu-item>
+                  <el-menu-item index="2-3">选项3</el-menu-item>
+                  <el-submenu index="2-4">
+                    <template slot="title">选项4</template>
+                    <el-menu-item index="2-4-1">选项1</el-menu-item>
+                    <el-menu-item index="2-4-2">选项2</el-menu-item>
+                    <el-menu-item index="2-4-3">选项3</el-menu-item>
+                  </el-submenu>
+                </el-submenu>
+              </el-menu>
+             
             </li>
 
             <li>
@@ -1071,7 +1099,6 @@ export default {
           color: rgb(233, 51, 35);
         }
 
-    
         .login {
           font-size: 14px;
           font-family: Arial-BoldMT, Arial;
@@ -1081,10 +1108,7 @@ export default {
           cursor: pointer;
           width: 90px;
           display: block;
-
-        }    
-   
-
+        }
 
         .pic {
           width: 30px;
@@ -1492,5 +1516,12 @@ export default {
       }
     }
   }
+}
+</style>
+
+
+<style>
+.el-menu--horizontal > .el-submenu .el-submenu__title{
+  border-bottom: none !important ;
 }
 </style>
