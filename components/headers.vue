@@ -4,12 +4,12 @@
       <div class="nav">
         <div class="nav_con">
           <div class="left_nav">
-            <div class="home">
+            <!-- <div class="home">
               <span class="iconfont icon-shouye8"></span>
               <nuxt-link :to="{ path: '/' }" class="home">{{
                 $t(`page.goodsDetail.home`)
               }}</nuxt-link>
-            </div>
+            </div> -->
             <div class="collect cursors" @click="AddFavorite()">
               <span class="iconfont icon-shoucang3"></span>
               {{ $t(`page.index.collectSite`) }}
