@@ -20,6 +20,12 @@ export default {
 	},
 	page:{
 		index:{ //首页
+
+			menus:{
+				shop :'Magasin',
+				about:'À propos',
+				contact:'Les liens'
+			},
 			mainNav:[
 				{name:'Catégories'},
 				{name:'Collections'},
@@ -140,7 +146,7 @@ export default {
 			hotSearch:'Recherche très demandé',
 			recommend:'Proposition très demandé',
 			emptySearch:'Aucun critère de recherche, essayez un autre mot svp',
-			placeSearch:'Veuillez saisir les éléments à rechercher',
+			placeSearch:'Veuillez faire une recherche',
 			onSearch:'Recherche en cours',
 			goods:'Produits de base',
 			mer: 'Merchant',

@@ -21,6 +21,12 @@ export default {
     },
     page: {
         index: {
+
+            menus: {
+                shop: 'Shop',
+                about: 'About',
+                contact: 'Contact'
+            },
             mainNav: [
                 { name: 'categories' },
                 { name: 'Favorite' },
@@ -164,7 +170,7 @@ export default {
             hotSearch: 'Hot Search',
             recommend: 'recommend',
             emptySearch: 'There is nothing',
-            placeSearch: 'Please enter the item to search',
+            placeSearch: 'Please to search',
             onSearch: 'Searching',
             goods: 'goods',
             mer: 'Merchant',

@@ -19,6 +19,13 @@ export default {
 	},
 	page:{
 		index:{ //首页
+
+
+			menus:{
+				shop :'ຮ້ານ ຄ້າ',
+				about:'เกี่ยวกับ',
+				contact:'ติดต่อ'
+			},
 			mainNav:[
 				{name:'การจำแนกประเภท'},
 				{name:'เก็บรวบรวม'},
@@ -139,7 +146,7 @@ export default {
 			hotSearch:'สินค้าที่มีการค้นหามากที่สุด',
 			recommend:'สินค้าที่ขายดีที่สุด',
 			emptySearch:'ไม่มีเกณฑ์การค้นหา ลองคำอื่น',
-			placeSearch:'กรุณาระบุสินค้าที่ท่านต้องการค้นหา',
+			placeSearch:'โปรดป้อนการค้นหา',
 			onSearch:'กำลังค้นหา',
 			goods:'สินค้าโภคภัณฑ์',
 			mer: 'ร้านค้า',

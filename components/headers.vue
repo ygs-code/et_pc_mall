@@ -1,46 +1,489 @@
 <template>
   <div class="container">
-    <div class="nav">
-      <div class="nav_con">
-        <div class="left_nav">
-          <div class="home">
-            <span class="iconfont icon-shouye8"></span>
-            <nuxt-link :to="{ path: '/' }" class="home">{{ $t(`page.goodsDetail.home`) }}</nuxt-link>
+    <div class="hade-box">
+      <div class="nav">
+        <div class="nav_con">
+          <div class="left_nav">
+            <div class="home">
+              <span class="iconfont icon-shouye8"></span>
+              <nuxt-link :to="{ path: '/' }" class="home">{{
+                $t(`page.goodsDetail.home`)
+              }}</nuxt-link>
+            </div>
+            <div class="collect cursors" @click="AddFavorite()">
+              <span class="iconfont icon-shoucang3"></span>
+              {{ $t(`page.index.collectSite`) }}
+            </div>
           </div>
-          <div class="collect cursors" @click="AddFavorite()">
-            <span class="iconfont icon-shoucang3"></span>
-            {{ $t(`page.index.collectSite`) }}
-          </div>
-        </div>
-        <div class="right_nav">
-          <nuxt-link :to="{ path: '/users/order_list?orderStatus=1' }" class="orders">{{ $t(`page.user.myOrder`) }}
-          </nuxt-link>
-          <div class="line"></div>
-          <div class="apply" @click="goMerSettled()">
-            {{ $t(`page.index.applyFor`) }}
-          </div>
-          <div class="line"></div>
-          <div class="mobile" @click="go()">
-            {{ $t(`page.index.mobileMall`) }}
+          <div class="right_nav">
+            <nuxt-link
+              :to="{ path: '/users/order_list?orderStatus=1' }"
+              class="orders"
+              >{{ $t(`page.user.myOrder`) }}
+            </nuxt-link>
+            <div class="line"></div>
+            <div class="apply" @click="goMerSettled()">
+              {{ $t(`page.index.applyFor`) }}
+            </div>
+            <div class="line"></div>
+            <div class="mobile" @click="go()">
+              {{ $t(`page.index.mobileMall`) }}
+            </div>
           </div>
         </div>
       </div>
 
-    </div>
-    <div class="header" :class="navBarFixed == true ? 'navBarWrap' : ''">
+      <!-- <div class="header" :class="navBarFixed == true ? 'navBarWrap' : ''">
+        <div class="header_con">
+          <span
+            v-if="$nuxt.$route.path == '/'"
+            class="iconfont icon-more"
+          ></span>
+          <span v-else class="iconfont icon-more" @mouseenter="show"></span>
+
+          <div class="logo">
+            <nuxt-link :to="{ path: '/' }"
+              ><img :src="logoUrl" alt=""
+            /></nuxt-link>
+          </div>
+
+          <div class="input">
+            <div class="left_select">
+              <input
+                type="text"
+                :placeholder="$t(`page.goodsSearch.placeSearch`)"
+                v-model="search"
+              />
+            </div>
+            <div class="right_select">
+              <div
+                class="keyword"
+                @click="(search = item.title) && submit()"
+                v-for="item in hotSearchList.slice(0, 3)"
+                :key="item.id"
+              >
+                {{ item.title }}
+              </div>
+              <div class="search" @click="submit">
+                <span class="iconfont icon-sousuo"></span>
+              </div>
+            </div>
+          </div>
+
+          <el-dropdown>
+            <div class="code">
+              <span class="iconfont icon-yuyanqiehuan"></span>
+            </div>
+            <el-dropdown-menu slot="dropdown">
+              <template v-for="(item, index) in langList">
+                <el-dropdown-item
+                  v-for="(items, idx) in item.intro"
+                  :key="idx"
+                  @click.native="languagelTab(items)"
+                >
+                  {{ $t(`userDrawer.language[${idx}].name`) }}
+                </el-dropdown-item>
+              </template>
+            </el-dropdown-menu>
+          </el-dropdown>
+
+          <nuxt-link to="/order/shopping_cart" class="cartNum">
+            <div class="car">
+              <span class="iconfont icon-gouwuche"></span>
+              <span v-if="$store.state.cartNumber" class="num">{{
+                $store.state.cartNumber
+              }}</span>
+            </div>
+          </nuxt-link>
+
+          <div class="pic">
+            <img :src="$auth.user ? $auth.user.avatar : defaultPic" />
+          </div>
+          <div v-if="!$auth.loggedIn" class="login" @click="longin">
+            {{ $t(`page.users.login.sign`) }}
+          </div>
+          <div v-else>
+            <el-dropdown>
+              <span class="login el-dropdown-link line1">
+                {{ $auth.user.nickname
+                }}<i class="el-icon-arrow-down el-icon--right"></i>
+              </span>
+              <el-dropdown-menu slot="dropdown">
+                <div class="userBox acea-row row-middle">
+                  <div class="avatarPic">
+                    <img :src="$auth.user ? $auth.user.avatar : defaultPic" />
+                  </div>
+                  <div>
+                    <div class="nickname">{{ $auth.user.nickname }}</div>
+                    <div v-show="$auth.user.phone" class="count">
+                      {{ $auth.user.phone }}
+                    </div>
+                    <div v-show="$auth.user.email" class="count">
+                      {{ $auth.user.email }}
+                    </div>
+                  </div>
+                </div>
+                <el-dropdown-item
+                  v-for="(menu, index) in userMenu"
+                  :key="menu.id"
+                  @click.native="goPage(menu)"
+                >
+                  <div
+                    class="dropdownBox"
+                    v-show="menu.pc_url && menu.pc_url != ' '"
+                  >
+                    {{ $t(`page.user.mineNav[${index}].name`) }}
+                  </div>
+                </el-dropdown-item>
+                <div class="userInfo">
+                  <el-divider></el-divider>
+                </div>
+                <el-dropdown-item
+                  v-for="(menu, index) in menus"
+                  :key="menu.id"
+                  @click.native="goPage(menu)"
+                >
+                  <div
+                    class="dropdownBox"
+                    v-show="menu.pc_url && menu.pc_url != ' '"
+                  >
+                    {{ menu.name }}
+                  </div>
+                </el-dropdown-item>
+                <el-button @click="longOut" class="btn">{{
+                  $t(`page.users.userInfo.logOut`)
+                }}</el-button>
+              </el-dropdown-menu>
+            </el-dropdown>
+          </div>
+          <div class="category acea-row" @mouseleave="leave()" v-if="hide">
+            <div class="sort">
+              <div
+                class="item acea-row row-between-wrapper"
+                :class="index === current ? 'bg-color' : ''"
+                v-for="(item, index) in $store.state.productClassify"
+                :key="index"
+                @mouseenter="enter(index)"
+              >
+                <div class="name line1">{{ item.name }}</div>
+              </div>
+            </div>
+            <div
+              class="sortCon"
+              @mouseleave="show"
+              v-if="seen && categoryCurrent"
+            >
+              <div class="erSort">
+                <div
+                  class="item acea-row row-middle"
+                  v-for="(item, index) in categoryCurrent"
+                  :key="index"
+                >
+                  <div class="name line1">{{ item.name }}</div>
+                  <div class="cateList">
+                    <span
+                      class="cateItem"
+                      @click="goCate(items)"
+                      v-for="(items, indexn) in item.childList"
+                      :key="indexn"
+                    >
+                      {{ items.name }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      <div class="hade">
+        <div class="middle">
+          <div class="left-box">
+            <!-- <span v-if="$nuxt.$route.path == '/'" class="iconfont icon-more"></span> -->
+
+            <span
+              class="menu iconfont icon-more"
+              @mouseenter="show(true)"
+            ></span>
+
+            <div class="logo">
+              <div class="img-box">
+                <nuxt-link :to="{ path: '/' }"
+                  ><img :src="logoUrl" alt=""
+                /></nuxt-link>
+              </div>
+            </div>
+
+            <div
+              class="category acea-row"
+              @mouseleave="
+                () => {
+                  leave();
+                  show(false);
+                }
+              "
+              @mouseenter="show(true)"
+              v-if="hide"
+            >
+              <div class="sort">
+                <div
+                  class="item acea-row row-between-wrapper"
+                  :class="index === current ? 'bg-color' : ''"
+                  v-for="(item, index) in $store.state.productClassify"
+                  :key="index"
+                  @mouseenter="enter(index)"
+                >
+                  <div class="name line1">{{ item.name }}</div>
+                </div>
+              </div>
+
+              <div class="sortCon" v-if="seen && categoryCurrent">
+                <div class="erSort">
+                  <div
+                    class="item acea-row row-middle"
+                    v-for="(item, index) in categoryCurrent"
+                    :key="index"
+                  >
+                    <div class="name line1">{{ item.name }}</div>
+                    <div class="cateList">
+                      <span
+                        class="cateItem"
+                        @click="goCate(items)"
+                        v-for="(items, indexn) in item.childList"
+                        :key="indexn"
+                      >
+                        {{ items.name }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <ul class="mainmenu">
+            <li class="menu-item-has-children">
+              <nuxt-link :to="{ path: '/' }" class="home">{{
+                $t(`page.goodsDetail.home`)
+              }}</nuxt-link>
+            </li>
+            <li class="menu-item-has-children">
+              <nuxt-link :to="{ path: '/goods/goods_search' }" class="home">
+                {{ $t(`page.index.menus.shop`) }}
+              </nuxt-link>
+              <i class="el-icon-arrow-down"></i>
+              <ul class="axil-submenu">
+                <li
+                  class="keyword"
+                  @click="(search = item.title) && submit()"
+                  v-for="item in hotSearchList"
+                  :key="item.id"
+                >
+                  <nuxt-link
+                    :to="{
+                      path: `/goods/goods_search??title=${item.title}&cid`,
+                    }"
+                    class="home"
+                  >
+                    {{ item.title }}
+                  </nuxt-link>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <nuxt-link :to="{ path: '/' }" class="home">{{
+                $t(`page.index.menus.about`)
+              }}</nuxt-link>
+            </li>
+            <li>
+              <nuxt-link :to="{ path: '/' }" class="home">{{
+                $t(`page.index.menus.contact`)
+              }}</nuxt-link>
+            </li>
+          </ul>
+
+          <div class="right-box">
+            <div class="input">
+              <div class="left_select">
+                <input
+                  type="text"
+                  :placeholder="$t(`page.goodsSearch.placeSearch`)"
+                  v-model="search"
+                />
+              </div>
+              <div class="right_select">
+                <!-- <div
+                  class="keyword"
+                  @click="(search = item.title) && submit()"
+                  v-for="item in hotSearchList.slice(0, 3)"
+                  :key="item.id"
+                >
+                  {{ item.title }}
+                </div> -->
+                <div class="search" @click="submit">
+                  <span class="iconfont icon-sousuo"></span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <el-dropdown>
+                <div class="code">
+                  <span class="iconfont icon-yuyanqiehuan"></span>
+                </div>
+                <el-dropdown-menu slot="dropdown">
+                  <template v-for="(item, index) in langList">
+                    <el-dropdown-item
+                      v-for="(items, idx) in item.intro"
+                      :key="idx"
+                      @click.native="languagelTab(items)"
+                    >
+                      {{ $t(`userDrawer.language[${idx}].name`) }}
+                    </el-dropdown-item>
+                  </template>
+                </el-dropdown-menu>
+              </el-dropdown>
+            </div>
+            <nuxt-link to="/order/shopping_cart" class="cartNum">
+              <div class="car">
+                <span class="iconfont icon-gouwuche"></span>
+                <span v-if="$store.state.cartNumber" class="num">{{
+                  $store.state.cartNumber
+                }}</span>
+              </div>
+            </nuxt-link>
+
+            <div class="pic">
+              <img :src="$auth.user ? $auth.user.avatar : defaultPic" />
+            </div>
+            <div v-if="!$auth.loggedIn" class="login" @click="longin">
+              {{ $t(`page.users.login.sign`) }}
+            </div>
+            <div v-else>
+              <el-dropdown>
+                <span class="login el-dropdown-link line1">
+                  {{ $auth.user.nickname
+                  }}<i class="el-icon-arrow-down el-icon--right"></i>
+                </span>
+                <el-dropdown-menu slot="dropdown">
+                  <div class="userBox acea-row row-middle">
+                    <div class="avatarPic">
+                      <img :src="$auth.user ? $auth.user.avatar : defaultPic" />
+                    </div>
+                    <div>
+                      <div class="nickname">{{ $auth.user.nickname }}</div>
+                      <div v-show="$auth.user.phone" class="count">
+                        {{ $auth.user.phone }}
+                      </div>
+                      <div v-show="$auth.user.email" class="count">
+                        {{ $auth.user.email }}
+                      </div>
+                    </div>
+                  </div>
+                  <el-dropdown-item
+                    v-for="(menu, index) in userMenu"
+                    :key="menu.id"
+                    @click.native="goPage(menu)"
+                  >
+                    <div
+                      class="dropdownBox"
+                      v-show="menu.pc_url && menu.pc_url != ' '"
+                    >
+                      {{ $t(`page.user.mineNav[${index}].name`) }}
+                    </div>
+                  </el-dropdown-item>
+                  <div class="userInfo">
+                    <el-divider></el-divider>
+                  </div>
+                  <el-dropdown-item
+                    v-for="(menu, index) in menus"
+                    :key="menu.id"
+                    @click.native="goPage(menu)"
+                  >
+                    <div
+                      class="dropdownBox"
+                      v-show="menu.pc_url && menu.pc_url != ' '"
+                    >
+                      {{ menu.name }}
+                    </div>
+                  </el-dropdown-item>
+                  <el-button @click="longOut" class="btn">{{
+                    $t(`page.users.userInfo.logOut`)
+                  }}</el-button>
+                </el-dropdown-menu>
+              </el-dropdown>
+            </div>
+
+            <!-- <div class="category acea-row" @mouseleave="leave()" v-if="hide">
+              <div class="sort">
+                <div
+                  class="item acea-row row-between-wrapper"
+                  :class="index === current ? 'bg-color' : ''"
+                  v-for="(item, index) in $store.state.productClassify"
+                  :key="index"
+                  @mouseenter="enter(index)"
+                >
+                  <div class="name line1">{{ item.name }}</div>
+                </div>
+              </div>
+              <div
+                class="sortCon"
+                @mouseleave="show"
+                v-if="seen && categoryCurrent"
+              >
+                <div class="erSort">
+                  <div
+                    class="item acea-row row-middle"
+                    v-for="(item, index) in categoryCurrent"
+                    :key="index"
+                  >
+                    <div class="name line1">{{ item.name }}</div>
+                    <div class="cateList">
+                      <span
+                        class="cateItem"
+                        @click="goCate(items)"
+                        v-for="(items, indexn) in item.childList"
+                        :key="indexn"
+                      >
+                        {{ items.name }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>   -->
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="header" :class="navBarFixed == true ? 'navBarWrap' : ''">
       <div class="header_con">
         <span v-if="$nuxt.$route.path == '/'" class="iconfont icon-more"></span>
         <span v-else class="iconfont icon-more" @mouseenter="show"></span>
+
         <div class="logo">
-          <nuxt-link :to="{ path: '/' }"><img :src="logoUrl" alt=""></nuxt-link>
+          <nuxt-link :to="{ path: '/' }"
+            ><img :src="logoUrl" alt=""
+          /></nuxt-link>
         </div>
+
         <div class="input">
           <div class="left_select">
-            <input type="text" :placeholder="$t(`page.goodsSearch.placeSearch`)" v-model="search">
+            <input
+              type="text"
+              :placeholder="$t(`page.goodsSearch.placeSearch`)"
+              v-model="search"
+            />
           </div>
           <div class="right_select">
-            <div class="keyword" @click="(search = item.title) && submit()" v-for="item in hotSearchList.slice(0, 3)"
-              :key="item.id">
+            <div
+              class="keyword"
+              @click="(search = item.title) && submit()"
+              v-for="item in hotSearchList.slice(0, 3)"
+              :key="item.id"
+            >
               {{ item.title }}
             </div>
             <div class="search" @click="submit">
@@ -48,13 +491,18 @@
             </div>
           </div>
         </div>
+
         <el-dropdown>
           <div class="code">
             <span class="iconfont icon-yuyanqiehuan"></span>
           </div>
           <el-dropdown-menu slot="dropdown">
             <template v-for="(item, index) in langList">
-              <el-dropdown-item v-for="(items, idx) in item.intro" :key="idx" @click.native="languagelTab(items)">
+              <el-dropdown-item
+                v-for="(items, idx) in item.intro"
+                :key="idx"
+                @click.native="languagelTab(items)"
+              >
                 {{ $t(`userDrawer.language[${idx}].name`) }}
               </el-dropdown-item>
             </template>
@@ -64,65 +512,112 @@
         <nuxt-link to="/order/shopping_cart" class="cartNum">
           <div class="car">
             <span class="iconfont icon-gouwuche"></span>
-            <span v-if="$store.state.cartNumber" class="num">{{ $store.state.cartNumber }}</span>
+            <span v-if="$store.state.cartNumber" class="num">{{
+              $store.state.cartNumber
+            }}</span>
           </div>
         </nuxt-link>
 
         <div class="pic">
-          <img :src="$auth.user ? $auth.user.avatar : defaultPic">
+          <img :src="$auth.user ? $auth.user.avatar : defaultPic" />
         </div>
-        <div v-if="!$auth.loggedIn" class="login" @click="longin">{{ $t(`page.users.login.sign`) }}</div>
+        <div v-if="!$auth.loggedIn" class="login" @click="longin">
+          {{ $t(`page.users.login.sign`) }}
+        </div>
         <div v-else>
           <el-dropdown>
             <span class="login el-dropdown-link line1">
-              {{ $auth.user.nickname }}<i class="el-icon-arrow-down el-icon--right"></i>
+              {{ $auth.user.nickname
+              }}<i class="el-icon-arrow-down el-icon--right"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
               <div class="userBox acea-row row-middle">
                 <div class="avatarPic">
-                  <img :src="$auth.user ? $auth.user.avatar : defaultPic">
+                  <img :src="$auth.user ? $auth.user.avatar : defaultPic" />
                 </div>
                 <div>
                   <div class="nickname">{{ $auth.user.nickname }}</div>
-                  <div v-show="$auth.user.phone" class="count">{{ $auth.user.phone }}</div>
-                  <div v-show="$auth.user.email" class="count">{{ $auth.user.email }}</div>
+                  <div v-show="$auth.user.phone" class="count">
+                    {{ $auth.user.phone }}
+                  </div>
+                  <div v-show="$auth.user.email" class="count">
+                    {{ $auth.user.email }}
+                  </div>
                 </div>
               </div>
-              <el-dropdown-item v-for="(menu, index) in userMenu" :key="menu.id" @click.native="goPage(menu)">
-                <div class="dropdownBox" v-show="menu.pc_url && menu.pc_url != ' '">
-                  {{ $t(`page.user.mineNav[${index}].name`) }}</div>
+              <el-dropdown-item
+                v-for="(menu, index) in userMenu"
+                :key="menu.id"
+                @click.native="goPage(menu)"
+              >
+                <div
+                  class="dropdownBox"
+                  v-show="menu.pc_url && menu.pc_url != ' '"
+                >
+                  {{ $t(`page.user.mineNav[${index}].name`) }}
+                </div>
               </el-dropdown-item>
               <div class="userInfo">
                 <el-divider></el-divider>
               </div>
-              <el-dropdown-item v-for="(menu, index) in menus" :key="menu.id" @click.native="goPage(menu)">
-                <div class="dropdownBox" v-show="menu.pc_url && menu.pc_url != ' '">{{ menu.name }}</div>
+              <el-dropdown-item
+                v-for="(menu, index) in menus"
+                :key="menu.id"
+                @click.native="goPage(menu)"
+              >
+                <div
+                  class="dropdownBox"
+                  v-show="menu.pc_url && menu.pc_url != ' '"
+                >
+                  {{ menu.name }}
+                </div>
               </el-dropdown-item>
-              <el-button @click="longOut" class="btn">{{ $t(`page.users.userInfo.logOut`) }}</el-button>
+              <el-button @click="longOut" class="btn">{{
+                $t(`page.users.userInfo.logOut`)
+              }}</el-button>
             </el-dropdown-menu>
           </el-dropdown>
         </div>
         <div class="category acea-row" @mouseleave="leave()" v-if="hide">
           <div class="sort">
-            <div class="item acea-row row-between-wrapper" :class="index === current ? 'bg-color' : ''"
-              v-for="(item, index) in $store.state.productClassify" :key="index" @mouseenter="enter(index)">
+            <div
+              class="item acea-row row-between-wrapper"
+              :class="index === current ? 'bg-color' : ''"
+              v-for="(item, index) in $store.state.productClassify"
+              :key="index"
+              @mouseenter="enter(index)"
+            >
               <div class="name line1">{{ item.name }}</div>
             </div>
           </div>
-          <div class="sortCon" @mouseleave="show" v-if="seen && categoryCurrent">
+          <div
+            class="sortCon"
+            @mouseleave="show"
+            v-if="seen && categoryCurrent"
+          >
             <div class="erSort">
-              <div class="item acea-row row-middle" v-for="(item, index) in categoryCurrent" :key="index">
+              <div
+                class="item acea-row row-middle"
+                v-for="(item, index) in categoryCurrent"
+                :key="index"
+              >
                 <div class="name line1">{{ item.name }}</div>
                 <div class="cateList">
-                  <span class="cateItem" @click="goCate(items)" v-for="(items, indexn) in item.childList" :key="indexn">
+                  <span
+                    class="cateItem"
+                    @click="goCate(items)"
+                    v-for="(items, indexn) in item.childList"
+                    :key="indexn"
+                  >
                     {{ items.name }}
                   </span>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </div>  
       </div>
+    </div> -->
     </div>
   </div>
 </template>
@@ -130,7 +625,9 @@
 //AMBA-注释
 // import VueI18n from 'vue-i18n';
 // const i18n = new VueI18n();
-import { configMap } from '@/utils/validate.js'
+import { configMap } from "@/utils/validate.js";
+import "../assets/css/style.min.css";
+
 export default {
   name: "headers",
   mixins: [],
@@ -140,11 +637,11 @@ export default {
       categoryCurrent: [],
       langList: [
         {
-          name: '语言',
+          name: "语言",
           current: 0,
-          intro: ['en']
+          intro: ["en"],
           // intro: ['zh-CN', 'en', 'fr', 'th', 'lao']
-        }
+        },
       ],
       menus: [],
       seen: false,
@@ -159,11 +656,11 @@ export default {
       list: [],
       dialogVisible: false,
       current: 1,
-      info: '',
+      info: "",
       isShow: true,
-      appidNum: '',
-      hosts: '',
-      fromPath: '',
+      appidNum: "",
+      hosts: "",
+      fromPath: "",
       disabled: false,
       defaultPic: require("../assets/images/morentou.png"),
       cid: null,
@@ -171,34 +668,34 @@ export default {
         {
           id: 111,
           name: this.$t(`page.user.myOrder`),
-          pc_url: '/users/order_list'
+          pc_url: "/users/order_list",
         },
         {
           id: 222,
           name: this.$t(`page.users.goodsReturn.refundList`),
-          pc_url: '/users/refund_list'
+          pc_url: "/users/refund_list",
         },
         {
           id: 333,
           name: this.$t(`page.users.replyList.navTitle`),
-          pc_url: '/users/evaluation_list'
-        }
-      ]
-    }
+          pc_url: "/users/evaluation_list",
+        },
+      ],
+    };
   },
-  computed: configMap(['logoUrl']),
+  computed: configMap(["logoUrl"]),
   watch: {
     $route: {
       handler: function (newVal, oldVal) {
-        this.search = newVal.query.title ? newVal.query.title : '';
+        this.search = newVal.query.title ? newVal.query.title : "";
       },
       // 深度观察监听
-      deep: true
-    }
+      deep: true,
+    },
   },
   head() {
-    if (this.$route.path == '/') {
-      this.hide = true;
+    if (this.$route.path == "/") {
+      // this.hide = true;
       this.navBarFixed = false;
     } else {
       this.hide = false;
@@ -208,43 +705,48 @@ export default {
       this.carCount();
     }
     return {
-      title: this.$store.state.titleCon
-    }
+      title: this.$store.state.titleCon,
+    };
   },
   beforeMount() {
     if (this.$auth.loggedIn) {
       this.getMenus();
       this.carCount();
     }
-    if (!localStorage.getItem('homeDataPc')) {
-      this.getHomeIndex()
+    if (!localStorage.getItem("homeDataPc")) {
+      this.getHomeIndex();
     }
     this.getHotSearchList();
-    this.$store.dispatch('getProductClassify')
+    this.$store.dispatch("getProductClassify");
     // this.getLogoUrl()
   },
   mounted() {
-    window.addEventListener('keydown', this.keyDown);
+    window.addEventListener("keydown", this.keyDown);
     this.hosts = location.origin + location.pathname;
+
     this.fromPath = this.$cookies.get("fromPath");
+
     window.addEventListener("scroll", this.watchScroll);
   },
   destroyed() {
-    window.removeEventListener('keydown', this.keyDown, false);
+    window.removeEventListener("keydown", this.keyDown, false);
   },
   methods: {
     getLogoUrl() {
-      this.logoUrl = JSON.parse(localStorage.getItem("homeDataPc"))['logoUrl'];
+      this.logoUrl = JSON.parse(localStorage.getItem("homeDataPc"))["logoUrl"];
     },
     getHomeIndex() {
-      this.$axios.get("/api/pc/home/index").then(res => {
+      this.$axios.get("/api/pc/home/index").then((res) => {
+        console.log("res.data==", res.data);
         localStorage.setItem("homeDataPc", JSON.stringify(res.data));
-      })
+      });
     },
     carCount() {
-      this.$axios.get("/api/front/cart/count?numType=true&type=total").then(res => {
-        this.$store.commit('cartNum', res.data.count);
-      })
+      this.$axios
+        .get("/api/front/cart/count?numType=true&type=total")
+        .then((res) => {
+          this.$store.commit("cartNum", res.data.count);
+        });
     },
     /**
      *
@@ -252,36 +754,36 @@ export default {
      */
     languagelTab(n) {
       this.$i18n.locale = n;
-      this.$cookies.set('locale', n)
-      this.$store.commit('SET_LANG', n)
+      this.$cookies.set("locale", n);
+      this.$store.commit("SET_LANG", n);
     },
     /**
      *
      * 退出登录
      */
     async longOut() {
-      let val = this.$cookies.get('auth.strategy')
-      await this.$auth.logout().then(res => {
-        this.$store.commit('cartNum', 0);
+      let val = this.$cookies.get("auth.strategy");
+      await this.$auth.logout().then((res) => {
+        this.$store.commit("cartNum", 0);
         window.localStorage.clear();
         this.$router.replace({
-          path: '/'
-        })
-      })
+          path: "/",
+        });
+      });
     },
     //跳入移动商城地址
     go(url) {
-      window.open('https://mobile.glofinerittech.com');
+      window.open("https://mobile.glofinerittech.com");
     },
     // 商品分类
     goCate(items) {
-      this.cid = items.id
+      this.cid = items.id;
       this.$router.push({
-        path: '/goods/goods_search',
+        path: "/goods/goods_search",
         query: {
           cid: items.id,
-          title: this.search ? this.search.trim() : ''
-        }
+          title: this.search ? this.search.trim() : "",
+        },
       });
     },
     /**
@@ -291,13 +793,13 @@ export default {
     goMerSettled() {
       this.$router.push({
         path: `/users/merchant_settled`,
-        query: { menuCur: 70 }
+        query: { menuCur: 70 },
       });
     },
     goPage(menu) {
       this.$router.push({
         path: `${menu.pc_url}`,
-        query: { menuCur: menu.id }
+        query: { menuCur: menu.id },
       });
     },
     /**
@@ -305,18 +807,18 @@ export default {
      * 获取菜单
      */
     getMenus() {
-      this.$axios.get("/api/front/user/menu/user").then(res => {
-        this.menus = res.data.routine_my_menus
-      })
+      this.$axios.get("/api/front/user/menu/user").then((res) => {
+        this.menus = res.data.routine_my_menus;
+      });
     },
     longin() {
       this.$store.commit("isLogin", true);
       this.$store.commit("isTourists", false);
     },
     getHotSearchList() {
-      this.$axios.get("/api/front/search/keyword").then(res => {
+      this.$axios.get("/api/front/search/keyword").then((res) => {
         this.hotSearchList = res.data;
-      })
+      });
     },
     watchScroll() {
       var scrollTop =
@@ -324,17 +826,19 @@ export default {
         document.documentElement.scrollTop ||
         document.body.scrollTop;
 
-      if ($nuxt.$route.path == '/' && scrollTop > 120) {
-        this.navBarFixed = true;
-        this.hide = false;
-      } else if ($nuxt.$route.path == '/' && scrollTop < 120) {
-        this.navBarFixed = false;
-        this.hide = true;
-      } else if ($nuxt.$route.path !== '/' && scrollTop > 120) {
-        this.navBarFixed = true;
-      } else if ($nuxt.$route.path !== '/' && scrollTop < 120) {
-        this.navBarFixed = false;
-      }
+      console.log("scrollTop===", scrollTop);
+
+      // if ($nuxt.$route.path == "/" && scrollTop > 120) {
+      //   this.navBarFixed = true;
+      //   this.hide = false;
+      // } else if ($nuxt.$route.path == "/" && scrollTop < 120) {
+      //   this.navBarFixed = false;
+      //   this.hide = true;
+      // } else if ($nuxt.$route.path !== "/" && scrollTop > 120) {
+      //   this.navBarFixed = true;
+      // } else if ($nuxt.$route.path !== "/" && scrollTop < 120) {
+      //   this.navBarFixed = false;
+      // }
     },
     AddFavorite() {
       let url = window.location;
@@ -342,35 +846,31 @@ export default {
       let ua = navigator.userAgent.toLowerCase();
       if (ua.indexOf("360se") > -1) {
         this.$message(this.$t(`message.tips.browser`));
-      }
-      else if (ua.indexOf("msie 8") > -1) {
+      } else if (ua.indexOf("msie 8") > -1) {
         window.external.AddToFavoritesBar(url, title); //IE8
-      }
-      else if (document.all) {
+      } else if (document.all) {
         try {
           window.external.addFavorite(url, title);
         } catch (e) {
           this.$message(this.$t(`message.tips.nubrowser`));
         }
-      }
-      else if (window.sidebar) {
-
+      } else if (window.sidebar) {
         this.$message(this.$t(`message.tips.nubrowser`));
-      }
-      else {
+      } else {
         this.$message(this.$t(`message.tips.nubrowser`));
       }
     },
     submit() {
       this.$router.push({
-        path: '/goods/goods_search', query: {
-          title: this.search ? this.search.trim() : '',
-          cid: this.cid
-        }
+        path: "/goods/goods_search",
+        query: {
+          title: this.search ? this.search.trim() : "",
+          cid: this.cid,
+        },
       });
     },
     handleClose() {
-      this.dialogVisible = false
+      this.dialogVisible = false;
     },
     showLogin() {
       this.$store.commit("isLogin", true);
@@ -385,21 +885,201 @@ export default {
       this.categoryCurrent = this.$store.state.productClassify[index].childList;
     },
     leave() {
-      if ($nuxt.$route.path == '/') {
+      if ($nuxt.$route.path == "/") {
         this.seen = false;
-        this.hide = true
+        this.hide = true;
       } else {
         this.seen = false;
       }
-
     },
-    show() {
-      this.hide = !this.hide
+    show(flag) {
+      this.hide = flag; // !this.hide;
+    },
+  },
+};
+</script>
+
+<style scoped lang="scss">
+.hade-box {
+  width: 100%;
+  height: 110px;
+  overflow: visible;
+  background: white;
+  position: fixed;
+  z-index: 999;
+  .hade {
+    width: 100%;
+    height: 80px;
+    background: white;
+    position: fixed;
+    z-index: 99;
+
+    .middle {
+      width: 1200px;
+      height: 80px;
+      display: flex;
+      margin: 0 auto;
+
+      .left-box {
+        flex: 1;
+
+        height: 80px;
+        position: relative;
+
+        .menu {
+          font-size: 22px;
+
+          position: relative;
+          top: 28px;
+        }
+
+        .menu:hover {
+          color: rgb(233, 51, 35);
+          cursor: pointer;
+        }
+
+        .logo {
+          position: absolute;
+
+          width: 140px;
+          height: 80px;
+          left: 50px;
+          top: 0;
+
+          .img-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            img {
+              width: 140px;
+              height: auto;
+            }
+          }
+        }
+      }
+
+      .right-box {
+        height: 80px;
+        width: 490px;
+        display: flex;
+        box-sizing: border-box;
+        padding-top: 20px;
+        padding-left: 20px;
+
+        .input {
+          width: 240px;
+          height: 40px;
+          border: 1px solid #e93323;
+          border-radius: 20px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding-left: 20px;
+          margin-right: 22px;
+
+          .left_select {
+            flex: 1;
+            input {
+              width: 100%;
+              outline: none;
+              border: 0;
+            }
+          }
+
+          .right_select {
+            display: flex;
+            align-items: center;
+
+            .keyword {
+              width: 62px;
+              height: 16px;
+              background: #eeeeee;
+              border-radius: 20px;
+              font-size: 12px;
+              font-family: ArialMT;
+              color: #999999;
+              line-height: 16px;
+              text-align: center;
+              margin-right: 5px;
+              cursor: pointer;
+            }
+
+            .search {
+              width: 60px;
+              height: 40px;
+              background: #e93323;
+              border-radius: 20px;
+              text-align: center;
+              line-height: 40px;
+              color: #fff;
+              margin-left: 11px;
+              cursor: pointer;
+            }
+          }
+        }
+
+        .code,
+        .car {
+          width: 34px;
+          height: 34px;
+          background: #ffffff;
+          border: 1px solid #999999;
+          border-radius: 50%;
+          text-align: center;
+          line-height: 30px;
+          cursor: pointer;
+          position: relative;
+
+          .num {
+            position: absolute;
+            top: -6px;
+            left: 21px;
+            color: #fff;
+            font-size: 12px;
+            padding: 2px 5px;
+            border-radius: 100px;
+            background-color: #e93323;
+            display: inline-block;
+            font-weight: 800;
+            line-height: 14px;
+          }
+        }
+
+        .code:hover,
+        .car:hover {
+          color: rgb(233, 51, 35);
+          border: 1px solid rgb(233, 51, 35);
+        }
+
+        .car {
+          margin: 0 20px;
+
+          .icon {
+            font-size: 16px;
+            color: #333;
+          }
+        }
+
+        .login {
+          line-height: 30px;
+          margin-left: 10px;
+          cursor: pointer;
+        }
+        .login:hover {
+          color: rgb(233, 51, 35);
+        }
+      }
+
+      .mainmenu {
+        a {
+          display: inline-block;
+        }
+      }
     }
   }
 }
-</script>
-<style scoped lang="scss">
+
 .userInfo {
   ::v-deep.el-divider--horizontal {
     margin: 10px 0 !important;
@@ -447,11 +1127,11 @@ export default {
 
 .container {
   width: 100%;
-  // position: fixed;
   z-index: 99;
+  height: 110px;
 
   .nav {
-    background: #F4F4F4;
+    background: #f4f4f4;
 
     .nav_con {
       width: 1200px;
@@ -459,7 +1139,7 @@ export default {
       margin: auto;
       display: flex;
       justify-content: space-between;
-      background: #F4F4F4;
+      background: #f4f4f4;
       font-size: 14px;
       font-family: PingFangSC-Regular, PingFang SC;
       font-weight: 400;
@@ -473,7 +1153,7 @@ export default {
 
         .icon {
           font-size: 12px;
-          background: #8A8A8A;
+          background: #8a8a8a;
         }
 
         .home {
@@ -515,7 +1195,7 @@ export default {
     width: 100%;
     height: 90px;
     margin: auto;
-    background: #FFFFFF;
+    background: #ffffff;
 
     .header_con {
       width: 1200px;
@@ -546,7 +1226,7 @@ export default {
       .input {
         width: 750px;
         height: 40px;
-        border: 1px solid #E93323;
+        border: 1px solid #e93323;
         border-radius: 20px;
         display: flex;
         justify-content: space-between;
@@ -568,7 +1248,7 @@ export default {
           .keyword {
             width: 62px;
             height: 16px;
-            background: #EEEEEE;
+            background: #eeeeee;
             border-radius: 20px;
             font-size: 12px;
             font-family: ArialMT;
@@ -582,7 +1262,7 @@ export default {
           .search {
             width: 60px;
             height: 40px;
-            background: #E93323;
+            background: #e93323;
             border-radius: 20px;
             text-align: center;
             line-height: 40px;
@@ -597,7 +1277,7 @@ export default {
       .car {
         width: 34px;
         height: 34px;
-        background: #FFFFFF;
+        background: #ffffff;
         border: 1px solid #999999;
         border-radius: 50%;
         text-align: center;
@@ -613,7 +1293,7 @@ export default {
           font-size: 12px;
           padding: 2px 5px;
           border-radius: 100px;
-          background-color: #E93323;
+          background-color: #e93323;
           display: inline-block;
           font-weight: 800;
           line-height: 14px;
@@ -636,7 +1316,7 @@ export default {
       .pic {
         width: 30px;
         height: 30px;
-        background: #EEEEEE;
+        background: #eeeeee;
         border-radius: 50%;
         margin-right: 10px;
         text-align: center;
@@ -659,7 +1339,6 @@ export default {
         width: 90px;
         display: block;
       }
-
     }
   }
 }
@@ -672,9 +1351,9 @@ export default {
 
 .category {
   position: absolute;
-  top: 90px;
+  top: 80px;
   left: 0;
-  z-index: 9;
+  z-index: 999;
 }
 
 .sort {
@@ -700,6 +1379,8 @@ export default {
 }
 
 .sortCon {
+  position: absolute;
+  left: 208px;
   width: 772px;
   height: auto;
   background-color: #fff;
