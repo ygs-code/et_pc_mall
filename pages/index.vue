@@ -30,9 +30,13 @@
           <div class="left-bottom-left">
             <el-carousel indicator-position="none">
               <el-carousel-item v-for="(item, index) in storeList" :key="index">
-                <div style="height:3px;">
+                <div style="height: 3px">
                   <div>
-                    <el-image class="backImg img" :src="item.backImage" @click="goMerchant(item)">
+                    <el-image
+                      class="backImg img"
+                      :src="item.backImage"
+                      @click="goMerchant(item)"
+                    >
                       <div slot="placeholder" class="image-slot">
                         loading<span class="dot">...</span>
                       </div>
@@ -50,7 +54,12 @@
             </el-carousel>
           </div>
           <div class="left-bottom-right">
-            <div @click="goMerchant(item)" class="logo" v-for="(item, index) in storeList.slice(0, 6)" :key="index">
+            <div
+              @click="goMerchant(item)"
+              class="logo"
+              v-for="(item, index) in storeList.slice(0, 6)"
+              :key="index"
+            >
               <el-image class="img" :src="item.avatar">
                 <div slot="placeholder" class="image-slot">
                   loading<span class="dot">...</span>
@@ -67,10 +76,15 @@
           <span class="iconfont icon-gengduo"></span>
         </div>
         <div class="right-bottom">
-          <img class="pic pic1" src="../assets/images/top-list0.png" alt="">
-          <img class="pic pic2" src="../assets/images/top-list1.png" alt="">
-          <img class="pic pic3" src="../assets/images/top-list2.png" alt="">
-          <div class="goods" v-for="(item, index) in toponeList" :key="index" @click="goDetail(item)">
+          <img class="pic pic1" src="../assets/images/top-list0.png" alt="" />
+          <img class="pic pic2" src="../assets/images/top-list1.png" alt="" />
+          <img class="pic pic3" src="../assets/images/top-list2.png" alt="" />
+          <div
+            class="goods"
+            v-for="(item, index) in toponeList"
+            :key="index"
+            @click="goDetail(item)"
+          >
             <el-image class="img" :src="item.image">
               <div slot="placeholder" class="image-slot">
                 loading<span class="dot">...</span>
@@ -108,6 +122,7 @@
       <div class="product-top">
         <span class="title"> {{ $t(`page.index.titAlso`) }} </span>
       </div>
+
       <div class="product-bottom">
         <div class="brandshop" v-if="productList.length">
           <div class="left">
@@ -117,24 +132,34 @@
               </div>
             </el-image>
           </div>
+
           <div class="store">
             <div class="wrapper">
-              <div @click="goDetail(item)" class="goods_item imgItem" v-for="item in productList.slice(0, 8)"
-                :key="item.id">
-                <el-image class="img" :src="item.image">
-                  <div slot="placeholder" class="image-slot">
-                    loading<span class="dot">...</span>
-                  </div>
-                </el-image>
+              <div
+                @click="goDetail(item)"
+                class="goods_item imgItem"
+                v-for="item in productList.slice(0, 6)"
+                :key="item.id"
+              >
+                  <div
+                    class="img"
+                    :style="{ 'background-image': `url(${item.image}` }"
+                  ></div>
                 <div class="goods_content">
                   <div class="lines2 store_name1">
                     {{ item.storeName }}
                   </div>
                   <div class="acea_row">
-                    <div class="price1">{{ GLOBAL.shopPayCurrency }}{{ item.price }}</div>
+                    <div class="price1">
+                      {{ GLOBAL.shopPayCurrency }}{{ item.price }}
+                    </div>
                     <div class="ot_price">
-                      <span>{{ (Math.floor(item.sales) + Math.floor(item.ficti)) || 0 }}
-                        {{ $t(`page.goodsDetail.sold`) }}</span>
+                      <span
+                        >{{
+                          Math.floor(item.sales) + Math.floor(item.ficti) || 0
+                        }}
+                        {{ $t(`page.goodsDetail.sold`) }}</span
+                      >
                     </div>
                   </div>
                 </div>
@@ -148,7 +173,10 @@
       </div>
     </div>
     <!-- 加载更多 -->
-    <div class="loadingicon acea-row row-center-wrapper" v-if="productList.length && productList.length >= limits">
+    <div
+      class="loadingicon acea-row row-center-wrapper"
+      v-if="productList.length && productList.length >= limits"
+    >
       <span class="loading iconfont icon-jiazai" v-if="!pullRefreshss"></span>
     </div>
     <!--右侧浮窗-->
@@ -170,7 +198,7 @@ export default {
     recommended,
     promotions,
     firstNew,
-    product
+    product,
   },
   data() {
     return {
@@ -195,31 +223,27 @@ export default {
       limit: 10,
       limits: 13,
       scollY: null, // 离底部距离有多少
-      pageTotal: 0 //总页数
+      pageTotal: 0, //总页数
     };
   },
   async asyncData({ app, error, store }) {
-    typeof localStorage !== 'undefined' && window.localStorage.clear();
-    let [
-      list,
-      storeList,
-      activityindexList,
-      toponeList,
-      proList
-    ] = await Promise.all([
-      app.$axios.get("/api/pc/home/index"),
-      app.$axios.get("/api/front/merchant/street"),
-      app.$axios.get("/api/front/activity/index/list"),
-      app.$axios.get("/api/front/product/leaderboard"),
-      app.$axios.get("/api/front/index/product", {
-        params: {
-          page: 1,
-          limit: 13
-        }
-      }),
-      app.$axios.get("/api/front/activity/index/list")
-    ]);
-    typeof localStorage !== 'undefined' && localStorage.setItem("homeDataPc", JSON.stringify(list.data));
+    typeof localStorage !== "undefined" && window.localStorage.clear();
+    let [list, storeList, activityindexList, toponeList, proList] =
+      await Promise.all([
+        app.$axios.get("/api/pc/home/index"),
+        app.$axios.get("/api/front/merchant/street"),
+        app.$axios.get("/api/front/activity/index/list"),
+        app.$axios.get("/api/front/product/leaderboard"),
+        app.$axios.get("/api/front/index/product", {
+          params: {
+            page: 1,
+            limit: 13,
+          },
+        }),
+        app.$axios.get("/api/front/activity/index/list"),
+      ]);
+    typeof localStorage !== "undefined" &&
+      localStorage.setItem("homeDataPc", JSON.stringify(list.data));
     return {
       list: list.data,
       bannerList: list.data.banner,
@@ -228,7 +252,7 @@ export default {
       activityindexList: activityindexList.data,
       actList: activityindexList.data.splice(0, 1),
       toponeList: toponeList.data.splice(0, 3),
-      proList: proList.data.list
+      proList: proList.data.list,
     };
   },
   beforeDestroy() {
@@ -247,7 +271,7 @@ export default {
       serviceLink: this.list.consumerH5Url,
       servicePhone: this.list.consumerHotline,
       serviceMessage: this.list.consumerMessage,
-      serviceType: this.list.consumerType
+      serviceType: this.list.consumerType,
     });
     this.pullRefresh();
   },
@@ -257,7 +281,7 @@ export default {
     },
     goTopone() {
       this.$router.push({
-        path: "/goods/top_one"
+        path: "/goods/top_one",
       });
     },
     watchScroll() {
@@ -290,20 +314,20 @@ export default {
       let currentPage = { page: this.page, limit: this.limits };
       this.$axios
         .get(`/api/front/index/product`, {
-          params: currentPage
+          params: currentPage,
         })
-        .then(res => {
+        .then((res) => {
           this.pageTotal = res.data.total;
           let proList = res.data.list;
           this.productList = this.productList.concat(proList);
         })
-        .catch(err => {
+        .catch((err) => {
           this.$message.error(err);
         });
     },
     gopage() {
       this.$router.push({
-        path: "/merchant/merchant_street"
+        path: "/merchant/merchant_street",
       });
     },
     goMerchant(item) {
@@ -315,8 +339,8 @@ export default {
       window.onscroll = function () {
         _this.watchScroll();
       };
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -325,17 +349,17 @@ export default {
   flex: 1;
 
   .banner {
-    width: 1200px;
+    width: 100%;
     height: 480px;
     margin: auto;
     position: relative;
+    min-width: 1200px;
 
     .slider-banner {
       width: 100%;
       margin: auto;
 
       ::v-deep .el-carousel__arrow--left {
-        left: 224px;
       }
     }
 
@@ -601,33 +625,41 @@ export default {
       }
 
       .left {
-        width: 226px;
+        width: 288px;
         height: 675px;
         background: #fff;
         margin: 0 15px 15px 0;
         float: left;
 
         .img {
-          width: 226px;
+          width: 288px;
           height: 675px;
         }
       }
-
+      .store {
+         //  background: red;
+      }
       .goods_item {
         display: inline-block;
-        width: 228px;
+        width: 288px;
         height: 330px;
-        margin: 0 13px 15px 0;
+        margin-right: 15px;
+
         background: #ffffff;
         cursor: pointer;
 
+  
         .img {
-          width: 198px;
+          margin: 0;
+          width: 100%;
           height: 198px;
-          margin: 15px 15px;
+          background-repeat: no-repeat;
+          background-size: contain;
+          background-position: center;
         }
 
         .goods_content {
+          margin-top: 10px;
           .store_name {
             height: 44px;
             margin: 0 22px 20px 15px;
@@ -666,6 +698,9 @@ export default {
             margin-right: 12px;
           }
         }
+      }
+      .goods_item:nth-child(3n) {
+        margin-right: 0 !important;
       }
     }
   }
@@ -781,17 +816,11 @@ export default {
   .imgItem {
     width: 228px;
     height: 330px;
-
-    .img {
-      width: 198px;
-      height: 198px;
-      margin: 15px;
-    }
   }
 }
 
 .goods_item:nth-child(4n) {
-  margin-right: 0 !important;
+  // margin-right: 0 !important;
 }
 
 .topindeximg1 {

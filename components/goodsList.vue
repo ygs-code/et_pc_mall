@@ -104,6 +104,7 @@
       }
     }
     .goods_content {
+     
 
       .store_name{
         height: 44px;

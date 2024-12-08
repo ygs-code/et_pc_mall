@@ -20,6 +20,13 @@ export default {
   },
   page:{
     index:{ //首页
+
+      menus:{
+				shop :'商店',
+				about:'关于',
+				contact:'联系'
+			},
+
       mainNav:[
         {name:'分类'},
         {name:'收藏'},
@@ -141,7 +148,7 @@ export default {
       hotSearch:'热门搜索',
       recommend:'热卖推荐',
       emptySearch:'无搜索条件,换个词试试吧',
-      placeSearch:'请输入要搜索的商品',
+      placeSearch:'请输入搜索',
       onSearch:'正在搜索中',
       goods:'商品',
       mer: '店铺',
