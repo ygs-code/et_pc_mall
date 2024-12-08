@@ -90,15 +90,6 @@ export default {
             }
         }
     },
-    watch: {
-        $route: {
-            handler: function (val, oldVal) {
-                this.menuCur = val.query.menuCur || 111;
-            },
-            // 深度观察监听
-            deep: true
-        },
-    },
     head() {
         return {
             title: ""
@@ -130,8 +121,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .contact-us-wrapper {
-    /* padding-top: 100px; */
-
     .contact-title-wrap {
         height: 205px;
         padding: 40px 0;
@@ -147,7 +136,7 @@ export default {
 
         .line {
             display: inline-block;
-            width: 1px;
+            width: 2px;
             height: 11px;
             background-color: #e5e5e5;
             margin: 0 8px;

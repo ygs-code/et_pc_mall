@@ -77,7 +77,7 @@ export default {
                         },
                         {
                             label: this.$t('page.index.footer.middleNavList.about.aboutUs'),
-                            url: '/'
+                            url: '/about/us'
                         },
                         {
                             label: this.$t('page.index.footer.middleNavList.about.contactUs'),
@@ -94,23 +94,23 @@ export default {
                     list: [
                         {
                             label: this.$t('page.index.footer.middleNavList.policy.privacy'),
-                            url: '/'
+                            url: '/policy/privacy'
                         },
                         {
                             label: this.$t('page.index.footer.middleNavList.policy.tearms'),
-                            url: '/'
+                            url: '/policy/terms'
                         },
                         {
                             label: this.$t('page.index.footer.middleNavList.policy.refund'),
-                            url: '/'
+                            url: '/policy/refund'
                         },
                         {
                             label: this.$t('page.index.footer.middleNavList.policy.return'),
-                            url: '/'
+                            url: '/policy/return'
                         },
                         {
                             label: this.$t('page.index.footer.middleNavList.policy.shipping'),
-                            url: '/'
+                            url: '/policy/shipping'
                         }
                     ]
                 }
