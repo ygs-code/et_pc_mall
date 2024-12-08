@@ -2,10 +2,16 @@
     <div class="contact-us-wrapper">
         <div class="contact-title-wrap">
             <div class="wrapper_1200">
-                <nuxt-link :to="{ path: '/' }">Home</nuxt-link>
-                <i></i>
-                <span>Contact</span>
+                <div class="contact-top-wrap">
+                    <nuxt-link class="home-nav" :to="{ path: '/' }">Home</nuxt-link>
+                    <i class="line"></i>
+                    <span class="contact-nav">Contact</span>
+                </div>
+                <div class="contact-title">
+                    Contact With Us
+                </div>
             </div>
+
         </div>
         <div class="wrapper_1200">
             <el-row :gutter="1">
@@ -59,10 +65,9 @@
     </div>
 </template>
 <script>
-// AMAB - ZS
 export default {
-    name: "user",
-    auth: "guest",
+    name: "us",
+    auth: false,
     data() {
         return {
             userInfo: {},
@@ -83,20 +88,6 @@ export default {
                     { required: true, message: 'please input email', trigger: 'blur' }
                 ],
             }
-        }
-    },
-    async asyncData({ app, query, error }) {
-        try {
-            let data = await app.$axios.get(
-                "/api/front/user/menu/user"
-            );
-            return {
-                menuCur: query.menuCur || 111,
-                menus: data.data.routine_my_menus
-            };
-        }
-        catch (e) {
-            error({ statusCode: 401, msg: typeof e === 'string' ? e : '系统繁忙' });
         }
     },
     watch: {
@@ -146,6 +137,33 @@ export default {
         padding: 40px 0;
         background-color: #f8f8f8;
         margin-bottom: 80px;
+
+        .contact-top-wrap {}
+
+        .home-nav {
+            color: #999;
+            font-size: 16px;
+        }
+
+        .line {
+            display: inline-block;
+            width: 1px;
+            height: 11px;
+            background-color: #e5e5e5;
+            margin: 0 8px;
+        }
+
+        .contact-nav {
+            color: #3577f0;
+            font-size: 16px;
+
+        }
+
+        .contact-title {
+            margin-top: 15px;
+            font-size: 40px;
+            font-weight: bold;
+        }
     }
 
     .r-title {
