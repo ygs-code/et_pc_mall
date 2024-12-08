@@ -144,13 +144,15 @@
           </div>
         </div>
       </div>
-      <div
+
+      <!-- <div
         class="loadingicon acea-row row-center-wrapper"
         v-if="searchList.length && searchList.length >= limit"
       >
         <span class="loading iconfont icon-jiazai" v-if="!pullRefreshss"></span
         >{{ title }}
-      </div>
+      </div> -->
+
       <div class="noCart" v-if="!searchList.length && noProduct">
         <div class="pictrue"><img src="../../assets/images/noCart.png" /></div>
         <div class="tip">{{ $t(`page.goodsSearch.searchGoods`) }}</div>
