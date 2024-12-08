@@ -1,15 +1,10 @@
 <template>
   <div class="container">
     <div class="hade-box">
-      <div class="nav">
+      <!-- <div class="nav">
         <div class="nav_con">
           <div class="left_nav">
-            <!-- <div class="home">
-              <span class="iconfont icon-shouye8"></span>
-              <nuxt-link :to="{ path: '/' }" class="home">{{
-                $t(`page.goodsDetail.home`)
-              }}</nuxt-link>
-            </div> -->
+          
             <div class="collect cursors" @click="AddFavorite()">
               <span class="iconfont icon-shoucang3"></span>
               {{ $t(`page.index.collectSite`) }}
@@ -31,7 +26,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <!-- <div class="header" :class="navBarFixed == true ? 'navBarWrap' : ''">
         <div class="header_con">
@@ -202,10 +197,10 @@
           <div class="left-box">
             <!-- <span v-if="$nuxt.$route.path == '/'" class="iconfont icon-more"></span> -->
 
-            <span
+            <!-- <span
               class="menu iconfont icon-more"
               @mouseenter="show(true)"
-            ></span>
+            ></span> -->
 
             <div class="logo">
               <div class="img-box">
@@ -215,7 +210,7 @@
               </div>
             </div>
 
-            <div
+            <!-- <div
               class="category acea-row"
               @mouseleave="
                 () => {
@@ -259,7 +254,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
 
           <ul class="mainmenu">
@@ -296,17 +291,21 @@
               <el-menu
                 class="el-menu-demo"
                 mode="horizontal"
-                @select="() => {}"
+                @select="handleSelect"
               >
                 <el-submenu index="2">
                   <template slot="title">
-                    
-
-                    <nuxt-link :to="{ path: '/goods/goods_search' }" class="home">
+                    <nuxt-link
+                      :to="{ path: '/goods/goods_search' }"
+                      class="home"
+                    >
                       {{ $t(`page.index.menus.shop`) }}
                     </nuxt-link>
                   </template>
-                  <el-menu-item index="2-1">选项1</el-menu-item>
+
+                  <my-sub-menu :subMenu="menuData"></my-sub-menu>
+
+                  <!-- <el-menu-item index="2-1">选项1</el-menu-item>
                   <el-menu-item index="2-2">选项2</el-menu-item>
                   <el-menu-item index="2-3">选项3</el-menu-item>
                   <el-submenu index="2-4">
@@ -314,10 +313,9 @@
                     <el-menu-item index="2-4-1">选项1</el-menu-item>
                     <el-menu-item index="2-4-2">选项2</el-menu-item>
                     <el-menu-item index="2-4-3">选项3</el-menu-item>
-                  </el-submenu>
+                  </el-submenu> -->
                 </el-submenu>
               </el-menu>
-             
             </li>
 
             <li>
@@ -656,7 +654,10 @@
 // const i18n = new VueI18n();
 import { configMap } from "@/utils/validate.js";
 import "../assets/css/style.min.css";
-
+import { MenuItem } from "element-ui";
+import { v4 as uuidv4 } from "uuid";
+import { findTreeData } from "@/utils/ergodic";
+import mySubMenu from "./MySubMenu";
 export default {
   name: "headers",
   mixins: [],
@@ -710,6 +711,17 @@ export default {
           pc_url: "/users/evaluation_list",
         },
       ],
+      menuData: [
+        {
+          name: "1",
+          title: "Item 1",
+          children: [
+            { name: "1-1", title: "Item 1-1" },
+            { name: "1-2", title: "Item 1-2" },
+          ],
+        },
+        // ... 更多菜单项
+      ],
     };
   },
   computed: configMap(["logoUrl"]),
@@ -717,6 +729,16 @@ export default {
     $route: {
       handler: function (newVal, oldVal) {
         this.search = newVal.query.title ? newVal.query.title : "";
+      },
+      // 深度观察监听
+      deep: true,
+    },
+
+    "$store.state.productClassify": {
+      handler: function (newVal, oldVal) {
+        // this.search = newVal.query.title ? newVal.query.title : "";
+        this.menuData = this.toTree(newVal);
+        console.log("this.menuData==", this.menuData);
       },
       // 深度观察监听
       deep: true,
@@ -753,6 +775,8 @@ export default {
     window.addEventListener("keydown", this.keyDown);
     this.hosts = location.origin + location.pathname;
 
+    this.menuData = this.toTree(this.$store.state.productClassify);
+
     this.fromPath = this.$cookies.get("fromPath");
 
     window.addEventListener("scroll", this.watchScroll);
@@ -760,13 +784,59 @@ export default {
   destroyed() {
     window.removeEventListener("keydown", this.keyDown, false);
   },
+
+  components: {
+    mySubMenu,
+    MenuItem: {
+      name: "MenuItem",
+      props: ["item"],
+      template: `
+        <el-submenu v-if="item.children" :index="item.name">
+          <template slot="title">{{ item.title }}</template>
+          <menu-item v-for="child in item.children" :key="child.name" :item="child" />
+        </el-submenu>
+        <el-menu-item v-else :index="item.name">{{ item.title }}</el-menu-item>
+      `,
+      components: {
+        MenuItem,
+      },
+    },
+  },
   methods: {
+    handleSelect(key, keyPath) {
+      let item = findTreeData(
+        this.menuData, // 树形数组或者数组数据
+        key, // 需要查找的value
+        "key" //需要查找数组对象的key
+      );
+
+      console.log(key, item);
+
+      this.cid = item.id;
+      this.$router.push({
+        path: "/goods/goods_search",
+        query: {
+          cid: item.id,
+          // title: this.search ? this.search.trim() : "",
+        },
+      });
+    },
+    toTree(data) {
+      return data.map((item) => {
+        const { childList = [] } = item;
+        return {
+          children: childList.length ? this.toTree(childList) : [],
+          ...item,
+          key: uuidv4(),
+        };
+      });
+    },
     getLogoUrl() {
       this.logoUrl = JSON.parse(localStorage.getItem("homeDataPc"))["logoUrl"];
     },
     getHomeIndex() {
       this.$axios.get("/api/pc/home/index").then((res) => {
-        console.log("res.data==", res.data);
+        // console.log("res.data==", res.data);
         localStorage.setItem("homeDataPc", JSON.stringify(res.data));
       });
     },
@@ -855,7 +925,7 @@ export default {
         document.documentElement.scrollTop ||
         document.body.scrollTop;
 
-      console.log("scrollTop===", scrollTop);
+      // console.log("scrollTop===", scrollTop);
 
       // if ($nuxt.$route.path == "/" && scrollTop > 120) {
       //   this.navBarFixed = true;
@@ -912,6 +982,11 @@ export default {
       this.hide = true;
       this.current = index;
       this.categoryCurrent = this.$store.state.productClassify[index].childList;
+
+      console.log(
+        "this.$store.state.productClassify==",
+        this.$store.state.productClassify
+      );
     },
     leave() {
       if ($nuxt.$route.path == "/") {
@@ -972,7 +1047,7 @@ export default {
 
           width: 140px;
           height: 80px;
-          left: 50px;
+          left: 0px;
           top: 0;
 
           .img-box {
@@ -1519,9 +1594,10 @@ export default {
 }
 </style>
 
-
 <style>
-.el-menu--horizontal > .el-submenu .el-submenu__title{
+.el-menu.el-menu--horizontal,
+.el-menu--horizontal > .el-submenu .el-submenu__title,
+.el-menu--horizontal > .el-submenu .el-submenu__title {
   border-bottom: none !important ;
 }
 </style>

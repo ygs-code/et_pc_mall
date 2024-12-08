@@ -124,7 +124,7 @@
     line-height: 80px
 }
 
-.axil-mainmenu.axil-sticky .mainmenu>li>a:before {
+.axil-mainmenu.axil-sticky .mainmenu>li a:before {
     bottom: 20px
 }
 
@@ -240,7 +240,7 @@
     height: 60px
 }
 
-.header-style-4 .mainmenu>li>a:before {
+.header-style-4 .mainmenu>li a:before {
     bottom: 18px
 }
 
@@ -422,11 +422,11 @@
     transition: .3s
 }
 
-.header-style-7 .mainmenu>li>a:before {
+.header-style-7 .mainmenu>li a:before {
     display: none
 }
 
-.header-style-7 .mainmenu>li>a:hover i {
+.header-style-7 .mainmenu>li a:hover i {
     color: var(--color-heading)
 }
 
@@ -609,12 +609,12 @@
     }
 }
 
-.header-action>ul>li>a>i {
+.header-action>ul>li a>i {
     display: inline-block;
     line-height: 0
 }
 
-.header-action>ul>li>a::after {
+.header-action>ul>li a::after {
     content: "";
     height: 45px;
     width: 45px;
@@ -627,29 +627,29 @@
 }
 
 @media only screen and (max-width: 575px) {
-    .header-action>ul>li>a::after {
+    .header-action>ul>li a::after {
         height: 35px;
         width: 35px
     }
 }
 
-.header-action>ul>li>a:focus {
+.header-action>ul>li a:focus {
     color: var(--color-heading)
 }
 
-.header-action>ul>li>a:hover {
+.header-action>ul>li a:hover {
     color: var(--color-white)
 }
 
-.header-action>ul>li>a:hover::after {
+.header-action>ul>li a:hover::after {
     transform: scale(1)
 }
 
-.header-action>ul>li>a.open {
+.header-action>ul>li a.open {
     color: var(--color-white)
 }
 
-.header-action>ul>li>a.open::after {
+.header-action>ul>li a.open::after {
     transform: scale(1)
 }
 
@@ -1469,7 +1469,7 @@
     height: 60px
 }
 
-.axil-mainmenu.aside-category-menu .mainmenu>li>a:before {
+.axil-mainmenu.aside-category-menu .mainmenu>li a:before {
     bottom: 18px
 }
 
@@ -1511,7 +1511,7 @@
         display: inline-block
     }
 
-    .header-main-nav .mainmenu-nav .mainmenu>li>a::before {
+    .header-main-nav .mainmenu-nav .mainmenu>li a::before {
         display: none
     }
 
@@ -1634,7 +1634,7 @@
     transition: var(--transition)
 }
 
-.mainmenu>li>a::before {
+.mainmenu>li a::before {
     content: "";
     height: 2px;
     width: 0;
@@ -1646,20 +1646,20 @@
     transition: .5s
 }
 
-.mainmenu>li>a:hover {
+.mainmenu>li a:hover {
     color: rgb(233, 51, 35)
 }
 
-.mainmenu>li>a:hover::before {
+.mainmenu>li a:hover::before {
     opacity: 1;
     width: 100%
 }
 
-.mainmenu>li>a.active {
+.mainmenu>li a.active {
     color: var(--color-black)
 }
 
-.mainmenu>li>a.active:before {
+.mainmenu>li a.active:before {
     width: 100%;
     opacity: 1
 }
@@ -1668,7 +1668,7 @@
     position: relative
 }
 
-.mainmenu>.menu-item-has-children>a {
+.mainmenu>.menu-item-has-children a {
     position: relative;
  
 }
