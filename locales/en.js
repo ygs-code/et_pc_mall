@@ -75,8 +75,8 @@ export default {
                     },
                     policy: {
                         privacy: 'Privacy Policy',
-                        tearms: 'Tearms and Contitions',
-                        refund: 'Refund and Cancellation Policy',
+                        tearms: 'TERMS and contitions',
+                        refund: 'Return and Refund Policy',
                         return: 'Return Policy',
                         shipping: 'Shipping Policy',
                     }
