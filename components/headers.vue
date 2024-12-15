@@ -319,12 +319,12 @@
             </li>
 
             <li>
-              <nuxt-link :to="{ path: '/' }" class="home">{{
+              <nuxt-link :to="{ path: '/about/us' }" class="home">{{
                 $t(`page.index.menus.about`)
               }}</nuxt-link>
             </li>
             <li>
-              <nuxt-link :to="{ path: '/' }" class="home">{{
+              <nuxt-link :to="{ path: '/contact/us' }" class="home">{{
                 $t(`page.index.menus.contact`)
               }}</nuxt-link>
             </li>
@@ -1074,7 +1074,8 @@ export default {
         .input {
           width: 240px;
           height: 40px;
-          border: 1px solid #e93323;
+          // border: 1px solid #e93323;
+          border: 1px solid #000;
           border-radius: 20px;
           display: flex;
           justify-content: space-between;
@@ -1112,7 +1113,8 @@ export default {
             .search {
               width: 60px;
               height: 40px;
-              background: #e93323;
+              // background: #e93323;
+              background: #000000;
               border-radius: 20px;
               text-align: center;
               line-height: 40px;
@@ -1357,7 +1359,8 @@ export default {
       .input {
         width: 750px;
         height: 40px;
-        border: 1px solid #e93323;
+        // border: 1px solid #e93323;
+        border: 1px solid #000000;
         border-radius: 20px;
         display: flex;
         justify-content: space-between;
@@ -1393,7 +1396,8 @@ export default {
           .search {
             width: 60px;
             height: 40px;
-            background: #e93323;
+            // background: #e93323;
+            background: #000;
             border-radius: 20px;
             text-align: center;
             line-height: 40px;

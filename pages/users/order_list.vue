@@ -134,7 +134,8 @@
         loading: false,
         dialogVisibleQrcode: false, //微信支付弹窗
         loadingQrcode: false, //微信支付弹窗加载
-        orderNo: '' //订单号
+        orderNo: '', //订单号
+        payType: '' //支付类
       }
     },
     async asyncData({app, query}) {
@@ -177,7 +178,12 @@
        */
       goPays: Debounce(function (item) {
         this.orderNo = item.orderNo;
+        this.payType = item.payType;
         goPay(this, item).then((res) => {
+          if (this.payType==='cod'){
+            this.getOrderAwaitPay();
+            return;
+          }
           this.loadingQrcode = true;
           this.dialogVisibleQrcode = true;
           setTimeout(()=>{
@@ -198,7 +204,11 @@
       //获取微信支付结果
       getPaymentStatus(){
         this.loadingQrcode = true;
-        this.$axios.get(`/api/front/pay/query/wechat/pay/result/${this.orderNo}`).then(res => {
+        var rUrl = `/api/front/pay/query/wechat/pay/result/${this.orderNo}`;
+        if (this.payType === 'upi'){
+          rUrl = `/api/front/pay/query/upi/pay/result/${this.orderNo}`;
+        }
+        this.$axios.get(rUrl).then(res => {
           this.getOrderAwaitPay();
           this.handleCloseQrcode();
           this.loadingQrcode = false;

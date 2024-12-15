@@ -20,8 +20,8 @@
       <first-new v-if="item.type === 3" :activityData="item"></first-new>
     </div>
     <!-- 店铺街 -->
-    <div class="brandstore">
-      <div class="left">
+    <!-- <div class="brandstore"> -->
+      <!-- <div class="left">
         <div class="left-top" @click="gopage()">
           <div class="title">{{ $t(`page.index.shopStreet`) }}</div>
           <span class="iconfont icon-gengduo"></span>
@@ -68,9 +68,9 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <!-- TOP ONE -->
-      <div class="right">
+      <!-- <div class="right">
         <div class="right-top" @click="goTopone()">
           <div class="title">{{ $t(`page.index.topOne`) }}</div>
           <span class="iconfont icon-gengduo"></span>
@@ -96,8 +96,8 @@
             <span class="price">{{ item.price }}</span>
           </div>
         </div>
-      </div>
-    </div>
+      </div> -->
+    <!-- </div> -->
 
     <!-- 活动列表 -->
     <div v-for="item in activityindexList" :key="item.id">
@@ -106,7 +106,7 @@
       <first-new v-if="item.type === 3" :activityData="item"></first-new>
     </div>
     <!-- 轮播广告 -->
-    <div class="ad">
+    <!-- <div class="ad">
       <el-carousel width="100%" height="120px" indicator-position="none">
         <el-carousel-item v-for="item in adList" :key="item.id">
           <el-image class="img" :src="item.pic">
@@ -116,7 +116,7 @@
           </el-image>
         </el-carousel-item>
       </el-carousel>
-    </div>
+    </div> -->
 
     <div class="product">
       <div class="product-top">

@@ -338,7 +338,12 @@
       ),
       //去支付
       goPays: Debounce(function (item) {
+        this.payType = item.payType;
         goPay(this, item).then((res) => {
+          if (this.payType==='cod'){
+            this.$router.push({ path: '/users/order_list?orderStatus=0' });
+            return;
+          }
           this.loadingQrcode = true;
           this.dialogVisibleQrcode = true;
           setTimeout(()=>{
@@ -355,7 +360,11 @@
       //获取微信支付结果
       getPaymentStatus(){
         this.loadingQrcode = true;
-        this.$axios.get(`/api/front/pay/query/wechat/pay/result/${this.orderNo}`).then(res => {
+        var rUrl=`/api/front/pay/query/wechat/pay/result/${this.orderNo}`;
+        if (this.payType === 'upi'){
+          rUrl=`/api/front/pay/query/upi/pay/result/${this.orderNo}`;
+        }
+        this.$axios.get(rUrl).then(res => {
           this.handleCloseQrcode();
           this.loadingQrcode = false;
           this.$router.push({ path: '/users/order_list?orderStatus=0' });

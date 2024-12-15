@@ -91,6 +91,14 @@
               </div>
               <div class="iconfont icon-xuanzhong4 font-color" v-if="payStatus === 3"></div>
             </div>
+            <div v-if="payInfo.upiSwitch" class="item acea-row row-center-wrapper"
+                 :class="payStatus === 4 ? 'on' : ''" @click="currentPay(4)">
+              <div class="iconfont icon-weixinzhifu1"><img class="img" src="../../assets/images/upi.png" /></div>
+              <div>
+                <div class="name">UPI</div>
+              </div>
+              <div class="iconfont icon-xuanzhong4 font-color" v-if="payStatus === 4"></div>
+            </div>
           </div>
           <div class="line"></div>
         </div>
@@ -133,7 +141,7 @@
       <span slot="footer" class="dialog-footer">
         <el-button size="small" @click="handleCloseQrcode">{{ $t(`page.users.orderConfirm.paymentResultsNo`)
           }}</el-button>
-        <el-button size="small" type="primary" @click="getPaymentStatus">{{ $t(`page.users.orderConfirm.paymentResults`)
+        <el-button size="small" type="primary" @click="getPaymentStatus(payStatus)">{{ $t(`page.users.orderConfirm.paymentResults`)
           }}</el-button>
       </span>
     </el-dialog>
@@ -163,7 +171,7 @@ export default {
       dialogVisible: false,
       addressList: [],
       current: 0,
-      payStatus: 0, // 0stripe支付，1PayPal支付，2微信支付,3 cod
+      payStatus: 0, // 0stripe支付，1PayPal支付，2微信支付,3 cod，4 upi
       mark: '',//备注信息
       addressInfo: {},
       couponIndex: 0, //选择商铺优惠券索引
@@ -190,7 +198,8 @@ export default {
     }
   },
   mounted() {
-    if (this.payInfo.paypalStatus && this.payInfo.stripeStatus && this.payInfo.wechatPaySwitch && this.payInfo.codSwitch) {
+    if (this.payInfo.paypalStatus && this.payInfo.stripeStatus && this.payInfo.wechatPaySwitch && this.payInfo.codSwitch
+      && this.payInfo.upiSwitch) {
       this.payStatus = 0
       this.payType = 'stripe'
     } else if (!this.payInfo.paypalStatus && this.payInfo.stripeStatus) {
@@ -202,6 +211,10 @@ export default {
     } else if (!this.payInfo.paypalStatus && !this.payInfo.stripeStatus && !this.payInfo.wechatPaySwitch && this.payInfo.codSwitch) {
       this.payStatus = 3
       this.payType = 'cod'
+    } else if (!this.payInfo.paypalStatus && !this.payInfo.stripeStatus && !this.payInfo.wechatPaySwitch && !this.payInfo.codSwitch
+      && this.payInfo.upiSwitch) {
+      this.payStatus = 4
+      this.payType = 'upi'
     }else {
       this.payStatus = 0
       this.payType = ''
@@ -234,8 +247,10 @@ export default {
         this.payType ='paypal';
       }else if (index === 2){
         this.payType ='wechat';
-      }else{
+      }else if (index === 3){
         this.payType ='cod';
+      }else if (index === 4){
+        this.payType ='upi';
       }
     },
     getloadPreOrder() {
@@ -335,6 +350,12 @@ export default {
           setTimeout(() => {
             this.getQRcode(res.data.redirect)
           }, 800)
+        }else if (this.payType === 'upi') {
+          this.loadingQrcode = true;
+          this.dialogVisibleQrcode = true;
+          setTimeout(() => {
+            this.getQRcode(res.data.redirect)
+          }, 800)
         }else{
           this.$router.push({ path: '/users/order_list?orderStatus=0' });
         }
@@ -347,9 +368,16 @@ export default {
       this.loadingQrcode = false;
     },
     //获取微信支付结果
-    getPaymentStatus() {
+    getPaymentStatus(payState) {
       this.loadingQrcode = true;
-      this.$axios.get(`/api/front/pay/query/wechat/pay/result/${this.orderNo}`).then(res => {
+      var resUrl=`/api/front/pay/query/wechat/pay/result/${this.orderNo}`;
+      if (payState === 4){
+        resUrl=`/api/front/pay/query/upi/pay/result/${this.orderNo}`;
+      }
+      this.$axios.get(resUrl).then(res => {
+        // if (!res.data){
+        //    return;
+        // }
         this.handleCloseQrcode();
         this.loadingQrcode = false;
         this.$router.push({ path: '/users/order_list?orderStatus=0' });

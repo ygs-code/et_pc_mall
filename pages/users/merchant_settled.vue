@@ -17,8 +17,12 @@
         </el-form-item>
         <el-form-item :label="$t(`page.store.phone`)" required>
           <div class="acea-row">
+ 
             <country-code-selector @countryInfo="countryInfo"  :countryCode.sync="countryCode"></country-code-selector>
             <el-input :placeholder="$t(`page.store.phone`)" v-model="merchantData.phone" class="country_input"></el-input>
+         
+
+         
           </div>
         </el-form-item>
         <el-form-item :label="$t(`page.store.emil`)" required>
@@ -147,7 +151,7 @@
         captcha: "",
         classOptions: [],
         typeOptions: [],
-        countryCode: 86,
+        countryCode: 91,
         focusUpdate: false,
         merchantTypeInfo: '', //店铺类型说明
         maxlength: 10 //上传最大值限制

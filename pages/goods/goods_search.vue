@@ -5,7 +5,7 @@
         <span class="home" @click="goHome">{{ $t(`page.store.index`) }} > </span
         >{{ searchVal }}
       </div>
-      <div class="head" v-if="storeList.length">
+      <!-- <div class="head" v-if="storeList.length">
         <div class="item" v-for="item in storeList.slice(0, 2)" :key="item.id">
           <div class="left_wrapper">
             <div class="logo">
@@ -41,7 +41,7 @@
         >
           <span class="iconfont icon-gengduo"></span>
         </nuxt-link>
-      </div>
+      </div> -->
       <div class="wrapper sort-count">
         <div class="sort acea-row">
           <div class="name">{{ $t(`page.goodsSearch.sort`) }}：</div>
@@ -220,7 +220,7 @@ export default {
   },
   head() {
     return {
-      title: "商品搜索",
+      title: "Product Search",
     };
   },
   created() {
@@ -281,7 +281,7 @@ export default {
         this.getSearchList();
         this.getStoreList();
       } else {
-        this.$message.error("请输入要搜索的内容");
+        this.$message.error("Please enter the content you want to search for");
       }
     },
     setWhere: function () {

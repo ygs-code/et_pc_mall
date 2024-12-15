@@ -6,6 +6,7 @@
       <span class="area-codeNum" :title="$t('currentdata-name-currentdata-dialcode-0', [currentData.name, currentData.dialCode])">+{{currentData.dialCode}}</span>
       <i class="tran"></i>
     </div>
+  
     <transition name="fade">
       <div v-if="hideSubMenu" class="flag-list-box scroll-bar" @click.stop="hideSubMenu = true">
         <el-input v-model="countryName" type="text" placeholder="$t('guo-jia-ming-zi-the-country-name')" />
@@ -34,7 +35,7 @@
       * */
       countryCode: {
         type: Number,
-        default: 86
+        default: 91
       }
     },
     data () {
@@ -65,6 +66,7 @@
         } else {
           return this.countryList
         }
+
       }
     },
     created() {

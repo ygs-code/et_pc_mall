@@ -5,12 +5,6 @@
     "dialCode": 91,
     "phoneFormat": "099876 54321",
     "CNName": "IN"
-  },
-  {
-    "code": "cn",
-    "name": "China",
-    "dialCode": 86,
-    "phoneFormat": "131 2345 6789",
-    "CNName": "CN"
   }
+
 ]
