@@ -67,6 +67,7 @@
               </div>
               <div class="iconfont icon-xuanzhong4 font-color" v-if="payStatus === 0"></div>
             </div>
+
             <div v-if="payInfo.paypalStatus" class="item acea-row row-center-wrapper"
               :class="payStatus === 1 ? 'on' : ''" @click="currentPay(1)">
               <div class="iconfont icon-weixinzhifu1"><img src="../../assets/images/PayPal.png" /></div>
@@ -75,6 +76,7 @@
               </div>
               <div class="iconfont icon-xuanzhong4 font-color" v-if="payStatus === 1"></div>
             </div>
+
             <div v-if="payInfo.wechatPaySwitch" class="item acea-row row-center-wrapper"
               :class="payStatus === 2 ? 'on' : ''" @click="currentPay(2)">
               <div class="iconfont icon-weixinzhifu1"><img class="img" src="../../assets/images/wechat.png" /></div>
@@ -190,6 +192,9 @@ export default {
       app.$axios.get('/api/pc/address/all/list'),
       app.$axios.get('/api/front/pay/method')
     ]);
+
+
+    
     return {
       addressList: list.data,
       preOrderNo: query.preOrderNo,

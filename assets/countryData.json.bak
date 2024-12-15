@@ -280,13 +280,6 @@
     "CNName": "智利"
   },
   {
-    "code": "cn",
-    "name": "China (中国)",
-    "dialCode": 86,
-    "phoneFormat": "131 2345 6789",
-    "CNName": "中国"
-  },
-  {
     "code": "co",
     "name": "Colombia",
     "dialCode": 57,

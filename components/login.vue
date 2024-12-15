@@ -216,7 +216,7 @@ export default {
   data() {
     return {
       loginPic: '',
-      countryCode: 86,
+      countryCode: 91,
       tabList:['Email','Phone'],
       current: 2,
       phone: "",
