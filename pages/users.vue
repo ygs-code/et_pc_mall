@@ -8,6 +8,7 @@
       <div class="left-box">
         <div class="left-box">
           <div class="user-menu">
+            <!-- {{ userMenu }} -->
             <div @click="goPage(menu,index)" class="menu-item" v-for="(menu,index) in userMenu" :key="menu.id"
                  :class="{active:menuCur == menu.id}">
               <span v-show="menu.pc_url&&menu.pc_url!=' '">{{$t(`page.user.mineNav[${index}].name`)}}</span>
@@ -47,11 +48,6 @@
             name: this.$t(`page.users.goodsReturn.refundList`),
             pc_url: '/users/refund_list'
           },
-          {
-            id: 333,
-            name: this.$t(`page.users.replyList.navTitle`),
-            pc_url: '/users/evaluation_list'
-          }
         ]
       }
     },

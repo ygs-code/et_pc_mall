@@ -43,11 +43,13 @@
       width="545px"
       :before-close="handleClose">
       <div class="form-box">
+
         <div v-if="userInfo.userType==='phone'" class="input-item">
           <el-input :placeholder="$t(`page.users.login.phoneVer`)" v-model="userInfo.phone" disabled>
             <template slot="prepend">+86</template>
           </el-input>
         </div>
+
         <div v-else class="input-item">
           <el-input :placeholder="$t(`page.users.login.emailVer`)" v-model="userInfo.email" disabled>
           </el-input>

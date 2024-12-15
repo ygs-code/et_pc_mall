@@ -130,7 +130,7 @@
                   :key="index"
                   class="acea-row size-wrapper"
                 >
-                  <div class="label">{{ item.attrName }}</div>
+                   <div class="label">{{ item.attrName }}</div> 
                   <div class="acea-row list">
                     <label
                       v-for="(itm, idx) in item.attrValues.split(',')"
@@ -153,6 +153,8 @@
                   </div>
                 </div>
               </div>
+
+              
               <div class="number-wrapper acea-row">
                 <div class="label">{{ $t(`page.goodsDetail.num`) }}</div>
                 <div class="counter-wrap acea-row">
@@ -601,6 +603,10 @@ export default {
       let [goods] = await Promise.all([
         app.$axios.get(`/api/front/product/detail/${params.id}`),
       ]);
+
+
+      console.log(' goods.data.productAttr==', goods.data.productAttr)
+
       return {
         productInfo: goods.data.productInfo,
         productAttr: goods.data.productAttr,
