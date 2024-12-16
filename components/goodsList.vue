@@ -124,7 +124,7 @@
 
     .acea-row {
       .price {
-        font-size: 18px;
+        font-size: 16px;
         font-family: DINCond-Black, DINCond;
         font-weight: 900;
         color: #E93323;

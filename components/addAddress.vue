@@ -1,4 +1,4 @@
-<template>
+  <template>
   <div v-loading="loading">
     <el-form
       :model="formData"
@@ -158,7 +158,7 @@ export default {
             message: this.$t(`message.login.correctEmail`),
             trigger: ["blur", "change"],
           },
-          
+
         ],
         phone: [
           {
@@ -172,13 +172,13 @@ export default {
             trigger: "blur",
             validator: (rule, value, callback) => {
 
-               
-          
+
+
               if ( /(10)+/ig.test(value)) {
                 // The phone number must be 10
                 callback(  );
               } else {
-                 
+
                 callback(new Error(this.$t(`page.orderDetails.checkPhoneNumber`)));
               }
             },
@@ -212,13 +212,13 @@ export default {
             trigger: "blur",
             validator: (rule, value, callback) => {
 
-               
-          
+
+
               if ( /(6)+/ig.test(value)) {
                 // The phone number must be 10
                 callback();
               } else {
-                 
+
                 callback(new Error(this.$t(`page.orderDetails.checkPostCode`)));
               }
             },

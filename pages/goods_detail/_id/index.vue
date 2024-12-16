@@ -111,7 +111,8 @@
                     </div>
                   </div>
                 </div>
-                <div class="saleBox acea-row row-center-wrapper">
+                <!--这里展示的已经销售的数据，暂时去掉-->
+                <!-- <div class="saleBox acea-row row-center-wrapper">
                   <el-divider direction="vertical"></el-divider>
                   <div class="sales acea-row row-column row-center-wrapper">
                     <div class="num">
@@ -122,7 +123,7 @@
                     </div>
                     <div>{{ $t(`page.goodsDetail.sales`) }}</div>
                   </div>
-                </div>
+                </div> -->
               </div>
               <div class="attribute">
                 <div
@@ -176,10 +177,11 @@
                       +
                     </button>
                   </div>
-                  <span
+                  <!---这里展示的是库存暂时去掉-->
+                  <!-- <span
                     >{{ $t(`page.goodsDetail.inventory`) }}：{{ stock || 0
                     }}{{ productInfo.unitName || "" }}</span
-                  >
+                  > -->
                 </div>
               </div>
               <div class="button-wrapper" v-if="stock">
@@ -458,8 +460,7 @@
                     ></el-pagination>
                   </div>
                 </div> -->
-              </div>
-              <div
+                <div
                   class="store-recommend"
                   v-if="goodsList && goodsList.length"
                 >
@@ -491,13 +492,14 @@
                     </nuxt-link>
                   </div>
                 </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
     <!-- <float-window></float-window> -->
-  </div>
+  <!-- </div> -->
 </template>
 
 <script>
@@ -2237,17 +2239,15 @@ export default {
 
   .r-l-item {
     /* display: block; */
-    // width: 200px;
-    width: 270px;
-    height: 330px;
+    width: 200px;
     border: 1px solid rgba(0, 0, 0, 0.105);
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.12);
     /* margin-bottom: 20px; */
     padding: 10px;
 
     .image {
-      width: 220px;
-      height: 220px;
+      width: 200px;
+      height: 200px;
 
       img {
         display: block;

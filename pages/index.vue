@@ -125,20 +125,21 @@
 
       <div class="product-bottom">
         <div class="brandshop" v-if="productList.length">
-          <div class="left">
+          <!-- 这里展示的是推荐商品暂时去掉 -->
+          <!-- <div class="left">
             <el-image class="img" :src="list.recommendImage">
               <div slot="placeholder" class="image-slot">
                 loading<span class="dot">...</span>
               </div>
             </el-image>
-          </div>
+          </div> -->
 
           <div class="store">
             <div class="wrapper">
               <div
                 @click="goDetail(item)"
                 class="goods_item imgItem"
-                v-for="item in productList.slice(0, 6)"
+                v-for="item in productList.slice(0, 8)"
                 :key="item.id"
               >
                   <div
@@ -579,7 +580,7 @@ export default {
           }
 
           .price {
-            font-size: 24px;
+            font-size: 20px;
             font-family: DINCond-Black, DINCond;
             font-weight: 900;
             color: #e93323;

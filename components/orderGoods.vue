@@ -2,11 +2,11 @@
   <div class="order">
     <div class="list">
       <div class="cartCount">
-        <div v-if="orderInfo.merName" class="storeInfo acea-row" @click="goMerchant(orderInfo)">
+        <!-- <div v-if="orderInfo.merName" class="storeInfo acea-row" @click="goMerchant(orderInfo)">
           <span class="mr10 iconfont icon-shangjiadingdan"></span>
           <div class="name mr10">{{ orderInfo.merName }}</div>
           <span class="iconfont icon-gengduo" style="font-size: 10px;"></span>
-        </div>
+        </div> -->
         <div class="cartInfo">
           <div class="item" v-for="(item, indexn) in cartInfo" :key="indexn">
             <div class="acea-row row-between-wrapper">

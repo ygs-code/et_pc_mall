@@ -140,7 +140,7 @@
             margin-top: 60px;
 
             .current-price {
-              font-size: 22px;
+              font-size: 16px;
               color: red;
               font-weight: 600;
             }
@@ -181,7 +181,7 @@
             display: inline-block;
 
             .current-price {
-              font-size: 22px;
+              font-size: 16px;
               color: red;
               font-weight: 600;
             }

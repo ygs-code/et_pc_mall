@@ -204,9 +204,10 @@
 
             <div class="logo">
               <div class="img-box">
-                <nuxt-link :to="{ path: '/' }"
-                  ><img :src="logoUrl" alt=""
-                /></nuxt-link>
+                <nuxt-link :to="{ path: '/' }">
+                  <!-- <img :src="logoUrl" alt=""/> -->
+                   <p  style="color:#b73a3a;font-weight:700;font-size:22px;font-family: var( --font-primary );line-height:57px;height: 50px;">AMBASHOP</p>
+              </nuxt-link>
               </div>
             </div>
 
@@ -354,7 +355,7 @@
               </div>
             </div>
 
-            <div>
+            <!-- <div>
               <el-dropdown>
                 <div class="code">
                   <span class="iconfont icon-yuyanqiehuan"></span>
@@ -371,7 +372,7 @@
                   </template>
                 </el-dropdown-menu>
               </el-dropdown>
-            </div>
+            </div> -->
             <nuxt-link to="/order/shopping_cart" class="cartNum">
               <div class="car">
                 <span class="iconfont icon-gouwuche"></span>
@@ -1562,7 +1563,8 @@ export default {
       .item-child {
         margin: 12px 30px 10px 0;
         font-size: 14px;
-        color: #333333;
+        // color: #333333;
+        color: #000;
         font-family: ArialMT;
       }
 
@@ -1602,6 +1604,7 @@ export default {
 .el-menu.el-menu--horizontal,
 .el-menu--horizontal > .el-submenu .el-submenu__title,
 .el-menu--horizontal > .el-submenu .el-submenu__title {
+  color: #000;
   border-bottom: none !important ;
 }
 </style>

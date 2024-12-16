@@ -57,8 +57,8 @@
         <div v-show="current < 4">
           <el-button type="primary" @click="submit" class="signIn bg-color mt15">{{$t(`page.users.login.sign`)}}</el-button>
           <el-button @click="current = 6" class="signIn mat20 creat_account mt15">{{$t(`page.users.login.create`)}}</el-button>
-          <div v-if="loginInfo.visitorOpen && $store.state.isShowTourists" @click="current = 7" class="tourists mt15">{{$t(`page.users.login.tourists`)}}</div>
-          <div class="checkbox-wrapper item_protocol mt15">
+          <!-- <div v-if="loginInfo.visitorOpen && $store.state.isShowTourists" @click="current = 7" class="tourists mt15">{{$t(`page.users.login.tourists`)}}</div> -->
+          <!-- <div class="checkbox-wrapper item_protocol mt15">
             <label class="well-check">
               <input
                 type="checkbox"
@@ -76,7 +76,7 @@
               class="show_protocol"
             >《{{$t(`message.login.agreementName`)}}》
             </nuxt-link>
-          </div>
+          </div> -->
           <!-- 第三方登录 -->
           <!-- <div class="bottom">
             <span class="sign_type">{{$t(`page.users.login.with`)}}</span>
@@ -228,7 +228,7 @@ export default {
       isShow: true,
       disabled: false,
       codeCheck: null,
-      isAgree: false,
+      isAgree: true,
       isShowCode: false,
       codeVal: "",
       codeUrl: "",

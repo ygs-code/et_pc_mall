@@ -148,7 +148,7 @@ export default {
     justify-content: space-between;
 
     .price {
-      font-size: 20px;
+      font-size: 16px;
       font-weight: 900;
       color: #e93323;
       line-height: 20px;
