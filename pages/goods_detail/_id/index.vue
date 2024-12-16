@@ -458,7 +458,8 @@
                     ></el-pagination>
                   </div>
                 </div> -->
-                <div
+              </div>
+              <div
                   class="store-recommend"
                   v-if="goodsList && goodsList.length"
                 >
@@ -490,7 +491,6 @@
                     </nuxt-link>
                   </div>
                 </div>
-              </div>
             </div>
           </div>
         </div>
@@ -2237,15 +2237,17 @@ export default {
 
   .r-l-item {
     /* display: block; */
-    width: 200px;
+    // width: 200px;
+    width: 270px;
+    height: 330px;
     border: 1px solid rgba(0, 0, 0, 0.105);
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.12);
     /* margin-bottom: 20px; */
     padding: 10px;
 
     .image {
-      width: 200px;
-      height: 200px;
+      width: 220px;
+      height: 220px;
 
       img {
         display: block;
