@@ -1,17 +1,4 @@
 <template>
-
-
-
-       <!-- <el-menu-item index="2-1">选项1</el-menu-item>
-                  <el-menu-item index="2-2">选项2</el-menu-item>
-                  <el-menu-item index="2-3">选项3</el-menu-item>
-                  <el-submenu index="2-4">
-                    <template slot="title">选项4</template>
-                    <el-menu-item index="2-4-1">选项1</el-menu-item>
-                    <el-menu-item index="2-4-2">选项2</el-menu-item>
-                    <el-menu-item index="2-4-3">选项3</el-menu-item>
-                  </el-submenu> -->
-
   <div>
     <template v-for="menu in subMenu">
       <el-submenu
@@ -49,4 +36,28 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style  >
+.el-menu--horizontal .el-menu .el-menu-item,
+.el-menu--horizontal .el-menu .el-submenu__title,
+.el-submenu__title,
+.el-submenu,
+.el-menu-item,
+.el-submenu.is-active,
+.el-submenu__title,
+.el-menu-item-group__title {
+  color: rgb(41, 41, 48) !important;
+}
+
+
+.el-menu--horizontal .el-menu .el-menu-item:hover,
+.el-menu--horizontal .el-menu .el-submenu__title:hover,
+.el-submenu__title:hover,
+.el-submenu:hover,
+.el-menu-item:hover,
+.el-submenu.is-active:hover,
+.el-submenu__title:hover,
+.el-menu-item-group__title:hover{
+  color:    rgb(233, 51, 35) !important;
+   
+}
+</style>

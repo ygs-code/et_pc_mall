@@ -293,6 +293,7 @@
                 class="el-menu-demo"
                 mode="horizontal"
                 @select="handleSelect"
+               
               >
                 <el-submenu index="2">
                   <template slot="title">
@@ -324,7 +325,10 @@
                 $t(`page.index.menus.about`)
               }}</nuxt-link>
             </li>
-            <li>
+            <li
+            
+            class="mainmenu-odd"
+            >
               <nuxt-link :to="{ path: '/contact/us' }" class="home">{{
                 $t(`page.index.menus.contact`)
               }}</nuxt-link>
@@ -715,10 +719,15 @@ export default {
       menuData: [
         {
           name: "1",
+          key:"1",
           title: "Item 1",
           children: [
-            { name: "1-1", title: "Item 1-1" },
-            { name: "1-2", title: "Item 1-2" },
+            { 
+              key: "1-1", 
+              name: "1-1", title: "Item 1-1" },
+            {
+              key: "1-2", 
+              name: "1-2", title: "Item 1-2" },
           ],
         },
         // ... 更多菜单项
@@ -738,7 +747,7 @@ export default {
     "$store.state.productClassify": {
       handler: function (newVal, oldVal) {
         // this.search = newVal.query.title ? newVal.query.title : "";
-        this.menuData = this.toTree(newVal);
+        this.menuData    = this.toTree(newVal);
         console.log("this.menuData==", this.menuData);
       },
       // 深度观察监听
@@ -823,12 +832,12 @@ export default {
       });
     },
     toTree(data) {
-      return data.map((item) => {
+      return data.map((item,index) => {
         const { childList = [] } = item;
         return {
           children: childList.length ? this.toTree(childList) : [],
           ...item,
-          key: uuidv4(),
+          key:   uuidv4(),
         };
       });
     },
@@ -1005,6 +1014,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.mainmenu-odd{
+  margin-left: 40px;
+}
 .hade-box {
   width: 100%;
   height: 110px;

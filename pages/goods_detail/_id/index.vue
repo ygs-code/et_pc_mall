@@ -125,7 +125,7 @@
                   </div>
                 </div> -->
               </div>
-              <div class="attribute">
+              <!-- <div class="attribute">
                 <div
                   v-for="(item, index) in productAttr"
                   :key="index"
@@ -153,7 +153,7 @@
                     </label>
                   </div>
                 </div>
-              </div>
+              </div> -->
 
               
               <div class="number-wrapper acea-row">

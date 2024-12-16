@@ -178,7 +178,7 @@
         </div>
         <!--游客登录-->
         <div class="wrapper" v-show="current === 7" style="margin-top: 64px">
-          <div class="title">{{$t(`page.users.login.tourists`)}}</div>
+          <!-- <div class="title">{{$t(`page.users.login.tourists`)}}</div> -->
           <div class="item acea-row row-middle">
             <span class="iconfont icon-youxiang"></span>
             <input type="text" :placeholder="$t(`page.users.register.placeEmail`)" v-model="email">
