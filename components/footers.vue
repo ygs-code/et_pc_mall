@@ -22,16 +22,19 @@
                 </ul>
                 <div class="middle-wrap acea-row">
                     <div>
-                        <h5 class="m-i-title">{{ $t('page.index.footer.middleListTile.company') }}</h5>
+                        <!-- <h5 class="m-i-title">{{ $t('page.index.footer.middleListTile.company') }}</h5> -->
+                        <h5 class="m-i-title company">AMBA</h5>
                         <div class="m-i-content-wrap">
-                            <p class="address">{{ $t('page.index.company') }}</p>
+                            <!-- <p class="address">{{ $t('page.index.company') }}</p> -->
+                            <p class="">Email: ambahomesofficial@gmail.com</p>
                         </div>
                     </div>
                     <div>
                         <h5 class="m-i-title">{{ $t('page.index.footer.middleListTile.companyInfo') }}</h5>
                         <div class="m-i-content-wrap">
-                            <p class="address">{{ $t(`page.index.address`) }}</p>
-                            <p>400-2647-3947</p>
+                            <p class="mb-12">AMBA HOMES PRIVATE LIMITED</p>
+                            <p class="mb-12">Plot no-91, Cabin No 2, Gram Sabha, Sevak Park, Uttam Nagar, New Delhi</p>
+                            <p class="mb-12">+91-7413848770</p>
                         </div>
                     </div>
                     <div v-for="(item, index) in navList" :key="index">
@@ -104,10 +107,18 @@ export default {
                             label: this.$t('page.index.footer.middleNavList.policy.refund'),
                             url: '/policy/refund'
                         },
-                        {
-                            label: this.$t('page.index.footer.middleNavList.policy.return'),
-                            url: '/policy/return'
-                        },
+                        // {
+                        //     label: 'Amba Homes Delivery Information',
+                        //     url: '/policy/refund'
+                        // },
+                        // {
+                        //     label: 'Amba Homes Order Policy',
+                        //     url: '/policy/refund'
+                        // },
+                        // {
+                        //     label: this.$t('page.index.footer.middleNavList.policy.return'),
+                        //     url: '/policy/return'
+                        // },
                         {
                             label: this.$t('page.index.footer.middleNavList.policy.shipping'),
                             url: '/policy/shipping'
@@ -226,7 +237,7 @@ export default {
             .address {
                 width: 200px;
                 line-height: 1.7;
-                margin-bottom: 30px;
+                /* margin-bottom: 30px; */
             }
 
             .nav-link-wrap {
@@ -296,5 +307,13 @@ export default {
             }
         }
     }
+
+    .company {
+        width: 200px;
+    }
+}
+
+.mb-12 {
+    margin-bottom: 12px;
 }
 </style>
