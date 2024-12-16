@@ -1,23 +1,35 @@
 <template>
   <div class="order_confirm wrapper_1200">
     <div class="header">
-      <nuxt-link class="home" to="/">{{ $t(`userDrawer.data[0].name`) }} </nuxt-link> <span> >
-        {{ $t(`page.users.orderConfirm.navTitle`) }} </span>
+      <nuxt-link class="home" to="/"
+        >{{ $t(`userDrawer.data[0].name`) }}
+      </nuxt-link>
+      <span> > {{ $t(`page.users.orderConfirm.navTitle`) }} </span>
     </div>
     <!--选择地址-->
     <div class="address">
       <div class="title">{{ $t(`page.orderDetails.address`) }}</div>
       <div class="lines">
-        <img src="../../assets/images/line.png">
+        <img src="../../assets/images/line.png" />
       </div>
       <div class="list acea-row row-middle" :class="isShow ? 'on' : ''">
-        <div class="item" :class="current === index ? 'on' : ''" v-for="(item, index) in addressList" :key="index"
-          @click="tapCurrent(index, item)">
-          <div class="default bg-color" v-if="item.isDefault">{{ $t(`page.goodsList.default`) }}</div>
+        <div
+          class="item"
+          :class="current === index ? 'on' : ''"
+          v-for="(item, index) in addressList"
+          :key="index"
+          @click="tapCurrent(index, item)"
+        >
+          <div class="default bg-color" v-if="item.isDefault">
+            {{ $t(`page.goodsList.default`) }}
+          </div>
           <div class="name line1">{{ item.realName }}</div>
           <div class="phone">{{ item.phone }}</div>
           <div class="details line4">{{ item.country }}{{ item.detail }}</div>
-          <div class="iconfont icon-xuanzhong4 font-color" v-if="current === index"></div>
+          <div
+            class="iconfont icon-xuanzhong4 font-color"
+            v-if="current === index"
+          ></div>
         </div>
         <div class="item add" @click="addAddress">
           <div class="iconfont icon-tianjia"></div>
@@ -25,32 +37,55 @@
         </div>
       </div>
     </div>
-    <div class="isShow" @click="open" v-if="!isShow && addressList.length > 3">{{ $t(`message.tips.more`) }}<span
-        class="iconfont icon-xiangxia"></span></div>
+    <div class="isShow" @click="open" v-if="!isShow && addressList.length > 3">
+      {{ $t(`message.tips.more`) }}<span class="iconfont icon-xiangxia"></span>
+    </div>
     <div style="margin-top: 10px" v-if="addressList.length <= 3"></div>
-    <div class="isShow" @click="close" v-if="isShow && addressList.length > 3">{{ $t(`message.tips.hide`) }}<span
-        class="iconfont icon-xiangshang"></span></div>
+    <div class="isShow" @click="close" v-if="isShow && addressList.length > 3">
+      {{ $t(`message.tips.hide`)
+      }}<span class="iconfont icon-xiangshang"></span>
+    </div>
     <!--商品信息-->
     <div class="wrapper wrapper_1200">
       <div v-for="(item, index) in cartInfo" :key="index">
-        <order-goods :cartInfo="item.orderInfoList" :orderInfo="item"></order-goods>
+        <order-goods
+          :cartInfo="item.orderInfoList"
+          :orderInfo="item"
+        ></order-goods>
       </div>
       <div class="wrapper_count">
         <!--优惠券选择-->
         <div v-show="couponList.length > 0" class="couponListBox">
-          <div class='integral_count acea-row row-between'>
-            <div class="integral_title">{{ $t(`page.users.orderConfirm.CouponDeduction`) }}：</div>
-            <div class="couponPrice font-color">-{{ GLOBAL.shopPayCurrency }}{{ orderInfoVo.couponFee }}</div>
+          <div class="integral_count acea-row row-between">
+            <div class="integral_title">
+              {{ $t(`page.users.orderConfirm.CouponDeduction`) }}：
+            </div>
+            <div class="couponPrice font-color">
+              -{{ GLOBAL.shopPayCurrency }}{{ orderInfoVo.couponFee }}
+            </div>
           </div>
           <div class="couponList acea-row row-middle">
-            <div class="item acea-row row-middle" :class="itemn.disabled ? 'disabled' : ''"
-              v-for="(itemn, indexn) in couponList" :key="indexn" @click="getCoupon(itemn, indexn)">
-
-              <div class="name" v-if="itemn.useType === 1">{{ $t(`page.users.userCoupon.navList[0].name`) }}</div>
-              <div class="name" v-else>{{ $t(`page.users.userCoupon.navList[1].name`) }}</div>
-              <div class="money line1">{{ itemn.minPrice }} {{ $t(`page.users.userCoupon.minus`) }} {{
-                parseFloat(itemn.money) }}</div>
-              <div class="iconfont icon-xuanzhong4 font-color" v-if="couponIndex === indexn && couponId"></div>
+            <div
+              class="item acea-row row-middle"
+              :class="itemn.disabled ? 'disabled' : ''"
+              v-for="(itemn, indexn) in couponList"
+              :key="indexn"
+              @click="getCoupon(itemn, indexn)"
+            >
+              <div class="name" v-if="itemn.useType === 1">
+                {{ $t(`page.users.userCoupon.navList[0].name`) }}
+              </div>
+              <div class="name" v-else>
+                {{ $t(`page.users.userCoupon.navList[1].name`) }}
+              </div>
+              <div class="money line1">
+                {{ itemn.minPrice }} {{ $t(`page.users.userCoupon.minus`) }}
+                {{ parseFloat(itemn.money) }}
+              </div>
+              <div
+                class="iconfont icon-xuanzhong4 font-color"
+                v-if="couponIndex === indexn && couponId"
+              ></div>
             </div>
           </div>
           <div class="line"></div>
@@ -59,97 +94,177 @@
         <div class="payType">
           <div class="title">{{ $t(`page.orderPayStatus.payType`) }}</div>
           <div class="type acea-row row-middle mb30">
-            <div v-if="payInfo.stripeStatus" class="item acea-row row-center-wrapper mr20"
-              :class="payStatus === 0 ? 'on' : ''" @click="currentPay(0)">
-              <div class="iconfont icon-yue"><img src="../../assets/images/stripe.png" /></div>
+            <div
+              v-if="payInfo.stripeStatus"
+              class="item acea-row row-center-wrapper mr20"
+              :class="payStatus === 0 ? 'on' : ''"
+              @click="currentPay(0)"
+            >
+              <div class="iconfont icon-yue">
+                <img src="../../assets/images/stripe.png" />
+              </div>
               <div>
                 <div class="name">Stripe</div>
               </div>
-              <div class="iconfont icon-xuanzhong4 font-color" v-if="payStatus === 0"></div>
+              <div
+                class="iconfont icon-xuanzhong4 font-color"
+                v-if="payStatus === 0"
+              ></div>
             </div>
 
-            <div v-if="payInfo.paypalStatus" class="item acea-row row-center-wrapper"
-              :class="payStatus === 1 ? 'on' : ''" @click="currentPay(1)">
-              <div class="iconfont icon-weixinzhifu1"><img src="../../assets/images/PayPal.png" /></div>
+            <div
+              v-if="payInfo.paypalStatus"
+              class="item acea-row row-center-wrapper"
+              :class="payStatus === 1 ? 'on' : ''"
+              @click="currentPay(1)"
+            >
+              <div class="iconfont icon-weixinzhifu1">
+                <img src="../../assets/images/PayPal.png" />
+              </div>
               <div>
                 <div class="name">PayPal</div>
               </div>
-              <div class="iconfont icon-xuanzhong4 font-color" v-if="payStatus === 1"></div>
+              <div
+                class="iconfont icon-xuanzhong4 font-color"
+                v-if="payStatus === 1"
+              ></div>
             </div>
 
-            <div v-if="payInfo.wechatPaySwitch" class="item acea-row row-center-wrapper"
-              :class="payStatus === 2 ? 'on' : ''" @click="currentPay(2)">
-              <div class="iconfont icon-weixinzhifu1"><img class="img" src="../../assets/images/wechat.png" /></div>
+            <div
+              v-if="payInfo.wechatPaySwitch"
+              class="item acea-row row-center-wrapper"
+              :class="payStatus === 2 ? 'on' : ''"
+              @click="currentPay(2)"
+            >
+              <div class="iconfont icon-weixinzhifu1">
+                <img class="img" src="../../assets/images/wechat.png" />
+              </div>
               <div>
                 <div class="name">Wechat</div>
               </div>
-              <div class="iconfont icon-xuanzhong4 font-color" v-if="payStatus === 2"></div>
+              <div
+                class="iconfont icon-xuanzhong4 font-color"
+                v-if="payStatus === 2"
+              ></div>
             </div>
-            <div v-if="payInfo.codSwitch" class="item acea-row row-center-wrapper"
-                 :class="payStatus === 3 ? 'on' : ''" @click="currentPay(3)">
-              <div class="iconfont icon-weixinzhifu1"><img class="img" src="../../assets/images/delivery_man.png" /></div>
+            <div
+              v-if="payInfo.codSwitch"
+              class="item acea-row row-center-wrapper"
+              :class="payStatus === 3 ? 'on' : ''"
+              @click="currentPay(3)"
+            >
+              <div class="iconfont icon-weixinzhifu1">
+                <img class="img" src="../../assets/images/delivery_man.png" />
+              </div>
               <div>
                 <div class="name">COD</div>
               </div>
-              <div class="iconfont icon-xuanzhong4 font-color" v-if="payStatus === 3"></div>
+              <div
+                class="iconfont icon-xuanzhong4 font-color"
+                v-if="payStatus === 3"
+              ></div>
             </div>
-            <div v-if="payInfo.upiSwitch" class="item acea-row row-center-wrapper"
-                 :class="payStatus === 4 ? 'on' : ''" @click="currentPay(4)">
-              <div class="iconfont icon-weixinzhifu1"><img class="img" src="../../assets/images/upi.png" /></div>
+            <div
+              v-if="payInfo.upiSwitch"
+              class="item acea-row row-center-wrapper"
+              :class="payStatus === 4 ? 'on' : ''"
+              @click="currentPay(4)"
+            >
+              <div class="iconfont icon-weixinzhifu1">
+                <img class="img" src="../../assets/images/upi.png" />
+              </div>
               <div>
                 <div class="name">UPI</div>
               </div>
-              <div class="iconfont icon-xuanzhong4 font-color" v-if="payStatus === 4"></div>
+              <div
+                class="iconfont icon-xuanzhong4 font-color"
+                v-if="payStatus === 4"
+              ></div>
             </div>
           </div>
           <div class="line"></div>
         </div>
         <div class="coupon message acea-row">
           <div class="msgTitle">{{ $t(`page.users.orderConfirm.note`) }}</div>
-          <textarea class="textarea" :placeholder='$t(`page.users.orderConfirm.placeNote`)' v-model="mark"
-            maxlength="150"></textarea>
+          <textarea
+            class="textarea"
+            :placeholder="$t(`page.users.orderConfirm.placeNote`)"
+            v-model="mark"
+            maxlength="150"
+          ></textarea>
         </div>
         <div class="totalCon">
           <div class="total acea-row row-middle row-right">
             <div>{{ $t(`page.users.orderConfirm.allPrice`) }}：</div>
-            <div class="money">{{ GLOBAL.shopPayCurrency }}{{ orderInfoVo.proTotalFee || 0 }}</div>
+            <div class="money">
+              {{ GLOBAL.shopPayCurrency }}{{ orderInfoVo.proTotalFee || 0 }}
+            </div>
           </div>
-          <div class="total acea-row row-middle row-right"
-            v-if="orderInfoVo.couponFee && parseFloat(orderInfoVo.couponFee) > 0">
+          <div
+            class="total acea-row row-middle row-right"
+            v-if="
+              orderInfoVo.couponFee && parseFloat(orderInfoVo.couponFee) > 0
+            "
+          >
             <div>{{ $t(`page.users.orderConfirm.CouponDeduction`) }}：</div>
-            <div class="money">-{{ GLOBAL.shopPayCurrency }}{{ orderInfoVo.couponFee }}</div>
+            <div class="money">
+              -{{ GLOBAL.shopPayCurrency }}{{ orderInfoVo.couponFee }}
+            </div>
           </div>
           <div class="total acea-row row-middle row-right">
             <div>{{ $t(`page.users.orderConfirm.freight`) }}：</div>
-            <div class="money">+{{ GLOBAL.shopPayCurrency }}{{ orderInfoVo.freightFee }}</div>
+            <div class="money">
+              +{{ GLOBAL.shopPayCurrency }}{{ orderInfoVo.freightFee }}
+            </div>
           </div>
         </div>
-        <div class="totalAmount">{{ $t(`page.users.orderConfirm.total`) }}：<span class="money font-color">{{
-          GLOBAL.shopPayCurrency }}{{ orderInfoVo.payFee || 0 }}</span></div>
+        <div class="totalAmount">
+          {{ $t(`page.users.orderConfirm.total`) }}：<span
+            class="money font-color"
+            >{{ GLOBAL.shopPayCurrency }}{{ orderInfoVo.payFee || 0 }}</span
+          >
+        </div>
         <div class="bnt acea-row row-right">
-          <button class="submit" :loading="loading" @click="SubOrder($event)">{{ $t(`page.users.orderConfirm.payPal`)
-            }}</button>
+          <button class="submit" :loading="loading" @click="SubOrder($event)">
+            {{ $t(`page.users.orderConfirm.payPal`) }}
+          </button>
         </div>
       </div>
     </div>
     <!-- 右侧浮标 -->
     <!-- <FloatWindow></FloatWindow> -->
     <!-- 微信支付弹窗 -->
-    <el-dialog :close-on-click-modal="false" :visible.sync="dialogVisibleQrcode" width="380px"
-      :title="$t(`page.users.orderConfirm.payment`)" center :show-close="false" :before-close="handleCloseQrcode">
+    <el-dialog
+      :close-on-click-modal="false"
+      :visible.sync="dialogVisibleQrcode"
+      width="380px"
+      :title="$t(`page.users.orderConfirm.payment`)"
+      center
+      :show-close="false"
+      :before-close="handleCloseQrcode"
+    >
       <div v-loading="loadingQrcode" class="payQrcode">
         <div id="payQrcode"></div>
       </div>
       <span slot="footer" class="dialog-footer">
-        <el-button size="small" @click="handleCloseQrcode">{{ $t(`page.users.orderConfirm.paymentResultsNo`)
-          }}</el-button>
-        <el-button size="small" type="primary" @click="getPaymentStatus(payStatus)">{{ $t(`page.users.orderConfirm.paymentResults`)
-          }}</el-button>
+        <el-button size="small" @click="handleCloseQrcode">{{
+          $t(`page.users.orderConfirm.paymentResultsNo`)
+        }}</el-button>
+        <el-button
+          size="small"
+          type="primary"
+          @click="getPaymentStatus(payStatus)"
+          >{{ $t(`page.users.orderConfirm.paymentResults`) }}</el-button
+        >
       </span>
     </el-dialog>
     <!-- 添加地址弹窗 -->
-    <el-dialog :title="$t(`page.users.userAddressList.add`)" :visible.sync="dialogVisible" width="700px"
-      :before-close="handleClose">
+    <el-dialog
+      :title="$t(`page.users.userAddressList.add`)"
+      :visible.sync="dialogVisible"
+      width="700px"
+      :before-close="handleClose"
+    >
       <add-address @closeAddress="closeAddress" ref="addAddress"></add-address>
     </el-dialog>
   </div>
@@ -157,11 +272,11 @@
 
 <script>
 //AMBA-注释
-import { Message, MessageBox } from 'element-ui';
+import { Message, MessageBox } from "element-ui";
 import orderGoods from "@/components/orderGoods";
 import addAddress from "@/components/addAddress";
-import { Debounce } from '@/utils/validate.js'
-import QRcode from 'qrcodejs2';
+import { Debounce } from "@/utils/validate.js";
+import QRcode from "qrcodejs2";
 export default {
   name: "order_confirm",
   auth: "guest",
@@ -174,69 +289,86 @@ export default {
       addressList: [],
       current: 0,
       payStatus: 0, // 0stripe支付，1PayPal支付，2微信支付,3 cod，4 upi
-      mark: '',//备注信息
+      mark: "", //备注信息
       addressInfo: {},
       couponIndex: 0, //选择商铺优惠券索引
       couponList: [],
       orderInfoVo: {},
-      payType: '',
+      payType: "",
       isShow: false,
       cartInfo: {},
       couponId: null,
       dialogVisibleQrcode: false, //微信支付弹窗
       loadingQrcode: false, //微信支付弹窗加载
-    }
+    };
   },
   async asyncData({ app, query }) {
     let [list, pay] = await Promise.all([
-      app.$axios.get('/api/pc/address/all/list'),
-      app.$axios.get('/api/front/pay/method')
+      app.$axios.get("/api/pc/address/all/list"),
+      app.$axios.get("/api/front/pay/method"),
     ]);
 
-
-    
     return {
       addressList: list.data,
       preOrderNo: query.preOrderNo,
       payInfo: pay.data,
-      orderNo: '' //支付订单号
-    }
+      orderNo: "", //支付订单号
+    };
   },
   mounted() {
-    if (this.payInfo.paypalStatus && this.payInfo.stripeStatus && this.payInfo.wechatPaySwitch && this.payInfo.codSwitch
-      && this.payInfo.upiSwitch) {
-      this.payStatus = 0
-      this.payType = 'stripe'
+    if (
+      this.payInfo.paypalStatus &&
+      this.payInfo.stripeStatus &&
+      this.payInfo.wechatPaySwitch &&
+      this.payInfo.codSwitch &&
+      this.payInfo.upiSwitch
+    ) {
+      this.payStatus = 0;
+      this.payType = "stripe";
     } else if (!this.payInfo.paypalStatus && this.payInfo.stripeStatus) {
-      this.payStatus = this.payInfo.paypalStatus ? 1 : 0
-      this.payType = this.payInfo.paypalStatus ? 'paypal' : 'stripe'
-    } else if (!this.payInfo.paypalStatus && !this.payInfo.stripeStatus && this.payInfo.wechatPaySwitch) {
-      this.payStatus = 2
-      this.payType = 'wechat'
-    } else if (!this.payInfo.paypalStatus && !this.payInfo.stripeStatus && !this.payInfo.wechatPaySwitch && this.payInfo.codSwitch) {
-      this.payStatus = 3
-      this.payType = 'cod'
-    } else if (!this.payInfo.paypalStatus && !this.payInfo.stripeStatus && !this.payInfo.wechatPaySwitch && !this.payInfo.codSwitch
-      && this.payInfo.upiSwitch) {
-      this.payStatus = 4
-      this.payType = 'upi'
-    }else {
-      this.payStatus = 0
-      this.payType = ''
+      this.payStatus = this.payInfo.paypalStatus ? 1 : 0;
+      this.payType = this.payInfo.paypalStatus ? "paypal" : "stripe";
+    } else if (
+      !this.payInfo.paypalStatus &&
+      !this.payInfo.stripeStatus &&
+      this.payInfo.wechatPaySwitch
+    ) {
+      this.payStatus = 2;
+      this.payType = "wechat";
+    } else if (
+      !this.payInfo.paypalStatus &&
+      !this.payInfo.stripeStatus &&
+      !this.payInfo.wechatPaySwitch &&
+      this.payInfo.codSwitch
+    ) {
+      this.payStatus = 3;
+      this.payType = "cod";
+    } else if (
+      !this.payInfo.paypalStatus &&
+      !this.payInfo.stripeStatus &&
+      !this.payInfo.wechatPaySwitch &&
+      !this.payInfo.codSwitch &&
+      this.payInfo.upiSwitch
+    ) {
+      this.payStatus = 4;
+      this.payType = "upi";
+    } else {
+      this.payStatus = 0;
+      this.payType = "";
     }
     this.$nextTick(() => {
-      this.$nuxt.$loading.start()
-    })
+      this.$nuxt.$loading.start();
+    });
   },
   head() {
     return {
-      title: this.$t(`page.users.orderConfirm.navTitle`)
-    }
+      title: this.$t(`page.users.orderConfirm.navTitle`),
+    };
   },
   beforeCreate() {
     this.$nextTick(() => {
-      this.$nuxt.$loading.start()
-    })
+      this.$nuxt.$loading.start();
+    });
   },
   beforeMount() {
     this.getAddressList();
@@ -246,74 +378,95 @@ export default {
   methods: {
     currentPay(index) {
       this.payStatus = index;
-      if (index === 0){
-        this.payType ='stripe';
-      }else if (index === 1){
-        this.payType ='paypal';
-      }else if (index === 2){
-        this.payType ='wechat';
-      }else if (index === 3){
-        this.payType ='cod';
-      }else if (index === 4){
-        this.payType ='upi';
+      if (index === 0) {
+        this.payType = "stripe";
+      } else if (index === 1) {
+        this.payType = "paypal";
+      } else if (index === 2) {
+        this.payType = "wechat";
+      } else if (index === 3) {
+        this.payType = "cod";
+      } else if (index === 4) {
+        this.payType = "upi";
       }
     },
     getloadPreOrder() {
-      this.$axios.get(`/api/front/order/load/pre/${this.preOrderNo}`).then(res => {
-        let orderInfoVo = res.data
-        this.orderInfoVo = orderInfoVo;
-        this.orderInfoVo.couponFee = 0;
-        this.cartInfo = orderInfoVo.orderList;
-      }).catch(err => {
-        this.$router.push({ path: '/users/order_list' });
-      })
+      this.$axios
+        .get(`/api/front/order/load/pre/${this.preOrderNo}`)
+        .then((res) => {
+          let orderInfoVo = res.data;
+          this.orderInfoVo = orderInfoVo;
+          this.orderInfoVo.couponFee = 0;
+          this.cartInfo = orderInfoVo.orderList;
+        })
+        .catch((err) => {
+          this.$router.push({ path: "/users/order_list" });
+        });
     },
     closeAddress() {
-      this.handleClose()
-      this.getAddressList()
+      this.handleClose();
+      this.getAddressList();
     },
     //关闭地址弹窗
     handleClose() {
-      this.$refs.addAddress.resetForm('formData')
-      this.dialogVisible = false
+      this.$refs.addAddress.resetForm("formData");
+      this.dialogVisible = false;
     },
     /*订单优惠券*/
     getPlantCoupon() {
-      this.$axios.get(`/api/front/coupons/order/${this.preOrderNo}`).then(res => {
-        this.couponList = res.data
-      })
+      this.$axios
+        .get(`/api/front/coupons/order/${this.preOrderNo}`)
+        .then((res) => {
+          this.couponList = res.data;
+        });
     },
 
     getCoupon(coupon, index) {
       this.couponIndex = index;
-      this.$set(coupon, 'checked', !coupon.checked);
+      this.$set(coupon, "checked", !coupon.checked);
       if (coupon.checked) {
-        this.couponId = coupon.id
+        this.couponId = coupon.id;
       } else {
-        this.couponId = ''
+        this.couponId = "";
       }
-      this.$axios.post('/api/front/order/computed/price', {
-        addressId: this.addressInfo.id,
-        couponId: this.couponId,
-        preOrderNo: this.preOrderNo
-      }).then(res => {
-        let data = res.data;
-        this.orderInfoVo.couponFee = data.couponFee;
-        this.orderInfoVo.freightFee = data.freightFee;
-        this.orderInfoVo.proTotalFee = data.proTotalFee;
-        this.orderInfoVo.payFee = data.payFee;
-      })
+      this.$axios
+        .post("/api/front/order/computed/price", {
+          addressId: this.addressInfo.id,
+          couponId: this.couponId,
+          preOrderNo: this.preOrderNo,
+        })
+        .then((res) => {
+          let data = res.data;
+          this.orderInfoVo.couponFee = data.couponFee;
+          this.orderInfoVo.freightFee = data.freightFee;
+          this.orderInfoVo.proTotalFee = data.proTotalFee;
+          this.orderInfoVo.payFee = data.payFee;
+        });
     },
     addAddress() {
-      this.dialogVisible = true
+      this.dialogVisible = true;
     },
     //提交订单
     SubOrder: Debounce(function (event) {
       let that = this;
       let data = {};
-      MessageBox.confirm("Are you sure to pay for this order? ", "tips").then(res => {
-        that.loading = true
-        if (!that.addressInfo.id) return Message.error(that.$t(`message.orderConfirm.emptyAddress`))
+
+      MessageBox.confirm(
+        "Are you sure to pay for this order? ",
+
+        " ",
+
+        {
+          distinguishCancelAndClose: true,
+          confirmButtonText: this.$t(`page.goodsDetail.confirm`),
+          cancelButtonText: this.$t(`page.goodsDetail.cancel`),
+        }
+
+        // "tips"
+      ).then((res) => {
+        that.loading = true;
+        if (!that.addressInfo.id)
+          return Message.error(that.$t(`message.orderConfirm.emptyAddress`));
         let btn = event.target;
         btn.disabled = true;
         data = {
@@ -325,81 +478,89 @@ export default {
           preOrderNo: that.preOrderNo,
           mark: that.mark,
           email: that.addressInfo.email,
-          payChannel: 'pc'
+          payChannel: "pc",
         };
-        that.$axios.post('/api/front/order/create', data).then(res => {
-          this.orderNo = res.data.orderNo;
-          that.getOrderPay(res.data.orderNo)
-        }).catch(err => {
-          btn.disabled = false;
-        })
+        that.$axios
+          .post("/api/front/order/create", data)
+          .then((res) => {
+            this.orderNo = res.data.orderNo;
+            that.getOrderPay(res.data.orderNo);
+          })
+          .catch((err) => {
+            btn.disabled = false;
+          });
       });
     }),
     //支付订单
     getOrderPay(orderNo) {
-      this.$axios.post('/api/front/pay/payment', {
-        orderNo: orderNo,
-        payType: this.payType,
-        payChannel: 'pc'
-      }).then(res => {
-        if (this.payType === 'paypal') {
-          window.location.href = res.data.redirect;
-        } else if (this.payType === 'stripe') {
-          this.$router.push({
-            path: `/order/stripe_payment`,
-            query: { clientSecret: res.data.stripeClientSecret }
-          });
-        } else if (this.payType === 'wechat') {
-          this.loadingQrcode = true;
-          this.dialogVisibleQrcode = true;
-          setTimeout(() => {
-            this.getQRcode(res.data.redirect)
-          }, 800)
-        }else if (this.payType === 'upi') {
-          this.loadingQrcode = true;
-          this.dialogVisibleQrcode = true;
-          setTimeout(() => {
-            this.getQRcode(res.data.redirect)
-          }, 800)
-        }else{
-          this.$router.push({ path: '/users/order_list?orderStatus=0' });
-        }
-      })
+      this.$axios
+        .post("/api/front/pay/payment", {
+          orderNo: orderNo,
+          payType: this.payType,
+          payChannel: "pc",
+        })
+        .then((res) => {
+          if (this.payType === "paypal") {
+            window.location.href = res.data.redirect;
+          } else if (this.payType === "stripe") {
+            this.$router.push({
+              path: `/order/stripe_payment`,
+              query: { clientSecret: res.data.stripeClientSecret },
+            });
+          } else if (this.payType === "wechat") {
+            this.loadingQrcode = true;
+            this.dialogVisibleQrcode = true;
+            setTimeout(() => {
+              this.getQRcode(res.data.redirect);
+            }, 800);
+          } else if (this.payType === "upi") {
+            this.loadingQrcode = true;
+            this.dialogVisibleQrcode = true;
+            setTimeout(() => {
+              this.getQRcode(res.data.redirect);
+            }, 800);
+          } else {
+            this.$router.push({ path: "/users/order_list?orderStatus=0" });
+          }
+        });
     },
     //预览二维码
     getQRcode(redirect) {
-      document.getElementById('payQrcode').innerHTML = '';
-      new QRcode('payQrcode', { width: 135, height: 135, text: redirect });
+      document.getElementById("payQrcode").innerHTML = "";
+      new QRcode("payQrcode", { width: 135, height: 135, text: redirect });
       this.loadingQrcode = false;
     },
     //获取微信支付结果
     getPaymentStatus(payState) {
       this.loadingQrcode = true;
-      var resUrl=`/api/front/pay/query/wechat/pay/result/${this.orderNo}`;
-      if (payState === 4){
-        resUrl=`/api/front/pay/query/upi/pay/result/${this.orderNo}`;
+      var resUrl = `/api/front/pay/query/wechat/pay/result/${this.orderNo}`;
+      if (payState === 4) {
+        resUrl = `/api/front/pay/query/upi/pay/result/${this.orderNo}`;
       }
-      this.$axios.get(resUrl).then(res => {
-        // if (!res.data){
-        //    return;
-        // }
-        this.handleCloseQrcode();
-        this.loadingQrcode = false;
-        this.$router.push({ path: '/users/order_list?orderStatus=0' });
-      }).catch(err => {
-        this.handleCloseQrcode();
-        this.loadingQrcode = false;
-        this.$router.push({ path: '/users/order_list?orderStatus=0' });
-      })
+      this.$axios
+        .get(resUrl)
+        .then((res) => {
+          // if (!res.data){
+          //    return;
+          // }
+          this.handleCloseQrcode();
+          this.loadingQrcode = false;
+          this.$router.push({ path: "/users/order_list?orderStatus=0" });
+        })
+        .catch((err) => {
+          this.handleCloseQrcode();
+          this.loadingQrcode = false;
+          this.$router.push({ path: "/users/order_list?orderStatus=0" });
+        });
     },
     //关闭微信支付弹窗
     handleCloseQrcode() {
       this.dialogVisibleQrcode = false;
-      this.$router.push({ path: '/users/order_list?orderStatus=0' });
+      this.$router.push({ path: "/users/order_list?orderStatus=0" });
     },
     getAddressList() {
       let that = this;
-      that.$axios.get('api/pc/address/all/list').then(res => {
+      that.$axios.get("api/pc/address/all/list").then((res) => {
         that.addressList = res.data;
         that.addressList.forEach((item, index) => {
           if (item.isDefault) {
@@ -410,20 +571,20 @@ export default {
             that.current = 0;
           }
         });
-      })
+      });
     },
     tapCurrent(index, item) {
       this.current = index;
       this.addressInfo = item;
     },
     open() {
-      this.isShow = true
+      this.isShow = true;
     },
     close() {
-      this.isShow = false
-    }
-  }
-}
+      this.isShow = false;
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
@@ -454,20 +615,20 @@ export default {
     .item {
       width: 210px;
       height: 70px;
-      border: 1px solid #D4D4D4;
+      border: 1px solid #d4d4d4;
       position: relative;
       cursor: pointer;
 
-      &~.item {
+      & ~ .item {
         margin-right: 20px;
       }
 
       &.on {
-        border-color: #E93323;
+        border-color: #e93323;
       }
 
       .iconfont {
-        color: #09BB07;
+        color: #09bb07;
         font-size: 29px;
         margin-right: 11px;
         width: 30px;
@@ -480,12 +641,12 @@ export default {
 
         &.icon-yue {
           font-size: 32px;
-          color: #FE9C01;
+          color: #fe9c01;
         }
 
         &.icon-zhifubao {
           font-size: 36px;
-          color: #00AAEA;
+          color: #00aaea;
         }
       }
 
@@ -498,7 +659,7 @@ export default {
 
       .name {
         font-size: 16px;
-        color: #4E4E4E;
+        color: #4e4e4e;
       }
 
       .yue {
@@ -527,7 +688,7 @@ export default {
     .button {
       outline: none;
       border: none;
-      background-color: #E93323;
+      background-color: #e93323;
 
       &:disabled {
         border-color: #fab6b6;
@@ -538,8 +699,7 @@ export default {
 }
 
 .line {
-  border-bottom: 1px solid #EFEFEF;
-  ;
+  border-bottom: 1px solid #efefef;
 }
 
 .couponListBox {
@@ -559,7 +719,7 @@ export default {
   position: relative;
   height: 40px;
   line-height: 40px;
-  border: 1px solid #DCDFE6;
+  border: 1px solid #dcdfe6;
   padding: 0 15px;
   box-sizing: border-box;
   border-radius: 4px;
@@ -573,15 +733,15 @@ export default {
     width: 100%;
     padding: 0 15px;
     background: #fff;
-    border: 1px solid #E93323;
+    border: 1px solid #e93323;
     border-radius: 4px;
     line-height: 2;
 
     .title-box {
       height: 40px;
       line-height: 40px;
-      border-bottom: 1px solid #EFEFEF;
-      color: #E93323;
+      border-bottom: 1px solid #efefef;
+      color: #e93323;
       font-size: 14px;
 
       span {
@@ -600,7 +760,7 @@ export default {
         cursor: pointer;
 
         &.on {
-          color: #E93323;
+          color: #e93323;
         }
       }
     }
@@ -650,7 +810,7 @@ export default {
       .item {
         width: 250px;
         height: 170px;
-        border: 1px solid #EAEAEA;
+        border: 1px solid #eaeaea;
         padding: 22px 27px;
         overflow: hidden;
         margin: 30px 0 0 30px;
@@ -658,7 +818,7 @@ export default {
         cursor: pointer;
 
         &.on {
-          border: 1px solid #E93323;
+          border: 1px solid #e93323;
         }
 
         .icon-xuanzhong4 {
@@ -685,12 +845,12 @@ export default {
 
           .iconfont {
             font-size: 35px;
-            color: #BFBFBF;
+            color: #bfbfbf;
             margin-top: 25px;
           }
 
           .tip {
-            color: #C8C8C8;
+            color: #c8c8c8;
             margin-top: 8px;
           }
         }
@@ -713,7 +873,6 @@ export default {
 
   .develivery {
     margin-left: 30px;
-
   }
 
   .develivery_take {
@@ -726,7 +885,7 @@ export default {
     padding-bottom: 8px;
 
     span {
-      color: #E93323;
+      color: #e93323;
       font-size: 14px;
       position: absolute;
       top: 3px;
@@ -756,7 +915,6 @@ export default {
     .name {
       padding: 0 50px;
       font-size: 16px;
-
     }
 
     .iconfont {
@@ -785,18 +943,18 @@ export default {
     .item {
       height: 40px;
       /*width: 182px;*/
-      border: 1px solid #E93323;
+      border: 1px solid #e93323;
       margin: 0 20px 30px 0;
       position: relative;
       cursor: pointer;
 
       &.disabled {
         pointer-events: none;
-        opacity: .6;
+        opacity: 0.6;
       }
 
       &.grey {
-        border-color: #B4B4B4;
+        border-color: #b4b4b4;
       }
 
       .iconfont {
@@ -812,20 +970,20 @@ export default {
         color: #fff;
         text-align: center;
         line-height: 40px;
-        background-color: #E93323;
+        background-color: #e93323;
 
         &.grey {
-          background-color: #B4B4B4;
+          background-color: #b4b4b4;
         }
       }
 
       .money {
         width: 110px;
         text-align: center;
-        color: #E93323;
+        color: #e93323;
 
         &.grey {
-          color: #B4B4B4;
+          color: #b4b4b4;
         }
       }
 
@@ -834,7 +992,7 @@ export default {
 
         .name {
           background-color: #333;
-          color: #FDD7B4;
+          color: #fdd7b4;
         }
 
         .money {
@@ -852,7 +1010,7 @@ export default {
       height: 14px;
       text-align: center;
       line-height: 14px;
-      background-color: #236FE9;
+      background-color: #236fe9;
       border-radius: 100%;
       font-size: 8px;
       margin-right: 5px;
@@ -908,7 +1066,7 @@ export default {
     .invoice_info {
       font-size: 14px;
       margin-left: 102px;
-      color: #236FE9;
+      color: #236fe9;
       display: flex;
       align-items: center;
       cursor: pointer;
@@ -950,7 +1108,7 @@ export default {
     .textarea {
       width: 820px;
       height: 120px;
-      background-color: #F7F7F7;
+      background-color: #f7f7f7;
       border: 0;
       outline: none;
       resize: none;
@@ -978,7 +1136,6 @@ export default {
 
     .money_count {
       margin-right: 30px;
-
     }
 
     .money_down {
@@ -986,7 +1143,7 @@ export default {
       font-size: 12px;
       line-height: 17px;
       height: 17px;
-      background-color: #E93323;
+      background-color: #e93323;
       width: 34px;
       text-align: center;
       border-radius: 3px;
@@ -1029,12 +1186,12 @@ export default {
     .cartCount {
       padding: 0 32px 26px;
       margin-bottom: 20px;
-      border: 1px solid #EFEFEF;
+      border: 1px solid #efefef;
     }
 
     .storeInfo {
       height: 60px;
-      border-bottom: 1px solid #EFEFEF;
+      border-bottom: 1px solid #efefef;
       position: relative;
 
       .qrcode {
@@ -1061,12 +1218,12 @@ export default {
         cursor: pointer;
 
         .iconfont {
-          color: #E93323;
+          color: #e93323;
           font-size: 18px;
         }
 
         &:hover {
-          +.qrcode {
+          + .qrcode {
             display: inline;
           }
         }
@@ -1077,7 +1234,7 @@ export default {
       padding: 27px 46px;
 
       .total {
-        &~.total {
+        & ~ .total {
           margin-top: 12px;
         }
 
@@ -1093,7 +1250,7 @@ export default {
       width: 1160px;
       height: 70px;
       line-height: 70px;
-      background: #F7F7F7;
+      background: #f7f7f7;
       text-align: right;
       padding-right: 22px;
       margin: 0 auto;
@@ -1121,7 +1278,7 @@ export default {
         line-height: 46px;
         outline: none;
         border: none;
-        background-color: #E93323;
+        background-color: #e93323;
 
         &:disabled {
           border-color: #fab6b6;
@@ -1134,7 +1291,7 @@ export default {
 
 .virtual_form {
   margin-top: 30px;
-  border-top: 1px solid #EFEFEF;
+  border-top: 1px solid #efefef;
 
   .virtual-item {
     margin-top: 20px;

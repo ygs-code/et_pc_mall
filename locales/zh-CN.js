@@ -147,7 +147,7 @@ export default {
             hotSearch: '热门搜索',
             recommend: '热卖推荐',
             emptySearch: '无搜索条件,换个词试试吧',
-            placeSearch: '请输入搜索',
+            placeSearch: '搜索',
             onSearch: '正在搜索中',
             goods: '商品',
             mer: '店铺',
@@ -195,6 +195,8 @@ export default {
             backHome: '返回首页'
         },
         orderDetails: {
+            checkPhoneNumber: "手机号码必须要有10",
+            checkPostCode: " post code必须要有6",
             navTitle: '订单详情',
             item: '件商品',// item(s)
             Customer: '联系客服',

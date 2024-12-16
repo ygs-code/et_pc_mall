@@ -48,6 +48,7 @@
           "
         ></el-input>
       </el-form-item>
+
       <el-form-item
         :label="$t(`page.users.userAddress.postCode`)"
         prop="postCode"
@@ -58,6 +59,8 @@
           :placeholder="$t(`message.login.postCode`)"
         ></el-input>
       </el-form-item>
+
+
       <el-form-item
         :label="$t(`page.users.userAddress.country`)"
         prop="country"
@@ -155,6 +158,7 @@ export default {
             message: this.$t(`message.login.correctEmail`),
             trigger: ["blur", "change"],
           },
+          
         ],
         phone: [
           {
@@ -165,16 +169,17 @@ export default {
           },
           {
             required: true,
-
+            trigger: "blur",
             validator: (rule, value, callback) => {
-              console.log('value==',value)
-              if (value === "") {
-                callback(new Error("请输入密码"));
+
+               
+          
+              if ( /(10)+/ig.test(value)) {
+                // The phone number must be 10
+                callback(  );
               } else {
-                if (this.ruleForm.checkPass !== "") {
-                  this.$refs.ruleForm.validateField("checkPass");
-                }
-                callback();
+                 
+                callback(new Error(this.$t(`page.orderDetails.checkPhoneNumber`)));
               }
             },
             // message: this.$t(`message.login.emptyPhone`), trigger: 'blur'
@@ -195,11 +200,32 @@ export default {
           },
         ],
         postCode: [
+
+
           {
             required: true,
             message: this.$t(`message.login.postCode`),
             trigger: "blur",
           },
+ {
+            required: true,
+            trigger: "blur",
+            validator: (rule, value, callback) => {
+
+               
+          
+              if ( /(6)+/ig.test(value)) {
+                // The phone number must be 10
+                callback();
+              } else {
+                 
+                callback(new Error(this.$t(`page.orderDetails.checkPostCode`)));
+              }
+            },
+            // message: this.$t(`message.login.emptyPhone`), trigger: 'blur'
+          },
+
+
         ],
       },
     };

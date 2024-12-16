@@ -146,7 +146,7 @@ export default {
 			hotSearch:'Recherche très demandé',
 			recommend:'Proposition très demandé',
 			emptySearch:'Aucun critère de recherche, essayez un autre mot svp',
-			placeSearch:'Veuillez faire une recherche',
+			placeSearch:'recherche',
 			onSearch:'Recherche en cours',
 			goods:'Produits de base',
 			mer: 'Merchant',
@@ -194,6 +194,8 @@ export default {
 			backHome:'Retour à la première page'
 		},
 		orderDetails:{
+			checkPhoneNumber: "Le numéro de téléphone mobile doit avoir 10",
+			checkPostCode: "Le code postal doit être 10",
 			navTitle:'détail de la commande',
 			item:'Articles',// item(s)
 			Customer:'Contactez le service à la clientèle',

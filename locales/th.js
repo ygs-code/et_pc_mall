@@ -146,7 +146,7 @@ export default {
 			hotSearch:'สินค้าที่มีการค้นหามากที่สุด',
 			recommend:'สินค้าที่ขายดีที่สุด',
 			emptySearch:'ไม่มีเกณฑ์การค้นหา ลองคำอื่น',
-			placeSearch:'โปรดป้อนการค้นหา',
+			placeSearch:'ค้นหา',
 			onSearch:'กำลังค้นหา',
 			goods:'สินค้าโภคภัณฑ์',
 			mer: 'ร้านค้า',
@@ -194,6 +194,8 @@ export default {
 			backHome:'กลับไปที่บ้าน'
 		},
 		orderDetails:{
+			checkPhoneNumber: "หมายเลขโทรศัพท์ต้องมี 10",
+			checkPostCode: "รหัสไปรษณีย์ต้องเป็น 6",
 			navTitle:'รายละเอียดการสั่งซื้อ',
 			item:'รายการสั่งสินค้า',// item(s)
 			Customer:'ติดต่อฝ่ายบริการลูกค้า',

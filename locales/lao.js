@@ -151,7 +151,7 @@ export default {
 			hotSearch:'ສິນຄ້າທີ່ມີການຄົ້ນຫາຫຼາຍທີ່ສຸດ',
 			recommend:'ແນະນໍາສິນຄ້າຂາຍດີທີ່ສຸດ',
 			emptySearch:'ບໍ່ມີເງື່ອນໄຂໃນການຊອກ,ລອງຄໍາອື່ນສາ',
-			placeSearch:'ກະລຸນາເຂົ້າໄປໃນການຄົ້ນຫາ',
+			placeSearch:'ຄົ້ນຫາ',
 			onSearch:'ກຳລັງຊອກຫາ',
 			goods:'ສິນຄ້າ',
 			mer: 'ຮ້ານ',
@@ -199,6 +199,8 @@ export default {
 			backHome:'ກັບຄືນໜ້າທໍາອິດ'
 		},
 		orderDetails:{
+			checkPhoneNumber: "ເລກ ໂທລະສັບ ມື ຖື ຕ້ອງ ມີ 10",
+			checkPostCode: "ລະຫັດໄປສະນີຕ້ອງເປັນ 10",
 			navTitle:'ລາຍລະອຽດຂອງການສັ່ງ',
 			item:'ຈໍານວນສິນຄ້າ',// item(s)
 			Customer:'ຕິດຫາບໍລິການລູກຄ້າ',
