@@ -223,7 +223,7 @@
             })
           });
           if (id.length === 0) {
-            that.$message.error("请选择产品");
+            that.$message.error("Please choose product");
             return;
           }
           this.getPreOrder(id)

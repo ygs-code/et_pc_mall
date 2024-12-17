@@ -28,7 +28,7 @@
                 </li>
             </ul> -->
             <p class="mb-6">
-                This website (<span class="bg-yellow">www.ambahomes.com</span>) ("site" or "website") is operated by
+                This website (<span class="bg-yellow">www.ambahome.in</span>) ("site" or "website") is operated by
                 Amba Homes Pvt. Ltd. Throughout
                 this site, the terms "we", "us", and "our" refer to Amba Homes, a company registered in Delhi, India. We
                 offer this website, including all information, tools, and services available from this site, to you, the

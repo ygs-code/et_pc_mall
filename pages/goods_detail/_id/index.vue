@@ -1,10 +1,10 @@
 <template>
   <div class="goods_count">
     <!-- <div class="menu-count">
-        <div class="user-menu user-wrapper acea-row row-middle">
-          <div class="menu-main acea-row row-middle"></div>
-        </div>
-      </div> -->
+      <div class="user-menu user-wrapper acea-row row-middle">
+        <div class="menu-main acea-row row-middle"></div>
+      </div>
+    </div> -->
     <div class="goods-detail">
       <div class="wrapper_1200 acea-row">
         <div class="goods-main">
@@ -38,24 +38,24 @@
                     </div>
                   </div>
                   <!-- <div class="swiper-button-prev swiper-button-white"></div>
-                    <div class="swiper-button-next swiper-button-white"></div> -->
+                  <div class="swiper-button-next swiper-button-white"></div> -->
                 </div>
               </client-only>
               <!-- <div class="acea-row row-middle">
-                  <div class="btn" style="width: 60px" @click="collect">
-                    <span
-                      :class="[
-                        'iconfont',
-                        userCollect ? 'icon-xihuan1' : 'icon-xihuan',
-                      ]"
-                    ></span
-                    >{{
-                      userCollect
-                        ? $t(`page.store.followed`)
-                        : $t(`page.store.follow`)
-                    }}
-                  </div>
-                </div> -->
+                <div class="btn" style="width: 60px" @click="collect">
+                  <span
+                    :class="[
+                      'iconfont',
+                      userCollect ? 'icon-xihuan1' : 'icon-xihuan',
+                    ]"
+                  ></span
+                  >{{
+                    userCollect
+                      ? $t(`page.store.followed`)
+                      : $t(`page.store.follow`)
+                  }}
+                </div>
+              </div> -->
             </div>
             <div class="text-wrapper">
               <div class="title">{{ productInfo.storeName }}</div>
@@ -66,14 +66,7 @@
                       {{ $t(`page.goodsList.price`) }}
                     </div>
                     <div class="price">
-                      <span
-                        >{{ GLOBAL.shopPayCurrency
-                        }}{{
-                          attrValueSelected
-                            ? attrValueSelected.price
-                            : productInfo.price
-                        }}</span
-                      >
+                      <span>{{ GLOBAL.shopPayCurrency }}{{  attrValueSelected  ? attrValueSelected.price : productInfo.price }}</span>
                     </div>
                     <div class="money-wrap">
                       <del
@@ -118,7 +111,8 @@
                     </div>
                   </div>
                 </div>
-                <div class="saleBox acea-row row-center-wrapper">
+                <!--这里展示的已经销售的数据，暂时去掉-->
+                <!-- <div class="saleBox acea-row row-center-wrapper">
                   <el-divider direction="vertical"></el-divider>
                   <div class="sales acea-row row-column row-center-wrapper">
                     <div class="num">
@@ -129,15 +123,15 @@
                     </div>
                     <div>{{ $t(`page.goodsDetail.sales`) }}</div>
                   </div>
-                </div>
+                </div> -->
               </div>
-              <div class="attribute">
+              <!-- <div class="attribute">
                 <div
                   v-for="(item, index) in productAttr"
                   :key="index"
                   class="acea-row size-wrapper"
                 >
-                  <div class="label">{{ item.attrName }}</div>
+                   <div class="label">{{ item.attrName }}</div> 
                   <div class="acea-row list">
                     <label
                       v-for="(itm, idx) in item.attrValues.split(',')"
@@ -159,8 +153,9 @@
                     </label>
                   </div>
                 </div>
-              </div>
+              </div> -->
 
+              
               <div class="number-wrapper acea-row">
                 <div class="label">{{ $t(`page.goodsDetail.num`) }}</div>
                 <div class="counter-wrap acea-row">
@@ -182,10 +177,11 @@
                       +
                     </button>
                   </div>
-                  <span
+                  <!---这里展示的是库存暂时去掉-->
+                  <!-- <span
                     >{{ $t(`page.goodsDetail.inventory`) }}：{{ stock || 0
                     }}{{ productInfo.unitName || "" }}</span
-                  >
+                  > -->
                 </div>
               </div>
               <div class="button-wrapper" v-if="stock">
@@ -260,249 +256,249 @@
           </div>
           <div class="detail-wrapper">
             <!-- <div class="recom-section">
-                              <div class="user-info">
-                                  <div class="store-basis">
-                                      <div class="acea-row">
-                                          <div class="store-logo">
-                                              <img :src="merchantInfo.avatar" alt="">
-                                          </div>
-                                          <div>
-                                              <div class="store-name line2">{{ merchantInfo.name }}</div>
-                                              <el-rate v-model="merchantInfo.starLevel" disabled
-                                                  :colors="['#e93323', '#e93323', '#e93323']" score-template="{value}">
-                                              </el-rate>
-                                          </div>
-                                      </div>
-                                      <span v-if="merchantInfo.isSelf"
-                                          class="trader">{{ $t(`page.store.selfSupport`) }}</span>
-                                      <span class="trader">{{ merchantInfo.typeId | merchantTypeFilter }}</span>
-                                      <div class="store-info">
-                                          <div class="items acea-row row-middle">
-                                              <span class="titles">{{ $t(`page.store.storeService`) }}</span>
-                                              <span class="iconfont icon-kefu" @click="call"></span>
-                                          </div>
-                                          <div class="items acea-row row-middle">
-                                              <span class="titles">{{ $t(`page.store.storeQualification`) }}</span>
-                                              <nuxt-link class="desc"
-                                                  :to="{ path: '/merchant/merchant/qualification', query: { id: merId } }">
-                                                  <span class="iconfont icon-zizhi"></span>
-                                                  <span class="license">{{ $t(`page.store.storeQualification`) }}</span>
-                                              </nuxt-link>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div class="store-favorites">
-                                      <button class="collection mb12 care" @click="followToggle(merId)">
-                                          <span v-show="!merchantInfo.isCollect" class="iconfont icon-guanzhu"></span>
-                                          {{ merchantInfo.isCollect ? $t(`page.store.followed`) : $t(`page.store.follow`)
-                                          }}
-                                      </button>
-                                      <button class="collection" @click="goStore">
-                                          <span class="iconfont icon-shangjiadingdan"></span>
-                                          {{ $t(`page.goodsSearch.mer`) }}
-                                      </button>
-                                  </div>
-                              </div>
-                          </div> -->
+                            <div class="user-info">
+                                <div class="store-basis">
+                                    <div class="acea-row">
+                                        <div class="store-logo">
+                                            <img :src="merchantInfo.avatar" alt="">
+                                        </div>
+                                        <div>
+                                            <div class="store-name line2">{{ merchantInfo.name }}</div>
+                                            <el-rate v-model="merchantInfo.starLevel" disabled
+                                                :colors="['#e93323', '#e93323', '#e93323']" score-template="{value}">
+                                            </el-rate>
+                                        </div>
+                                    </div>
+                                    <span v-if="merchantInfo.isSelf"
+                                        class="trader">{{ $t(`page.store.selfSupport`) }}</span>
+                                    <span class="trader">{{ merchantInfo.typeId | merchantTypeFilter }}</span>
+                                    <div class="store-info">
+                                        <div class="items acea-row row-middle">
+                                            <span class="titles">{{ $t(`page.store.storeService`) }}</span>
+                                            <span class="iconfont icon-kefu" @click="call"></span>
+                                        </div>
+                                        <div class="items acea-row row-middle">
+                                            <span class="titles">{{ $t(`page.store.storeQualification`) }}</span>
+                                            <nuxt-link class="desc"
+                                                :to="{ path: '/merchant/merchant/qualification', query: { id: merId } }">
+                                                <span class="iconfont icon-zizhi"></span>
+                                                <span class="license">{{ $t(`page.store.storeQualification`) }}</span>
+                                            </nuxt-link>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="store-favorites">
+                                    <button class="collection mb12 care" @click="followToggle(merId)">
+                                        <span v-show="!merchantInfo.isCollect" class="iconfont icon-guanzhu"></span>
+                                        {{ merchantInfo.isCollect ? $t(`page.store.followed`) : $t(`page.store.follow`)
+                                        }}
+                                    </button>
+                                    <button class="collection" @click="goStore">
+                                        <span class="iconfont icon-shangjiadingdan"></span>
+                                        {{ $t(`page.goodsSearch.mer`) }}
+                                    </button>
+                                </div>
+                            </div>
+                        </div> -->
             <!-- <div class="ml30"> -->
             <!-- <div class=""> -->
-            <!-- <div class="detail-hd acea-row">
-                                  <div class="tab acea-row">
-                                      <div class="item acea-row row-center-wrapper" :class="{ on: tabIndex === 0 }"
-                                          @click="tab(0)">
-                                          {{ $t(`page.goodsDetail.navList[3].name`) }}
-                                      </div>
-                                      <div class="item acea-row row-center-wrapper" :class="{ on: tabIndex === 1 }"
-                                          @click="tab(1)">
-                                          {{ $t(`page.goodsDetail.Reviews`) }}({{ replyInfo.sumCount }})
-                                      </div>
-                                  </div>
-                              </div> -->
-            <div class="detail-bd">
-              <div>
-                <div v-if="productInfo.content" class="detail-html">
-                  <div v-html="productInfo.content"></div>
-                </div>
-                <div v-else class="nothing">
-                  <img src="@/assets/images/noDetail.png" />
-                  <div>{{ $t(`message.tips.noDetal`) }}</div>
-                </div>
-              </div>
-              <!-- <div class="comment">
-                    <div class="comment-hd">
-                      <div class="acea-row row-between-wrapper">
-                        <div class="acea-row row-middle score">
-                          {{ $t(`page.users.goodsCommentList.score`) }}
-                          <div class="cont">
-                            <el-rate
-                              v-model="replyInfo.replyStar"
-                              disabled
-                              :colors="['#e93323', '#e93323', '#e93323']"
-                              score-template="{replyInfo.replyStar}"
-                            >
-                            </el-rate>
-                          </div>
-                        </div>
-                        <div class="rate">
-                          <span
-                            >{{ $t(`page.users.goodsCommentList.good`) }}
-                            {{ replyInfo.replyChance * 100 }}%</span
-                          >
-                        </div>
-                      </div>
-                      <div class="menu">
-                        <div
-                          class="item"
-                          :class="{ on: reply.type === '0' }"
-                          @click="replyTypeChange('0')"
-                        >
-                          {{ $t(`page.users.goodsCommentList.all`) }}({{
-                            replyInfo.sumCount
-                          }})
-                        </div>
-                        <div
-                          class="item"
-                          :class="{ on: reply.type === '1' }"
-                          @click="replyTypeChange('1')"
-                        >
-                          {{ $t(`page.users.goodsCommentList.goodScore`) }}({{
-                            replyInfo.goodCount
-                          }})
-                        </div>
-                        <div
-                          class="item"
-                          :class="{ on: reply.type === '2' }"
-                          @click="replyTypeChange('2')"
-                        >
-                          {{ $t(`page.users.goodsCommentList.general`) }}({{
-                            replyInfo.inCount
-                          }})
-                        </div>
-                        <div
-                          class="item"
-                          :class="{ on: reply.type === '3' }"
-                          @click="replyTypeChange('3')"
-                        >
-                          {{ $t(`page.users.goodsCommentList.bad`) }}({{
-                            replyInfo.poorCount
-                          }})
-                        </div>
-                      </div>
-                    </div>
-                    <div class="comment-bd">
-                      <template v-if="replyList.length > 0">
-                        <div
-                          v-for="item in replyList"
-                          :key="item.reply_id"
-                          class="item"
-                        >
-                          <div class="acea-row row-middle item-hd">
-                            <div class="image">
-                              <img v-if="item.avatar" :src="item.avatar" />
-                              <img v-else src="~assets/images/f.png" alt="" />
-                            </div>
-                            <div class="text">
-                              <div class="acea-row row-middle name">
-                                {{ item.nickname }}
-                                <div class="star">
-                                  <el-rate
-                                    v-model="item.star"
-                                    disabled
-                                    :colors="['#e93323', '#e93323', '#e93323']"
-                                    score-template="{item.star}"
-                                  >
-                                  </el-rate>
+              <!-- <div class="detail-hd acea-row">
+                                <div class="tab acea-row">
+                                    <div class="item acea-row row-center-wrapper" :class="{ on: tabIndex === 0 }"
+                                        @click="tab(0)">
+                                        {{ $t(`page.goodsDetail.navList[3].name`) }}
+                                    </div>
+                                    <div class="item acea-row row-center-wrapper" :class="{ on: tabIndex === 1 }"
+                                        @click="tab(1)">
+                                        {{ $t(`page.goodsDetail.Reviews`) }}({{ replyInfo.sumCount }})
+                                    </div>
                                 </div>
+                            </div> -->
+              <div class="detail-bd">
+                <div>
+                  <div v-if="productInfo.content" class="detail-html">
+                    <div v-html="productInfo.content"></div>
+                  </div>
+                  <div v-else class="nothing">
+                    <img src="@/assets/images/noDetail.png" />
+                    <div>{{ $t(`message.tips.noDetal`) }}</div>
+                  </div>
+                </div>
+                <!-- <div class="comment">
+                  <div class="comment-hd">
+                    <div class="acea-row row-between-wrapper">
+                      <div class="acea-row row-middle score">
+                        {{ $t(`page.users.goodsCommentList.score`) }}
+                        <div class="cont">
+                          <el-rate
+                            v-model="replyInfo.replyStar"
+                            disabled
+                            :colors="['#e93323', '#e93323', '#e93323']"
+                            score-template="{replyInfo.replyStar}"
+                          >
+                          </el-rate>
+                        </div>
+                      </div>
+                      <div class="rate">
+                        <span
+                          >{{ $t(`page.users.goodsCommentList.good`) }}
+                          {{ replyInfo.replyChance * 100 }}%</span
+                        >
+                      </div>
+                    </div>
+                    <div class="menu">
+                      <div
+                        class="item"
+                        :class="{ on: reply.type === '0' }"
+                        @click="replyTypeChange('0')"
+                      >
+                        {{ $t(`page.users.goodsCommentList.all`) }}({{
+                          replyInfo.sumCount
+                        }})
+                      </div>
+                      <div
+                        class="item"
+                        :class="{ on: reply.type === '1' }"
+                        @click="replyTypeChange('1')"
+                      >
+                        {{ $t(`page.users.goodsCommentList.goodScore`) }}({{
+                          replyInfo.goodCount
+                        }})
+                      </div>
+                      <div
+                        class="item"
+                        :class="{ on: reply.type === '2' }"
+                        @click="replyTypeChange('2')"
+                      >
+                        {{ $t(`page.users.goodsCommentList.general`) }}({{
+                          replyInfo.inCount
+                        }})
+                      </div>
+                      <div
+                        class="item"
+                        :class="{ on: reply.type === '3' }"
+                        @click="replyTypeChange('3')"
+                      >
+                        {{ $t(`page.users.goodsCommentList.bad`) }}({{
+                          replyInfo.poorCount
+                        }})
+                      </div>
+                    </div>
+                  </div>
+                  <div class="comment-bd">
+                    <template v-if="replyList.length > 0">
+                      <div
+                        v-for="item in replyList"
+                        :key="item.reply_id"
+                        class="item"
+                      >
+                        <div class="acea-row row-middle item-hd">
+                          <div class="image">
+                            <img v-if="item.avatar" :src="item.avatar" />
+                            <img v-else src="~assets/images/f.png" alt="" />
+                          </div>
+                          <div class="text">
+                            <div class="acea-row row-middle name">
+                              {{ item.nickname }}
+                              <div class="star">
+                                <el-rate
+                                  v-model="item.star"
+                                  disabled
+                                  :colors="['#e93323', '#e93323', '#e93323']"
+                                  score-template="{item.star}"
+                                >
+                                </el-rate>
                               </div>
-                              <div>{{ item.createTime }}</div>
+                            </div>
+                            <div>{{ item.createTime }}</div>
+                          </div>
+                        </div>
+                        <div class="item-bd">
+                          <div>{{ item.comment }}</div>
+                          <div
+                            class="image-wrapper"
+                            v-if="item.pics && item.pics.length && item.pics[0]"
+                          >
+                            <div
+                              v-for="(itm, idx) in item.pics"
+                              :key="idx"
+                              class="image"
+                              @click="isDialog = true"
+                            >
+                              <el-image
+                                style="width: 54px; height: 54px"
+                                :src="itm"
+                                :preview-src-list="item.pics"
+                              ></el-image>
                             </div>
                           </div>
-                          <div class="item-bd">
-                            <div>{{ item.comment }}</div>
-                            <div
-                              class="image-wrapper"
-                              v-if="item.pics && item.pics.length && item.pics[0]"
-                            >
-                              <div
-                                v-for="(itm, idx) in item.pics"
-                                :key="idx"
-                                class="image"
-                                @click="isDialog = true"
-                              >
-                                <el-image
-                                  style="width: 54px; height: 54px"
-                                  :src="itm"
-                                  :preview-src-list="item.pics"
-                                ></el-image>
-                              </div>
-                            </div>
-                            <div v-if="item.merchantReplyContent" class="reply">
-                              <div class="item">
-                                <span
-                                  >{{
-                                    $t(`page.users.goodsCommentList.seller`)
-                                  }}：</span
-                                >{{ item.merchantReplyContent }}
-                              </div>
+                          <div v-if="item.merchantReplyContent" class="reply">
+                            <div class="item">
+                              <span
+                                >{{
+                                  $t(`page.users.goodsCommentList.seller`)
+                                }}：</span
+                              >{{ item.merchantReplyContent }}
                             </div>
                           </div>
                         </div>
-                      </template>
-                      <div class="empty-box" v-else="replyList.length < 0">
-                        <img src="~assets/images/noEvaluate.png" alt="" />
-                        <p>{{ $t(`message.tips.noEvaluation`) }}</p>
                       </div>
+                    </template>
+                    <div class="empty-box" v-else="replyList.length < 0">
+                      <img src="~assets/images/noEvaluate.png" alt="" />
+                      <p>{{ $t(`message.tips.noEvaluation`) }}</p>
                     </div>
-                    <div v-if="replyList.length" class="acea-row row-right">
-                      <el-pagination
-                        layout="prev, pager, next"
-                        :page-size="reply.limit"
-                        :total="replyCount"
-                        @current-change="callPaginate"
-                        @prev-click="callPaginate"
-                        @next-click="callPaginate"
-                      ></el-pagination>
-                    </div>
-                  </div> -->
-            </div>
-            <div class="store-recommend" v-if="goodsList && goodsList.length">
-              <div class="title">
-                <span>{{ $t(`page.goodsDetail.navList[2].name`) }}</span>
-              </div>
-              <div class="list acea-row row-around">
-                <nuxt-link
-                  v-for="(item, index) in goodsList"
-                  :key="index"
-                  :to="`/goods_detail/${item.id}`"
-                  class="r-l-item"
+                  </div>
+                  <div v-if="replyList.length" class="acea-row row-right">
+                    <el-pagination
+                      layout="prev, pager, next"
+                      :page-size="reply.limit"
+                      :total="replyCount"
+                      @current-change="callPaginate"
+                      @prev-click="callPaginate"
+                      @next-click="callPaginate"
+                    ></el-pagination>
+                  </div>
+                </div> -->
+                <div
+                  class="store-recommend"
+                  v-if="goodsList && goodsList.length"
                 >
-                  <div class="image">
-                    <img :src="item.image" />
+                  <div class="title">
+                    <span>{{ $t(`page.goodsDetail.navList[2].name`) }}</span>
                   </div>
-                  <div class="text">
-                    <div class="name line2">{{ item.storeName }}</div>
-                    <div class="acea-row row-between-wrapper">
-                      <div class="money">
-                        {{ GLOBAL.shopPayCurrency
-                        }}<span>{{ item.price }}</span>
+                  <div class="list acea-row row-around">
+                    <nuxt-link
+                      v-for="(item, index) in goodsList"
+                      :key="index"
+                      :to="`/goods_detail/${item.id}`"
+                      class="r-l-item"
+                    >
+                      <div class="image">
+                        <img :src="item.image" />
                       </div>
-                      <div class="sales">
-                        {{
-                          Math.floor(item.sales) + Math.floor(item.ficti) || 0
-                        }}
-                        {{ $t(`message.tips.sold`) }}
+                      <div class="text">
+                        <div class="name line2">{{ item.storeName }}</div>
+                        <div class="acea-row row-between-wrapper">
+                          <div class="money">
+                            {{ GLOBAL.shopPayCurrency
+                            }}<span>{{ item.price }}</span>
+                          </div>
+                          <div class="sales">
+                            {{ Math.floor(item.sales) + Math.floor(item.ficti) || 0 }} {{ $t(`message.tips.sold`) }}
+                          </div>
+                        </div>
                       </div>
-                    </div>
+                    </nuxt-link>
                   </div>
-                </nuxt-link>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- <float-window></float-window> -->
+    <!-- <float-window></float-window> -->
   <!-- </div> -->
 </template>
 
@@ -610,7 +606,8 @@ export default {
         app.$axios.get(`/api/front/product/detail/${params.id}`),
       ]);
 
-      console.log(" goods.data.productAttr==", goods.data.productAttr);
+
+      console.log(' goods.data.productAttr==', goods.data.productAttr)
 
       return {
         productInfo: goods.data.productInfo,
@@ -2127,7 +2124,7 @@ export default {
         align-items: center;
         color: #282828;
 
-        font-family: "DM Sans", sans-serif;
+        font-family:  "DM Sans", sans-serif;
         .tip {
           font-size: 14px;
           color: #666666;
@@ -2233,7 +2230,7 @@ export default {
       content: "";
       width: 36px;
       height: 2px;
-      //   background-color: #000;
+    //   background-color: #000;
       position: absolute;
       left: 0;
       bottom: 0px;
@@ -2242,17 +2239,15 @@ export default {
 
   .r-l-item {
     /* display: block; */
-    // width: 200px;
-    width: 270px;
-    height: 330px;
+    width: 200px;
     border: 1px solid rgba(0, 0, 0, 0.105);
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.12);
     /* margin-bottom: 20px; */
     padding: 10px;
 
     .image {
-      width: 220px;
-      height: 220px;
+      width: 200px;
+      height: 200px;
 
       img {
         display: block;

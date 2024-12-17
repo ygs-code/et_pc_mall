@@ -160,7 +160,7 @@ const global = {
       ? JSON.parse(
           JSON.parse(localStorage.getItem("homeDataPc")).shopPayCurrency
         ).symbol
-      : "$",
+      : "₹",
 };
 
 Vue.prototype.GLOBAL = global;

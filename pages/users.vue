@@ -62,7 +62,7 @@
         };
       }
       catch (e) {
-        error({statusCode: 401, msg: typeof e === 'string' ? e : '系统繁忙'});
+        error({statusCode: 401, msg: typeof e === 'string' ? e : 'system error'});
       }
     },
     watch: {

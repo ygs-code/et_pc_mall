@@ -40,7 +40,9 @@ import {
   MenuItem
 } from 'element-ui'
 
-import locale from 'element-ui/lib/locale/lang/en'
+import lang from 'element-ui/lib/locale/lang/en'
+import locale from 'element-ui/lib/locale'
+locale.use(lang)
 
 const components = [
   Button,

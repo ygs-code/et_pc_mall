@@ -17,7 +17,7 @@
             <p class="main-content">
                 At Amba Homes, we prioritize your privacy and the security of your data. This Privacy Policy outlines
                 how Amba Homes and its affiliates ("Amba Homes, we, our, us") collect, process, store, and safeguard
-                your personal information through our website, <span class="bg-yellow">https://www.ambahomes.com.</span>
+                your personal information through our website, <span class="bg-yellow">https://www.ambahome.in.</span>
                 While certain areas of our
                 site may be accessible without registration, please note that we operate exclusively within India, and
                 all data is processed and stored within India. By accessing our platform, submitting your data, or using
@@ -27,7 +27,7 @@
             </p>
             <p class="main-title">Collection</p>
             <p class="mb-6">
-                We collect personal data when you use <span class="bg-yellow">ambahomes.com</span>, such as your name,
+                We collect personal data when you use <span class="bg-yellow">ambahome.in</span>, such as your name,
                 contact details, and payment
                 information. This may include sensitive data (e.g., bank account, payment details, or biometric data)
                 with your consent, to enhance your experience and offer specific features. We may also gather data on
@@ -66,7 +66,7 @@
             </p>
             <p class="main-title">Cookies</p>
             <p class="mb-6">
-                We use cookies on certain pages of <span class="bg-yellow">ambahomes.com</span> to improve your
+                We use cookies on certain pages of <span class="bg-yellow">ambahome.in</span> to improve your
                 experience, analyze website traffic,
                 and ensure trust and safety. Cookies are small files placed on your device that help us provide
                 services, like remembering your login details or personalizing content based on your interests. Most
@@ -98,7 +98,7 @@
             <p class="main-title">Link to Other Sites</p>
             <p class="mb-6">
                 Our platform may contain links to other websites that collect personal data. <span
-                    class="bg-yellow">ambahomes.com</span> is not
+                    class="bg-yellow">ambahome.in</span> is not
                 responsible for the privacy practices or content of these external sites.
             </p>
             <p class="main-title">Security Precautions</p>
@@ -130,7 +130,7 @@
                 permanently remove all your account data, including order history, preferences, and any pending orders
                 or returns. If there are unresolved issues, we may delay or refuse the request. Account deletion will
                 follow our Privacy Policy, Terms of Use, and applicable laws. After deletion, you will need to create a
-                new account to access <span class="bg-yellow">ambahomes.com</span> again.
+                new account to access <span class="bg-yellow">ambahome.in</span> again.
             </p>
             <p class="mb-6">
                 We retain your data only for as long as required for legal or operational purposes and may store
@@ -147,7 +147,7 @@
             <p class="mb-6">
                 Please note that withdrawing your consent will not apply retroactively and will be handled in accordance
                 with our Privacy Policy, Terms of Use, and applicable laws. Withdrawing consent may limit your access to
-                certain features or services on <span class="bg-yellow">ambahomes.com</span>, if that data is necessary
+                certain features or services on <span class="bg-yellow">ambahome.in</span>, if that data is necessary
                 for their provision.
             </p>
             <p class="main-title">Consent</p>
