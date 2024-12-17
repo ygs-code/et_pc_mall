@@ -236,8 +236,7 @@
 }
 
 .header-style-4 .mainmenu>li a{
-    line-height: 60px;
-    height: 60px
+   
 }
 
 .header-style-4 .mainmenu>li a:before {
@@ -416,7 +415,7 @@
     height: auto !important
 }
 
-.header-style-7 .mainmenu>li ai {
+.header-style-7 i {
     margin-right: 10px;
     color: var(--color-body);
     transition: .3s
@@ -1465,8 +1464,7 @@
 }
 
 .axil-mainmenu.aside-category-menu .mainmenu>li a{
-    line-height: 60px;
-    height: 60px
+   
 }
 
 .axil-mainmenu.aside-category-menu .mainmenu>li a:before {
@@ -1627,8 +1625,7 @@
     font-weight: 700;
     font-size: 15px;
     font-family: var(--font-primary);
-    line-height: 50px;
-    height: 50px;
+  
     display: block;
     position: relative;
     transition: var(--transition)
@@ -1640,7 +1637,7 @@
     width: 0;
     background-color: rgb(233, 51, 35);
     position: absolute;
-    bottom: 15px;
+    bottom: 12px;
     left: 0;
     opacity: 0;
     transition: .5s

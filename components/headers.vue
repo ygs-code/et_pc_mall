@@ -1,342 +1,57 @@
 <template>
   <div class="container">
     <div class="hade-box">
-      <!-- <div class="nav">
-        <div class="nav_con">
-          <div class="left_nav">
-          
-            <div class="collect cursors" @click="AddFavorite()">
-              <span class="iconfont icon-shoucang3"></span>
-              {{ $t(`page.index.collectSite`) }}
-            </div>
-          </div>
-          <div class="right_nav">
-            <nuxt-link
-              :to="{ path: '/users/order_list?orderStatus=1' }"
-              class="orders"
-              >{{ $t(`page.user.myOrder`) }}
-            </nuxt-link>
-            <div class="line"></div>
-            <div class="apply" @click="goMerSettled()">
-              {{ $t(`page.index.applyFor`) }}
-            </div>
-            <div class="line"></div>
-            <div class="mobile" @click="go()">
-              {{ $t(`page.index.mobileMall`) }}
-            </div>
-          </div>
-        </div>
-      </div> -->
-
-      <!-- <div class="header" :class="navBarFixed == true ? 'navBarWrap' : ''">
-        <div class="header_con">
-          <span
-            v-if="$nuxt.$route.path == '/'"
-            class="iconfont icon-more"
-          ></span>
-          <span v-else class="iconfont icon-more" @mouseenter="show"></span>
-
-          <div class="logo">
-            <nuxt-link :to="{ path: '/' }"
-              ><img :src="logoUrl" alt=""
-            /></nuxt-link>
-          </div>
-
-          <div class="input">
-            <div class="left_select">
-              <input
-                type="text"
-                :placeholder="$t(`page.goodsSearch.placeSearch`)"
-                v-model="search"
-              />
-            </div>
-            <div class="right_select">
-              <div
-                class="keyword"
-                @click="(search = item.title) && submit()"
-                v-for="item in hotSearchList.slice(0, 3)"
-                :key="item.id"
-              >
-                {{ item.title }}
-              </div>
-              <div class="search" @click="submit">
-                <span class="iconfont icon-sousuo"></span>
-              </div>
-            </div>
-          </div>
-
-          <el-dropdown>
-            <div class="code">
-              <span class="iconfont icon-yuyanqiehuan"></span>
-            </div>
-            <el-dropdown-menu slot="dropdown">
-              <template v-for="(item, index) in langList">
-                <el-dropdown-item
-                  v-for="(items, idx) in item.intro"
-                  :key="idx"
-                  @click.native="languagelTab(items)"
-                >
-                  {{ $t(`userDrawer.language[${idx}].name`) }}
-                </el-dropdown-item>
-              </template>
-            </el-dropdown-menu>
-          </el-dropdown>
-
-          <nuxt-link to="/order/shopping_cart" class="cartNum">
-            <div class="car">
-              <span class="iconfont icon-gouwuche"></span>
-              <span v-if="$store.state.cartNumber" class="num">{{
-                $store.state.cartNumber
-              }}</span>
-            </div>
-          </nuxt-link>
-
-          <div class="pic">
-            <img :src="$auth.user ? $auth.user.avatar : defaultPic" />
-          </div>
-          <div v-if="!$auth.loggedIn" class="login" @click="longin">
-            {{ $t(`page.users.login.sign`) }}
-          </div>
-          <div v-else>
-            <el-dropdown>
-              <span class="login el-dropdown-link line1">
-                {{ $auth.user.nickname
-                }}<i class="el-icon-arrow-down el-icon--right"></i>
-              </span>
-              <el-dropdown-menu slot="dropdown">
-                <div class="userBox acea-row row-middle">
-                  <div class="avatarPic">
-                    <img :src="$auth.user ? $auth.user.avatar : defaultPic" />
-                  </div>
-                  <div>
-                    <div class="nickname">{{ $auth.user.nickname }}</div>
-                    <div v-show="$auth.user.phone" class="count">
-                      {{ $auth.user.phone }}
-                    </div>
-                    <div v-show="$auth.user.email" class="count">
-                      {{ $auth.user.email }}
-                    </div>
-                  </div>
-                </div>
-                <el-dropdown-item
-                  v-for="(menu, index) in userMenu"
-                  :key="menu.id"
-                  @click.native="goPage(menu)"
-                >
-                  <div
-                    class="dropdownBox"
-                    v-show="menu.pc_url && menu.pc_url != ' '"
-                  >
-                    {{ $t(`page.user.mineNav[${index}].name`) }}
-                  </div>
-                </el-dropdown-item>
-                <div class="userInfo">
-                  <el-divider></el-divider>
-                </div>
-                <el-dropdown-item
-                  v-for="(menu, index) in menus"
-                  :key="menu.id"
-                  @click.native="goPage(menu)"
-                >
-                  <div
-                    class="dropdownBox"
-                    v-show="menu.pc_url && menu.pc_url != ' '"
-                  >
-                    {{ menu.name }}
-                  </div>
-                </el-dropdown-item>
-                <el-button @click="longOut" class="btn">{{
-                  $t(`page.users.userInfo.logOut`)
-                }}</el-button>
-              </el-dropdown-menu>
-            </el-dropdown>
-          </div>
-          <div class="category acea-row" @mouseleave="leave()" v-if="hide">
-            <div class="sort">
-              <div
-                class="item acea-row row-between-wrapper"
-                :class="index === current ? 'bg-color' : ''"
-                v-for="(item, index) in $store.state.productClassify"
-                :key="index"
-                @mouseenter="enter(index)"
-              >
-                <div class="name line1">{{ item.name }}</div>
-              </div>
-            </div>
-            <div
-              class="sortCon"
-              @mouseleave="show"
-              v-if="seen && categoryCurrent"
-            >
-              <div class="erSort">
-                <div
-                  class="item acea-row row-middle"
-                  v-for="(item, index) in categoryCurrent"
-                  :key="index"
-                >
-                  <div class="name line1">{{ item.name }}</div>
-                  <div class="cateList">
-                    <span
-                      class="cateItem"
-                      @click="goCate(items)"
-                      v-for="(items, indexn) in item.childList"
-                      :key="indexn"
-                    >
-                      {{ items.name }}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> -->
-
       <div class="hade">
         <div class="middle">
           <div class="left-box">
-            <!-- <span v-if="$nuxt.$route.path == '/'" class="iconfont icon-more"></span> -->
-
-            <!-- <span
-              class="menu iconfont icon-more"
-              @mouseenter="show(true)"
-            ></span> -->
-
             <div class="logo">
               <div class="img-box">
                 <nuxt-link :to="{ path: '/' }">
-                  <!-- <img :src="logoUrl" alt=""/> -->
-                   <p  style="color:#b73a3a;font-weight:700;font-size:22px;font-family: var( --font-primary );line-height:57px;height: 50px;">AMBASHOP</p>
-              </nuxt-link>
+                  <p
+                    style="
+                      color: #fff;
+                      font-weight: 700;
+                      font-size: 22px;
+                      font-family: var(--font-primary);
+                      line-height: 57px;
+                      height: 50px;
+                    "
+                  >
+                    AMBASHOP
+                  </p>
+                </nuxt-link>
               </div>
             </div>
-
-            <!-- <div
-              class="category acea-row"
-              @mouseleave="
-                () => {
-                  leave();
-                  show(false);
-                }
-              "
-              @mouseenter="show(true)"
-              v-if="hide"
-            >
-              <div class="sort">
-                <div
-                  class="item acea-row row-between-wrapper"
-                  :class="index === current ? 'bg-color' : ''"
-                  v-for="(item, index) in $store.state.productClassify"
-                  :key="index"
-                  @mouseenter="enter(index)"
-                >
-                  <div class="name line1">{{ item.name }}</div>
-                </div>
-              </div>
-
-              <div class="sortCon" v-if="seen && categoryCurrent">
-                <div class="erSort">
-                  <div
-                    class="item acea-row row-middle"
-                    v-for="(item, index) in categoryCurrent"
-                    :key="index"
-                  >
-                    <div class="name line1">{{ item.name }}</div>
-                    <div class="cateList">
-                      <span
-                        class="cateItem"
-                        @click="goCate(items)"
-                        v-for="(items, indexn) in item.childList"
-                        :key="indexn"
-                      >
-                        {{ items.name }}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> -->
           </div>
 
-          <ul class="mainmenu">
-            <li class="menu-item-has-children">
-              <nuxt-link :to="{ path: '/' }" class="home">{{
-                $t(`page.goodsDetail.home`)
-              }}</nuxt-link>
-            </li>
-            <li class="menu-item-has-children">
-              <!-- <nuxt-link :to="{ path: '/goods/goods_search' }" class="home">
-                {{ $t(`page.index.menus.shop`) }}
-              </nuxt-link>
-
-
-              <i class="el-icon-arrow-down"></i>
-              <ul class="axil-submenu">
-                <li
-                  class="keyword"
-                  @click="(search = item.title) && submit()"
-                  v-for="item in hotSearchList"
-                  :key="item.id"
-                >
-                  <nuxt-link
-                    :to="{
-                      path: `/goods/goods_search??title=${item.title}&cid`,
-                    }"
-                    class="home"
-                  >
-                    {{ item.title }}
-                  </nuxt-link>
-                </li>
-              </ul> -->
-
-              <el-menu
-                class="el-menu-demo"
-                mode="horizontal"
-                @select="handleSelect"
-               
-              >
-                <el-submenu index="2">
-                  <template slot="title">
-                    <nuxt-link
-                      :to="{ path: '/goods/goods_search' }"
-                      class="home"
-                    >
-                      {{ $t(`page.index.menus.shop`) }}
-                    </nuxt-link>
-                  </template>
-
-                  <my-sub-menu :subMenu="menuData"></my-sub-menu>
-
-                  <!-- <el-menu-item index="2-1">选项1</el-menu-item>
-                  <el-menu-item index="2-2">选项2</el-menu-item>
-                  <el-menu-item index="2-3">选项3</el-menu-item>
-                  <el-submenu index="2-4">
-                    <template slot="title">选项4</template>
-                    <el-menu-item index="2-4-1">选项1</el-menu-item>
-                    <el-menu-item index="2-4-2">选项2</el-menu-item>
-                    <el-menu-item index="2-4-3">选项3</el-menu-item>
-                  </el-submenu> -->
-                </el-submenu>
-              </el-menu>
-            </li>
-
-            <li>
-              <nuxt-link :to="{ path: '/about/us' }" class="home">{{
-                $t(`page.index.menus.about`)
-              }}</nuxt-link>
-            </li>
-            <li
-            
-            class="mainmenu-odd"
+          <div>
+            <el-input
+              :placeholder="$t(`page.goodsSearch.placeSearch`)"
+              v-model="search"
+              class="input-with-select"
             >
-              <nuxt-link :to="{ path: '/contact/us' }" class="home">{{
-                $t(`page.index.menus.contact`)
-              }}</nuxt-link>
-            </li>
-          </ul>
+              <el-select
+                v-model="selectValue"
+                slot="prepend"
+                placeholder="请选择"
+              >
+                <el-option
+                  :label="item.label"
+                  :value="item.value"
+                  :key="item.value"
+                  v-for="item in options"
+                ></el-option>
+              </el-select>
+              <el-button
+                slot="append"
+                icon="el-icon-search"
+                @click="submit"
+              ></el-button>
+            </el-input>
+          </div>
 
           <div class="right-box">
-            <div class="input">
+            <!-- <div class="input">
               <div class="left_select">
                 <input
                   type="text"
@@ -345,38 +60,12 @@
                 />
               </div>
               <div class="right_select">
-                <!-- <div
-                  class="keyword"
-                  @click="(search = item.title) && submit()"
-                  v-for="item in hotSearchList.slice(0, 3)"
-                  :key="item.id"
-                >
-                  {{ item.title }}
-                </div> -->
                 <div class="search" @click="submit">
                   <span class="iconfont icon-sousuo"></span>
                 </div>
               </div>
-            </div>
-
-            <!-- <div>
-              <el-dropdown>
-                <div class="code">
-                  <span class="iconfont icon-yuyanqiehuan"></span>
-                </div>
-                <el-dropdown-menu slot="dropdown">
-                  <template v-for="(item, index) in langList">
-                    <el-dropdown-item
-                      v-for="(items, idx) in item.intro"
-                      :key="idx"
-                      @click.native="languagelTab(items)"
-                    >
-                      {{ $t(`userDrawer.language[${idx}].name`) }}
-                    </el-dropdown-item>
-                  </template>
-                </el-dropdown-menu>
-              </el-dropdown>
             </div> -->
+
             <nuxt-link to="/order/shopping_cart" class="cartNum">
               <div class="car">
                 <span class="iconfont icon-gouwuche"></span>
@@ -487,6 +176,46 @@
               </div>
             </div>   -->
           </div>
+        </div>
+
+        <div class="middle">
+          <ul class="mainmenu">
+            <li class="menu-item-has-children">
+              <nuxt-link :to="{ path: '/' }" class="home">{{
+                $t(`page.goodsDetail.home`)
+              }}</nuxt-link>
+            </li>
+            <!-- <li class="menu-item-has-children">
+              <el-menu
+                class="el-menu-demo"
+                mode="horizontal"
+                @select="handleSelect"
+              >
+                <el-submenu index="2">
+                  <template slot="title">
+                    <nuxt-link
+                      :to="{ path: '/goods/goods_search' }"
+                      class="home"
+                    >
+                      {{ $t(`page.index.menus.shop`) }}
+                    </nuxt-link>
+                  </template>
+                  <my-sub-menu :subMenu="menuData"></my-sub-menu>
+                </el-submenu>
+              </el-menu>
+            </li> -->
+
+            <li>
+              <nuxt-link :to="{ path: '/about/us' }" class="home">{{
+                $t(`page.index.menus.about`)
+              }}</nuxt-link>
+            </li>
+            <li class="mainmenu-odd">
+              <nuxt-link :to="{ path: '/contact/us' }" class="home">{{
+                $t(`page.index.menus.contact`)
+              }}</nuxt-link>
+            </li>
+          </ul>
         </div>
       </div>
 
@@ -668,6 +397,11 @@ export default {
   mixins: [],
   data() {
     return {
+      input1: "",
+      input2: "",
+      input3: "",
+      selectValue: "all",
+
       // logoUrl: '',
       categoryCurrent: [],
       langList: [
@@ -719,19 +453,32 @@ export default {
       menuData: [
         {
           name: "1",
-          key:"1",
+          key: "1",
           title: "Item 1",
           children: [
-            { 
-              key: "1-1", 
-              name: "1-1", title: "Item 1-1" },
             {
-              key: "1-2", 
-              name: "1-2", title: "Item 1-2" },
+              key: "1-1",
+              name: "1-1",
+              title: "Item 1-1",
+            },
+            {
+              key: "1-2",
+              name: "1-2",
+              title: "Item 1-2",
+            },
           ],
         },
         // ... 更多菜单项
       ],
+
+      options: [
+        {
+          label: "all",
+          value: "all",
+        },
+      ],
+
+      //  label="餐厅名" value="1"
     };
   },
   computed: configMap(["logoUrl"]),
@@ -747,7 +494,7 @@ export default {
     "$store.state.productClassify": {
       handler: function (newVal, oldVal) {
         // this.search = newVal.query.title ? newVal.query.title : "";
-        this.menuData    = this.toTree(newVal);
+        this.menuData = this.toTree(newVal);
         console.log("this.menuData==", this.menuData);
       },
       // 深度观察监听
@@ -813,6 +560,12 @@ export default {
     },
   },
   methods: {
+    change(v) {
+      console.log("ags=", v);
+
+      console.log("v==", v);
+      this.selectValue = v;
+    },
     handleSelect(key, keyPath) {
       let item = findTreeData(
         this.menuData, // 树形数组或者数组数据
@@ -832,12 +585,23 @@ export default {
       });
     },
     toTree(data) {
-      return data.map((item,index) => {
-        const { childList = [] } = item;
+      return data.map((item, index) => {
+        const { childList = [], id, name } = item;
+
+        if (!childList.length) {
+          this.options.push({
+            label: name,
+            value: uuidv4(),
+            ...item,
+          });
+
+          this.options = this.options;
+        }
+
         return {
           children: childList.length ? this.toTree(childList) : [],
           ...item,
-          key:   uuidv4(),
+          key: uuidv4(),
         };
       });
     },
@@ -970,11 +734,17 @@ export default {
       }
     },
     submit() {
+      const { id = "" } = this.options.find((item) => {
+        return this.selectValue == item.value;
+      });
+
+      // submit
+
       this.$router.push({
         path: "/goods/goods_search",
         query: {
           title: this.search ? this.search.trim() : "",
-          cid: this.cid,
+          cid: id,
         },
       });
     },
@@ -1013,21 +783,82 @@ export default {
 };
 </script>
 
+<style lang="scss">
+.middle {
+  .el-input-group__prepend {
+  }
+  .el-select {
+    .el-input__inner {
+      color: #fff !important ;
+    }
+  }
+  .el-input__inner {
+    border: 1px rgb(73, 36, 62) solid;
+  }
+  .el-input-group__prepend {
+    background-color: rgb(73, 36, 62) !important ;
+    border-color: rgb(73, 36, 62) !important ;
+    .el-icon-arrow-up {
+      color: white !important ;
+    }
+  }
+  .el-input-group__append {
+    background: rgb(73, 36, 62) !important ;
+    border-color: rgb(73, 36, 62) !important ;
+    .el-button {
+      background: rgb(73, 36, 62) !important ;
+      border-color: rgb(73, 36, 62) !important ;
+
+      .el-icon-search {
+        color: white !important ;
+      }
+    }
+  }
+}
+
+.el-select .el-input {
+  width: 100px;
+}
+</style>
 <style scoped lang="scss">
-.mainmenu-odd{
-  margin-left: 40px;
+.el-select .el-input {
+  width: 130px;
+}
+.input-with-select .el-input-group__prepend {
+  background-color: #fff;
+}
+.mainmenu {
+  background: white;
+  height: 40px;
+  line-height: 10px;
+}
+
+.mainmenu > li a {
+  height: 40px;
+  line-height: 35px;
+}
+
+.input-with-select {
+  width: 700px;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+.mainmenu-odd {
 }
 .hade-box {
   width: 100%;
-  height: 110px;
+  height: 120px;
   overflow: visible;
-  background: white;
   position: fixed;
   z-index: 999;
+  background: white;
+
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+
   .hade {
     width: 100%;
     height: 80px;
-    background: white;
+    background: rgb(0, 0, 0);
     position: fixed;
     z-index: 99;
 
@@ -1078,7 +909,7 @@ export default {
 
       .right-box {
         height: 80px;
-        width: 490px;
+        width: 210px;
         display: flex;
         box-sizing: border-box;
         padding-top: 20px;
@@ -1167,8 +998,6 @@ export default {
 
         .code:hover,
         .car:hover {
-          color: rgb(233, 51, 35);
-          border: 1px solid rgb(233, 51, 35);
         }
 
         .car {
@@ -1184,20 +1013,15 @@ export default {
           line-height: 30px;
           margin-left: 10px;
           cursor: pointer;
-        }
-        .login:hover {
-          color: rgb(233, 51, 35);
-        }
-
-        .login {
+          color: white;
           font-size: 14px;
           font-family: Arial-BoldMT, Arial;
           font-weight: normal;
-          color: #333333;
-          line-height: 33px;
+
           cursor: pointer;
           width: 90px;
           display: block;
+          margin-left: 10px;
         }
 
         .pic {
@@ -1205,7 +1029,7 @@ export default {
           height: 30px;
           background: #eeeeee;
           border-radius: 50%;
-          margin-right: 10px;
+
           text-align: center;
           line-height: 30px;
           overflow: hidden;
@@ -1274,7 +1098,9 @@ export default {
 .container {
   width: 100%;
   z-index: 99;
-  height: 110px;
+  height: 120px;
+  overflow: visible;
+  background: rgb(0, 0, 0);
 
   .nav {
     background: #f4f4f4;
@@ -1486,6 +1312,7 @@ export default {
         cursor: pointer;
         width: 90px;
         display: block;
+        margin-left: 110px;
       }
     }
   }
