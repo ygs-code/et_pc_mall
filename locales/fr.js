@@ -194,8 +194,8 @@ export default {
 			backHome:'Retour à la première page'
 		},
 		orderDetails:{
-			checkPhoneNumber: "Le numéro de téléphone mobile doit avoir 10",
-			checkPostCode: "Le code postal doit être 10",
+			checkPhoneNumber: "Le numéro de téléphone doit être de 10",
+			checkPostCode: "La longueur du code de poste doit être 6",
 			navTitle:'détail de la commande',
 			item:'Articles',// item(s)
 			Customer:'Contactez le service à la clientèle',

@@ -199,8 +199,8 @@ export default {
 			backHome:'ກັບຄືນໜ້າທໍາອິດ'
 		},
 		orderDetails:{
-			checkPhoneNumber: "ເລກ ໂທລະສັບ ມື ຖື ຕ້ອງ ມີ 10",
-			checkPostCode: "ລະຫັດໄປສະນີຕ້ອງເປັນ 10",
+			checkPhoneNumber: "ເລກໂທລະສັບຕ້ອງຍາວ 10",
+			checkPostCode: "ຄວາມຍາວຂອງລະຫັດໄປສະນີຕ້ອງເປັນ 6",
 			navTitle:'ລາຍລະອຽດຂອງການສັ່ງ',
 			item:'ຈໍານວນສິນຄ້າ',// item(s)
 			Customer:'ຕິດຫາບໍລິການລູກຄ້າ',

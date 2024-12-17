@@ -194,8 +194,8 @@ export default {
 			backHome:'กลับไปที่บ้าน'
 		},
 		orderDetails:{
-			checkPhoneNumber: "หมายเลขโทรศัพท์ต้องมี 10",
-			checkPostCode: "รหัสไปรษณีย์ต้องเป็น 6",
+			checkPhoneNumber: "หมายเลขโทรศัพท์ต้องยาว 10 นิ้ว",
+			checkPostCode: "รหัส ที่เป็นไปได้ต้องเป็น 6",
 			navTitle:'รายละเอียดการสั่งซื้อ',
 			item:'รายการสั่งสินค้า',// item(s)
 			Customer:'ติดต่อฝ่ายบริการลูกค้า',

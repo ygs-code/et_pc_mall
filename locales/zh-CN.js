@@ -195,8 +195,8 @@ export default {
             backHome: '返回首页'
         },
         orderDetails: {
-            checkPhoneNumber: "手机号码必须要有10",
-            checkPostCode: " post code必须要有6",
+            checkPhoneNumber: "电话号码长度必须为10",
+            checkPostCode: "post code长度必须为6",
             navTitle: '订单详情',
             item: '件商品',// item(s)
             Customer: '联系客服',

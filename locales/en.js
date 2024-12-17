@@ -218,8 +218,8 @@ export default {
             backHome: "Back Home",
         },
         orderDetails: {
-            checkPhoneNumber: "The phone number must be 10",
-            checkPostCode: "The post code must be 6",
+            checkPhoneNumber: "The phone number must be 10 in length",
+            checkPostCode: "The post code length must be 6",
             navTitle: "Order Details",
             item: "item(s)", // item(s)
             Customer: "Customer service",
