@@ -106,7 +106,7 @@
         possible, and you will need to follow our return or exchange policy for
         eligible items.
       </p>
-      <p class="main-title">Return and Refund Policy</p>
+      <p class="main-title">7. Return and Refund Policy</p>
       <p class="mb-6">
         Returns: If you are not satisfied with your purchase, we accept returns
         within 7 days from the delivery date, subject to our Return Policy.

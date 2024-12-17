@@ -1,4 +1,4 @@
-  <template>
+<template>
   <div v-loading="loading">
     <el-form
       :model="formData"
@@ -59,7 +59,6 @@
           :placeholder="$t(`message.login.postCode`)"
         ></el-input>
       </el-form-item>
-
 
       <el-form-item
         :label="$t(`page.users.userAddress.country`)"
@@ -158,7 +157,6 @@ export default {
             message: this.$t(`message.login.correctEmail`),
             trigger: ["blur", "change"],
           },
-
         ],
         phone: [
           {
@@ -171,15 +169,13 @@ export default {
             required: true,
             trigger: "blur",
             validator: (rule, value, callback) => {
-
-
-
-              if ( /(10)+/ig.test(value)) {
+              if (/^\d{10}$/gi.test(value)) {
                 // The phone number must be 10
-                callback(  );
+                callback();
               } else {
-
-                callback(new Error(this.$t(`page.orderDetails.checkPhoneNumber`)));
+                callback(
+                  new Error(this.$t(`page.orderDetails.checkPhoneNumber`))
+                );
               }
             },
             // message: this.$t(`message.login.emptyPhone`), trigger: 'blur'
@@ -200,32 +196,24 @@ export default {
           },
         ],
         postCode: [
-
-
           {
             required: true,
             message: this.$t(`message.login.postCode`),
             trigger: "blur",
           },
- {
+          {
             required: true,
             trigger: "blur",
             validator: (rule, value, callback) => {
-
-
-
-              if ( /(6)+/ig.test(value)) {
+              if (/^\d{6}$/gi.test(value)) {
                 // The phone number must be 10
                 callback();
               } else {
-
                 callback(new Error(this.$t(`page.orderDetails.checkPostCode`)));
               }
             },
             // message: this.$t(`message.login.emptyPhone`), trigger: 'blur'
           },
-
-
         ],
       },
     };
