@@ -203,7 +203,8 @@ export default {
 <style scoped lang="scss">
 .footer {
   margin-top: 50px;
-  /* background-color: #f2f2f2; */
+  background-color: black;
+  color: #fff;
   // position: fixed;
   bottom: 0;
   width: 100%;
@@ -232,14 +233,14 @@ export default {
   }
 
   .middle-wrap {
-    color: #777;
+    // color: #777;
     font-size: 14px;
     margin-top: 50px;
 
     .m-i-title {
       font-size: 18px;
       font-weight: bold;
-      color: #000;
+      //   color: #000;
       margin-bottom: 20px;
     }
     .navlist-wrap {
@@ -260,7 +261,8 @@ export default {
       }
 
       .nav-link {
-        color: #777;
+        // color: #777;
+        color: #fff;
       }
     }
   }
@@ -269,7 +271,7 @@ export default {
     text-align: center;
     font-size: 12px;
     line-height: 22px;
-    color: #777;
+    // color: #777;
     padding: 30px 0 20px 0;
     border-top: 1px solid #e2e2e2;
     margin-top: 40px;
@@ -305,12 +307,12 @@ export default {
   }
 
   .copyright {
-    color: #999;
+    // color: #999;
 
     &:after {
       content: "|";
       display: inline-block;
-      color: #ccc;
+      //   color: #ccc;
       font-size: 16px;
       margin: 0 10px;
     }

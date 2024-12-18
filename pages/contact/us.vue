@@ -28,7 +28,7 @@
               label-width="80px"
               class="demo-ruleForm"
             >
-              <el-row>
+              <el-row class="t-form-item-wrap">
                 <el-col :span="8">
                   <el-form-item label="Name" prop="name">
                     <el-input v-model="ruleForm.name"></el-input>
@@ -166,9 +166,6 @@ export default {
     background-color: #f8f8f8;
     margin-bottom: 60px;
 
-    .contact-top-wrap {
-    }
-
     .home-nav {
       color: #999;
       font-size: 16px;
@@ -216,6 +213,11 @@ export default {
     font-size: 16px;
     color: #777;
   }
+
+  .t-form-item-wrap {
+    margin-left: 50px;
+  }
+
   .info-item {
     font-size: 16px;
     margin-bottom: 26px;
