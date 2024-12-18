@@ -244,8 +244,9 @@
       :before-close="handleCloseQrcode"
     >
       <div v-loading="loadingQrcode" class="payQrcode">
-        <div id="payQrcode"></div>
+        <div id="payQrcode" ref="payQrcode"></div>
       </div>
+
       <span slot="footer" class="dialog-footer">
         <el-button size="small" @click="handleCloseQrcode">{{
           $t(`page.users.orderConfirm.paymentResultsNo`)
@@ -276,7 +277,6 @@ import { Message, MessageBox } from "element-ui";
 import orderGoods from "@/components/orderGoods";
 import addAddress from "@/components/addAddress";
 import { Debounce } from "@/utils/validate.js";
-import QRcode from "qrcodejs2";
 export default {
   name: "order_confirm",
   auth: "guest",
@@ -450,7 +450,11 @@ export default {
     SubOrder: Debounce(function (event) {
       let that = this;
       let data = {};
-
+      // this.loadingQrcode = true;
+      // this.dialogVisibleQrcode = true;
+      // this.getQRcode(
+      //   "http://192.168.2.161:8000/order/order_confirm?preOrderNo=917345343425ec05d297d7641b98719aa5113e4090d"
+      // );
       MessageBox.confirm(
         "Are you sure to pay for this order? ",
 
@@ -484,6 +488,7 @@ export default {
           .post("/api/front/order/create", data)
           .then((res) => {
             this.orderNo = res.data.orderNo;
+            alert(1);
             that.getOrderPay(res.data.orderNo);
           })
           .catch((err) => {
@@ -500,6 +505,7 @@ export default {
           payChannel: "pc",
         })
         .then((res) => {
+          alert(1);
           if (this.payType === "paypal") {
             window.location.href = res.data.redirect;
           } else if (this.payType === "stripe") {
@@ -510,25 +516,26 @@ export default {
           } else if (this.payType === "wechat") {
             this.loadingQrcode = true;
             this.dialogVisibleQrcode = true;
-            setTimeout(() => {
-              this.getQRcode(res.data.redirect);
-            }, 800);
+            this.getQRcode(res.data.redirect);
           } else if (this.payType === "upi") {
             this.loadingQrcode = true;
             this.dialogVisibleQrcode = true;
-            setTimeout(() => {
-              this.getQRcode(res.data.redirect);
-            }, 800);
+            this.getQRcode(res.data.redirect);
           } else {
             this.$router.push({ path: "/users/order_list?orderStatus=0" });
           }
         });
     },
     //预览二维码
-    getQRcode(redirect) {
-      document.getElementById("payQrcode").innerHTML = "";
-      new QRcode("payQrcode", { width: 135, height: 135, text: redirect });
-      this.loadingQrcode = false;
+    async getQRcode(redirect) {
+      this.dialogVisibleQrcode = true;
+      setTimeout(async () => {
+        this.$refs.payQrcode.innerHTML = "";
+        let QRcode = await import("qrcodejs2");
+        QRcode = QRcode.default;
+        new QRcode("payQrcode", { width: 135, height: 135, text: redirect });
+        this.loadingQrcode = false;
+      }, 800);
     },
     //获取微信支付结果
     getPaymentStatus(payState) {

@@ -34,6 +34,7 @@
                 v-model="selectValue"
                 slot="prepend"
                 placeholder="请选择"
+                @change="change"
               >
                 <el-option
                   :label="item.label"
@@ -733,12 +734,15 @@ export default {
         this.$message(this.$t(`message.tips.nubrowser`));
       }
     },
+
+    change(v) {
+      this.search = "";
+      this.submit();
+    },
     submit() {
       const { id = "" } = this.options.find((item) => {
         return this.selectValue == item.value;
       });
-
-      // submit
 
       this.$router.push({
         path: "/goods/goods_search",
