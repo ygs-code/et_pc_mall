@@ -118,18 +118,18 @@
                     </div>
                   </div>
                 </div>
-                <div class="saleBox acea-row row-center-wrapper">
-                  <el-divider direction="vertical"></el-divider>
-                  <div class="sales acea-row row-column row-center-wrapper">
-                    <div class="num">
-                      {{
-                        Math.floor(productInfo.sales) +
-                          Math.floor(productInfo.ficti) || 0
-                      }}
-                    </div>
-                    <div>{{ $t(`page.goodsDetail.sales`) }}</div>
-                  </div>
-                </div>
+<!--                <div class="saleBox acea-row row-center-wrapper">-->
+<!--                  <el-divider direction="vertical"></el-divider>-->
+<!--                  <div class="sales acea-row row-column row-center-wrapper">-->
+<!--                    <div class="num">-->
+<!--                      {{-->
+<!--                        Math.floor(productInfo.sales) +-->
+<!--                          Math.floor(productInfo.ficti) || 0-->
+<!--                      }}-->
+<!--                    </div>-->
+<!--                    <div>{{ $t(`page.goodsDetail.sales`) }}</div>-->
+<!--                  </div>-->
+<!--                </div>-->
               </div>
               <div class="attribute">
                 <div
@@ -182,10 +182,10 @@
                       +
                     </button>
                   </div>
-                  <span
-                    >{{ $t(`page.goodsDetail.inventory`) }}：{{ stock || 0
-                    }}{{ productInfo.unitName || "" }}</span
-                  >
+<!--                  <span-->
+<!--                    >{{ $t(`page.goodsDetail.inventory`) }}：{{ stock || 0-->
+<!--                    }}{{ productInfo.unitName || "" }}</span-->
+<!--                  >-->
                 </div>
               </div>
               <div class="button-wrapper" v-if="stock">

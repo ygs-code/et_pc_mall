@@ -161,10 +161,10 @@ export default {
 <style lang="scss" scoped>
 .contact-us-wrapper {
   .contact-title-wrap {
-    height: 205px;
+    height: 150px;
     padding: 40px 0;
     background-color: #f8f8f8;
-    margin-bottom: 80px;
+    margin-bottom: 60px;
 
     .contact-top-wrap {
     }

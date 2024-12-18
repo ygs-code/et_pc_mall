@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="header">
-      <span class="home"><nuxt-link class="home" to="/">{{$t(`userDrawer.data[0].name`)}}  </nuxt-link> > 个人中心 > 我的订单 ></span>申请退款
+      <span class="home"><nuxt-link class="home" to="/">{{$t(`userDrawer.data[0].name`)}}  </nuxt-link> > {{$t(`page.users.userInfo.personalCenter`)}} > {{$t(`page.user.myOrder`)}} ></span>{{$t(`page.orderDetails.refund`)}}
     </div>
     <div class="refund">
       <order-goods :cartInfo="orderInfo.orderInfoList"></order-goods>

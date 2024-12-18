@@ -46,7 +46,7 @@
         </div>
         <div class="recordNum">
           <div>
-            <span>Copyright © 2013-2021 {{ $t(`page.index.icp`) }}</span>
+            <span>Copyright © 2024 ambahome.in. All Rights Reserved</span>
           </div>
         </div>
       </div>

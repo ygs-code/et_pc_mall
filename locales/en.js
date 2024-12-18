@@ -73,7 +73,7 @@ export default {
                     },
                     policy: {
                         privacy: "Privacy Policy",
-                        tearms: "TERMS and contitions",
+                        tearms: "Terms and Conditions",
                         refund: "Refund and Return Policy",
                         return: "Return Policy",
                         shipping: "Shipping Policy",
