@@ -127,7 +127,7 @@ export default {
     return {
       loading: true,
       loadingBtn: false,
-      countryName: "",
+      countryName: "India (भारत)",
       formData: {
         country: "",
         countryCode: 91,
@@ -138,6 +138,7 @@ export default {
         isDefault: false,
         postCode: "",
       },
+
       rules: {
         realName: [
           {
@@ -252,6 +253,8 @@ export default {
   },
   methods: {
     countryInfo(obj) {
+      console.log("countryInfo==", obj);
+
       this.countryName = obj.name;
       this.formData.country = obj.CNName;
     },

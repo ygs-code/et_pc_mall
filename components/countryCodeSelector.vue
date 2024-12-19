@@ -40,7 +40,7 @@
     },
     data () {
       return {
-        countryName: '',
+        countryName: "",
         hideSubMenu: false,
         currentCode: this.countryCode,
         countryList: []

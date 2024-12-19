@@ -160,6 +160,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .contact-us-wrapper {
+  min-height: 78vh;
   .contact-title-wrap {
     height: 150px;
     padding: 40px 0;

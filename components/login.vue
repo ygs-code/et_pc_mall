@@ -594,12 +594,12 @@ export default {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 50px 0;
+  
     width: 840px;
   }
   .loginPic{
-    width: 335px;
-    height: 540px;
+    width: 240px;
+    height: auto;
     .el-image, el-image{
       width: 100%;
       height: 100%;
