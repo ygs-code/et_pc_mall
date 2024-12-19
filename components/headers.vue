@@ -80,10 +80,10 @@
               <img :src="$auth.user ? $auth.user.avatar : defaultPic" />
             </div>
 
-            <div v-if="!$auth.loggedIn" class="login" @click="longin">
+            <div v-if="!$auth.loggedIn" class="login  login-box" @click="longin">
               {{ $t(`page.users.login.sign`) }}
             </div>
-            <div v-else>
+            <div v-else  class="login-box">
               <el-dropdown>
                 <span class="login el-dropdown-link line1">
                   {{ $auth.user.nickname
@@ -913,8 +913,8 @@ export default {
 
       .right-box {
         height: 80px;
-        width: 210px;
-        display: flex;
+        width: 266px;
+       //  display: flex;
         box-sizing: border-box;
         padding-top: 20px;
         padding-left: 20px;
@@ -973,6 +973,12 @@ export default {
           }
         }
 
+
+        .cartNum{
+          display: inline-flex;
+        }
+
+      
         .code,
         .car {
           width: 34px;
@@ -1013,6 +1019,9 @@ export default {
           }
         }
 
+         .login-box{
+            display: inline-block;
+         }
         .login {
           line-height: 30px;
           margin-left: 10px;
@@ -1021,10 +1030,9 @@ export default {
           font-size: 14px;
           font-family: Arial-BoldMT, Arial;
           font-weight: normal;
-
           cursor: pointer;
           width: 90px;
-          display: block;
+           
           margin-left: 10px;
         }
 
@@ -1033,10 +1041,12 @@ export default {
           height: 30px;
           background: #eeeeee;
           border-radius: 50%;
-
+          display: inline-flex;
           text-align: center;
           line-height: 30px;
           overflow: hidden;
+         position: relative;
+         top: 10px;
 
           img {
             width: 100%;

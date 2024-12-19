@@ -10,14 +10,14 @@
         <div class="goods-main">
           <div class="acea-row row-top" style="position: relative">
             <div class="carousel">
-              <el-image
-                :src="JSON.parse(productInfo.sliderImage)[slideIndex]"
+              <div
                 class="preview"
-              >
-                <div slot="placeholder" class="image-slot">
-                  loading<span class="dot">...</span>
-                </div>
-              </el-image>
+                :style="{
+                  'background-image': `url(${
+                    JSON.parse(productInfo.sliderImage)[slideIndex]
+                  }`,
+                }"
+              ></div>
               <client-only>
                 <div v-swiper:carousel="swiperOption">
                   <div class="swiper-wrapper">
@@ -118,18 +118,18 @@
                     </div>
                   </div>
                 </div>
-<!--                <div class="saleBox acea-row row-center-wrapper">-->
-<!--                  <el-divider direction="vertical"></el-divider>-->
-<!--                  <div class="sales acea-row row-column row-center-wrapper">-->
-<!--                    <div class="num">-->
-<!--                      {{-->
-<!--                        Math.floor(productInfo.sales) +-->
-<!--                          Math.floor(productInfo.ficti) || 0-->
-<!--                      }}-->
-<!--                    </div>-->
-<!--                    <div>{{ $t(`page.goodsDetail.sales`) }}</div>-->
-<!--                  </div>-->
-<!--                </div>-->
+                <!--                <div class="saleBox acea-row row-center-wrapper">-->
+                <!--                  <el-divider direction="vertical"></el-divider>-->
+                <!--                  <div class="sales acea-row row-column row-center-wrapper">-->
+                <!--                    <div class="num">-->
+                <!--                      {{-->
+                <!--                        Math.floor(productInfo.sales) +-->
+                <!--                          Math.floor(productInfo.ficti) || 0-->
+                <!--                      }}-->
+                <!--                    </div>-->
+                <!--                    <div>{{ $t(`page.goodsDetail.sales`) }}</div>-->
+                <!--                  </div>-->
+                <!--                </div>-->
               </div>
               <div class="attribute">
                 <div
@@ -182,10 +182,10 @@
                       +
                     </button>
                   </div>
-<!--                  <span-->
-<!--                    >{{ $t(`page.goodsDetail.inventory`) }}：{{ stock || 0-->
-<!--                    }}{{ productInfo.unitName || "" }}</span-->
-<!--                  >-->
+                  <!--                  <span-->
+                  <!--                    >{{ $t(`page.goodsDetail.inventory`) }}：{{ stock || 0-->
+                  <!--                    }}{{ productInfo.unitName || "" }}</span-->
+                  <!--                  >-->
                 </div>
               </div>
               <div class="button-wrapper" v-if="stock">
@@ -1110,6 +1110,9 @@ export default {
       display: block;
       width: 440px;
       height: 440px;
+      background-repeat: no-repeat;
+      background-size: contain; /* 或者使用 'cover' 根据需求 */
+      background-position: center;
     }
 
     .swiper-container {
