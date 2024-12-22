@@ -456,7 +456,7 @@ export default {
       //   "http://192.168.2.161:8000/order/order_confirm?preOrderNo=917345343425ec05d297d7641b98719aa5113e4090d"
       // );
       MessageBox.confirm(
-        "Are you sure to pay for this order? ",
+        "Are you sure you want to proceed with this order ? ",
 
         " ",
 
@@ -488,7 +488,7 @@ export default {
           .post("/api/front/order/create", data)
           .then((res) => {
             this.orderNo = res.data.orderNo;
-            alert(1);
+            // alert(1);
             that.getOrderPay(res.data.orderNo);
           })
           .catch((err) => {
@@ -505,7 +505,7 @@ export default {
           payChannel: "pc",
         })
         .then((res) => {
-          alert(1);
+          // alert(1);
           if (this.payType === "paypal") {
             window.location.href = res.data.redirect;
           } else if (this.payType === "stripe") {

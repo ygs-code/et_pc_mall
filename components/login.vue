@@ -155,7 +155,7 @@
             <input type="password" :placeholder="$t(`page.users.login.placePasd`)" v-model="password">
           </div>
           <div class="checkbox-wrapper item_protocol mt15">
-            <label class="well-check">
+            <!-- <label class="well-check">
               <input
                 type="checkbox"
                 name=""
@@ -165,13 +165,13 @@
               />
               <i class="icon"></i>
               <span style="margin-left: 30px">{{$t(`message.login.agree`)}}</span>
-            </label>
-            <nuxt-link
+            </label> -->
+            <!-- <nuxt-link
               :to="{path:`/middlewares/privacy_agreement`}"
               target="_blank"
               class="show_protocol"
             >《{{$t(`message.login.agreementName`)}}》
-            </nuxt-link>
+            </nuxt-link> -->
           </div>
           <el-button type="primary" :loading="loading" @click="register" class="signIn bg-color mt60">{{$t(`page.users.register.submit`)}}</el-button>
           <div class="fastLogin">{{$t(`page.users.register.have`)}}<span class="font-color" @click="goLogin">{{$t(`page.users.register.sign`)}}</span></div>
@@ -594,7 +594,7 @@ export default {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-  
+
     width: 840px;
   }
   .loginPic{

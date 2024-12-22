@@ -53,7 +53,7 @@ export default {
             footer1: "Complete variety",
             footer2: "Fast delivery",
             footer3: "Genuine product",
-            footer4: "low price every day",
+            footer4: "Low price every day",
             address:
                 "Room 1101-04, Block A, Qihang Times Square, Xixian Avenue, Weiyang District, Xi'an City, Shaanxi Province",
             icp: "Xi'an Zhongbang Network Technology Co., Ltd. Shaanxi ICP No. 14011498-3",
@@ -67,8 +67,8 @@ export default {
                 middleNavList: {
                     about: {
                         home: "Home",
-                        aboutUs: "About us",
-                        contactUs: "Contact us",
+                        aboutUs: "About Us",
+                        contactUs: "Contact Us",
                         account: "My Account",
                     },
                     policy: {
@@ -102,10 +102,10 @@ export default {
             sold: "Sold",
             type: "types in total",
             navList: [
-                { name: "product" },
-                { name: "review" },
-                { name: "recommend" },
-                { name: "detail" },
+                { name: "Product" },
+                { name: "Review" },
+                { name: "Recommend" },
+                { name: "Detail" },
             ],
             select: "The selected",
             clear: "Del all",
@@ -452,7 +452,7 @@ export default {
             register: {
                 tabNav: [{ name: "Email" }, { name: "Phone" }],
                 placeEmail: "Please enter the email",
-                placeCode: "Please enter the captcha",
+                placeCode: "Please enter the otp",
                 placePhone: "Phone number",
                 submit: "Submit",
                 have: "Have an account?",

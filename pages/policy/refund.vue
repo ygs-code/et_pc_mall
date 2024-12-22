@@ -21,7 +21,7 @@
             <!-- <p class="main-title">1. Order Cancellation</p> -->
             <!-- <p class="main-content">
                 The idea for Amba Homes was born out of our own challenges with online shopping. As everyday consumers,
-                we were frustrated by products that didn’t match expectations, long wait times, and the lack of personal
+                we were frustrated by products that didn't match expectations, long wait times, and the lack of personal
                 touch that makes shopping enjoyable. We realized there was a gap in the market for an e-commerce
                 platform that offered more than just fast delivery or a wide range of products. We wanted to create a
                 store that prioritizes:
@@ -74,12 +74,12 @@
             <p class="mb-6">We will cover the return shipping cost for defective or damaged items, and you will be
                 eligible for a full refund or exchange.</p>
             <p class="main-title">4. Late or Missing Refunds</p>
-            <p class="mb-6">If you haven’t received your refund after the specified processing time, please first check
+            <p class="mb-6">If you haven't received your refund after the specified processing time, please first check
                 with your bank or credit card provider. It may take additional processing time before your refund is
-                officially posted. If you’ve done all of this and still haven’t received your refund, please contact.
+                officially posted. If you've done all of this and still haven't received your refund, please contact.
             </p>
             <p class="main-title">5. Non-Refundable Items</p>
-            <p class="mb-6">ome health and personal care items.</p>
+            <p class="mb-6">some health and personal care items.</p>
             <p class="mb-6">If some products are not mentioned in this part, we still reserve rights to not accept
                 returns and provide refunds for the products that we are selling or sell in the future that do not fall
                 under any category mentioned here. Due diligence will be applied when the customer initiates the return.
@@ -111,7 +111,7 @@ export default {
                     text: 'Transparency: What you see is what you get. We believe in being clear about product details, delivery times, and prices — no hidden surprises.'
                 },
                 {
-                    text: 'Customer Satisfaction: We’re here to serve you, not just sell to you. Your satisfaction is our priority, and we’re always ready to assist with any questions or concerns.'
+                    text: "Customer Satisfaction: We're here to serve you, not just sell to you. Your satisfaction is our priority, and we're always ready to assist with any questions or concerns."
                 },
             ],
             eligible: [

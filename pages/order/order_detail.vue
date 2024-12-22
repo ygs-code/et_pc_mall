@@ -52,7 +52,7 @@
               <div>{{ $t(`page.orderDetails.refundTime`) }}：</div>
               <div>{{ orderInfo.refundTime }}</div>
             </li>
-            <li v-if="!isGoodsReturn" class="acea-row row-middle">
+            <!-- <li v-if="!isGoodsReturn" class="acea-row row-middle">
               <div>{{ $t(`page.orderDetails.payStatus`) }}：</div>
               <div>
                 {{
@@ -61,7 +61,7 @@
                     : $t(`page.orderDetails.payFalse`)
                 }}
               </div>
-            </li>
+            </li> -->
             <li v-if="!isGoodsReturn" class="acea-row row-middle">
               <div>{{ $t(`page.orderDetails.payType`) }}：</div>
               <div>{{ orderInfo.payType }}</div>

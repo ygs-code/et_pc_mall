@@ -10,7 +10,7 @@ export default {
     sendCode() {
       if (this.disabled) return;
       this.disabled = true;
-      let n = 60;
+      let n = 120;
       this.text = " " + n + "s";
       const run = setInterval(() => {
         n = n - 1;

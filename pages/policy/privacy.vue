@@ -76,7 +76,7 @@
                 You can choose to decline or delete cookies through your browser settings, but doing so may limit some
                 features or require you to log in more often. Additionally, third-party cookies, like those from Google
                 Analytics, may be used to help us understand how users interact with our site for marketing and analysis
-                purposes. We don’t control third-party cookie use.
+                purposes. We don't control third-party cookie use.
             </p>
             <p class="main-title">Sharing</p>
             <p class="mb-6">
@@ -198,7 +198,7 @@ export default {
                     text: 'Transparency: What you see is what you get. We believe in being clear about product details, delivery times, and prices — no hidden surprises.'
                 },
                 {
-                    text: 'Customer Satisfaction: We’re here to serve you, not just sell to you. Your satisfaction is our priority, and we’re always ready to assist with any questions or concerns.'
+                    text: "Customer Satisfaction: We're here to serve you, not just sell to you. Your satisfaction is our priority, and we're always ready to assist with any questions or concerns."
                 },
             ]
         }

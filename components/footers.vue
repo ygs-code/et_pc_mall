@@ -202,7 +202,7 @@ export default {
 
 <style scoped lang="scss">
 .footer {
-  margin-top: 50px;
+  margin-top: 10px;
   background-color: black;
   color: #fff;
   // position: fixed;
@@ -211,7 +211,7 @@ export default {
   z-index: 9999;
 
   ul {
-    height: 104px;
+    height: 80px;
     border-bottom: 1px solid #e2e2e2;
 
     li {
@@ -235,13 +235,13 @@ export default {
   .middle-wrap {
     // color: #777;
     font-size: 14px;
-    margin-top: 50px;
+    margin-top: 10px;
 
     .m-i-title {
       font-size: 18px;
       font-weight: bold;
       //   color: #000;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
     .navlist-wrap {
       flex: 1;
@@ -270,11 +270,11 @@ export default {
   .recordNum {
     text-align: center;
     font-size: 12px;
-    line-height: 22px;
+    line-height: 12px;
     // color: #777;
-    padding: 30px 0 20px 0;
+    padding: 15px 0 10px 0;
     border-top: 1px solid #e2e2e2;
-    margin-top: 40px;
+    margin-top: 10px;
 
     img {
       width: 14px;

@@ -17,20 +17,20 @@
         At Amba Homes, we believe that shopping for quality products should be
         simple, enjoyable, and most importantly, reliable. As a small but
         passionate team based in Delhi, India, we set out to solve some of the
-        most common frustrations with online shopping in India — poor product
+        most common frustrations with online shopping in India poor product
         quality, delayed deliveries, and lack of transparency.
       </p>
       <p class="main-content">
         We are a team of dedicated staff and owners who care about the
         experience you have when you shop with us. Rather than focusing on
-        making a quick profit, we focus on building long-lasting relationships
+        making a quick profit, we focus on building long lasting relationships
         with our customers, grounded in trust, honesty, and quality.
       </p>
       <p class="main-title">Our Story</p>
       <p class="main-content">
         The idea for Amba Homes was born out of our own challenges with online
         shopping. As everyday consumers, we were frustrated by products that
-        didn’t match expectations, long wait times, and the lack of personal
+        didn't match expectations, long wait times, and the lack of personal
         touch that makes shopping enjoyable. We realized there was a gap in the
         market for an e-commerce platform that offered more than just fast
         delivery or a wide range of products. We wanted to create a store that
@@ -52,10 +52,10 @@
       </p>
       <p class="main-title">Our Vision</p>
       <p class="main-content">
-        To be a trusted, long-term partner for your shopping needs, whether it’s
+        To be a trusted, long-term partner for your shopping needs, whether it's
         refreshing your wardrobe or upgrading your kitchen. We envision Amba
         Homes as a place where customers can find quality products, honest
-        service, and a seamless shopping experience — all while supporting a
+        service, and a seamless shopping experience all while supporting a
         company that genuinely cares.
       </p>
       <p class="main-content">
@@ -84,10 +84,10 @@ export default {
           text: "Quality: Our products are sourced from trusted manufacturers, ensuring you get the best quality at reasonable prices.",
         },
         {
-          text: "Transparency: What you see is what you get. We believe in being clear about product details, delivery times, and prices — no hidden surprises.",
+          text: "Transparency: What you see is what you get. We believe in being clear about product details, delivery times, and prices no hidden surprises.",
         },
         {
-          text: "Customer Satisfaction: We’re here to serve you, not just sell to you. Your satisfaction is our priority, and we’re always ready to assist with any questions or concerns.",
+          text: "Customer Satisfaction: We're here to serve you, not just sell to you. Your satisfaction is our priority, and we're always ready to assist with any questions or concerns.",
         },
       ],
     };

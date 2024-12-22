@@ -21,7 +21,7 @@
             <!-- <p class="main-title">1. Shipping Locations</p>
             <p class="main-content">
                 The idea for Amba Homes was born out of our own challenges with online shopping. As everyday consumers,
-                we were frustrated by products that didn’t match expectations, long wait times, and the lack of personal
+                we were frustrated by products that didn't match expectations, long wait times, and the lack of personal
                 touch that makes shopping enjoyable. We realized there was a gap in the market for an e-commerce
                 platform that offered more than just fast delivery or a wide range of products. We wanted to create a
                 store that prioritizes:
@@ -70,8 +70,8 @@
                 resend the item.</p>
             <p class="main-title">8. Order Tracking</p>
             <p class="mb-6">Once your order is shipped, we will provide a tracking number to the email address or phone
-                number associated with your order. You can use this tracking number to monitor your package’s journey
-                via the logistics provider’s website or app.</p>
+                number associated with your order. You can use this tracking number to monitor your package's journey
+                via the logistics provider's website or app.</p>
             <p class="main-title">9. Damaged or Missing Items</p>
             <p class="mb-6">If your order arrives damaged or with missing items, please notify us within 12 hours of
                 receiving the package. We will initiate an investigation with the logistics provider and offer a
@@ -107,7 +107,7 @@ export default {
                     text: 'Transparency: What you see is what you get. We believe in being clear about product details, delivery times, and prices — no hidden surprises.'
                 },
                 {
-                    text: 'Customer Satisfaction: We’re here to serve you, not just sell to you. Your satisfaction is our priority, and we’re always ready to assist with any questions or concerns.'
+                    text: "Customer Satisfaction: We're here to serve you, not just sell to you. Your satisfaction is our priority, and we're always ready to assist with any questions or concerns."
                 },
             ],
             shippingType: [

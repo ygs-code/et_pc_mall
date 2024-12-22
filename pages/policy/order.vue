@@ -163,7 +163,7 @@ export default {
           text: "Transparency: What you see is what you get. We believe in being clear about product details, delivery times, and prices — no hidden surprises.",
         },
         {
-          text: "Customer Satisfaction: We’re here to serve you, not just sell to you. Your satisfaction is our priority, and we’re always ready to assist with any questions or concerns.",
+          text: "Customer Satisfaction: We're here to serve you, not just sell to you. Your satisfaction is our priority, and we're always ready to assist with any questions or concerns.",
         },
       ],
     };

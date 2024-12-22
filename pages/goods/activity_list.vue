@@ -20,9 +20,9 @@
         <h3>{{typeInfo.instruction}}</h3>
       </div>
       <div class="recommend_list">
-        <div class="best_details">
+        <!-- <div class="best_details">
           <img src="../../assets/images/actAd.png" alt="">
-        </div>
+        </div> -->
         <div class="goods_item cursors" @click="goDetail(item)" v-for="item in tempArr" :key="item.proId">
           <el-image class="img" :src="item.image">
             <div slot="placeholder" class="image-slot">

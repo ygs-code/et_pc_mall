@@ -29,11 +29,12 @@
               :placeholder="$t(`page.goodsSearch.placeSearch`)"
               v-model="search"
               class="input-with-select"
+              @keyup.enter.native="submit"
             >
               <el-select
                 v-model="selectValue"
                 slot="prepend"
-                placeholder="请选择"
+                placeholder="select"
                 @change="change"
               >
                 <el-option
@@ -474,7 +475,7 @@ export default {
 
       options: [
         {
-          label: "all",
+          label: "All",
           value: "all",
         },
       ],

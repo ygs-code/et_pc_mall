@@ -20,7 +20,7 @@
       <!-- <p class="main-title">Our Story</p>
             <p class="main-content">
                 The idea for Amba Homes was born out of our own challenges with online shopping. As everyday consumers,
-                we were frustrated by products that didn’t match expectations, long wait times, and the lack of personal
+                we were frustrated by products that didn't match expectations, long wait times, and the lack of personal
                 touch that makes shopping enjoyable. We realized there was a gap in the market for an e-commerce
                 platform that offered more than just fast delivery or a wide range of products. We wanted to create a
                 store that prioritizes:
@@ -70,7 +70,7 @@
       </p>
       <p class="mb-6">
         You will receive an email notification once your order has been
-        dispatched, along with tracking information to monitor your order’s
+        dispatched, along with tracking information to monitor your order's
         progress.
       </p>
       <p class="main-title">4. Shipping Restrictions</p>
@@ -86,7 +86,7 @@
       <p class="mb-6">
         Once your order has been dispatched, we will send you an email with
         tracking details. You can track the status of your order via the
-        courier’s website or through our online portal.
+        courier's website or through our online portal.
       </p>
       <p class="mb-6">
         If you do not receive tracking information within the expected time
@@ -144,7 +144,7 @@
       <p class="main-title">10. Contact Us</p>
       <p class="mb-6">
         If you have any questions or concerns regarding the delivery of your
-        order, or if you need assistance tracking your package, please don’t
+        order, or if you need assistance tracking your package, please don't
         hesitate to reach out to our customer support team.
       </p>
     </div>
@@ -171,7 +171,7 @@ export default {
           text: "Transparency: What you see is what you get. We believe in being clear about product details, delivery times, and prices — no hidden surprises.",
         },
         {
-          text: "Customer Satisfaction: We’re here to serve you, not just sell to you. Your satisfaction is our priority, and we’re always ready to assist with any questions or concerns.",
+          text: "Customer Satisfaction: We're here to serve you, not just sell to you. Your satisfaction is our priority, and we're always ready to assist with any questions or concerns.",
         },
       ],
     };

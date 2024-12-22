@@ -138,9 +138,7 @@
                   class="acea-row size-wrapper"
                 >
                   <div class="label">{{ item.attrName }}</div>
-
                   <div class="acea-row list">
-                
                     <label
                       v-for="(itm, idx) in item.attrValues.split(',')"
                       :key="idx"
@@ -160,8 +158,6 @@
                       </div>
                     </label>
                   </div>
-
-
                 </div>
               </div>
 
@@ -615,10 +611,6 @@ export default {
       ]);
 
       console.log(" goods.data.productAttr==", goods.data.productAttr);
-      console.log("goods==", goods);
-      console.log(" goods.data.productValue==",  goods.data.productValue);
-
- 
 
       return {
         productInfo: goods.data.productInfo,
@@ -1124,8 +1116,8 @@ export default {
     }
 
     .swiper-container {
-      padding-right: 25px;
-      padding-left: 25px;
+      padding-right: 0px;
+      padding-left: 0px;
       margin-top: 10px;
       margin-bottom: 20px;
 
@@ -1148,8 +1140,8 @@ export default {
       }
 
       .swiper-slide {
-        width: 70px;
-        height: 70px;
+        width: 100px;
+        height: 100px;
         border: 2px solid transparent;
         box-sizing: border-box;
         overflow: hidden;

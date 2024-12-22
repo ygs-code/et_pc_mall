@@ -16,7 +16,7 @@
             <p class="main-title">Overview</p>
             <!-- <p class="main-content">
                 The idea for Amba Homes was born out of our own challenges with online shopping. As everyday consumers,
-                we were frustrated by products that didn’t match expectations, long wait times, and the lack of personal
+                we were frustrated by products that didn't match expectations, long wait times, and the lack of personal
                 touch that makes shopping enjoyable. We realized there was a gap in the market for an e-commerce
                 platform that offered more than just fast delivery or a wide range of products. We wanted to create a
                 store that prioritizes:
@@ -80,7 +80,7 @@
                 decisions. Always consult more reliable or up-to-date sources. Any reliance on the information provided
                 is at your own risk.</p>
             <p class="mb-6">This site may include historical information, which is not current and is for reference
-                only. We may update or modify the site’s content at any time, but we are not obligated to update any
+                only. We may update or modify the site's content at any time, but we are not obligated to update any
                 information.</p>
             <p class="main-title">Modifications to the Service and Prices</p>
             <p class="mb-6">Prices for our products may change without notice. We also reserve the right to modify or
@@ -143,10 +143,10 @@
                 enforceable to the maximum extent allowed by law. This won't affect the rest of the Terms, which will
                 remain valid.</p>
             <p class="main-title">Termination</p>
-            <p class="mb-6">Both parties’ obligations before the termination will still apply after the agreement ends.
+            <p class="mb-6">Both parties' obligations before the termination will still apply after the agreement ends.
                 These Terms are effective until either you or we choose to terminate them. You can end these Terms at
                 any time by stopping the use of our Services and notifying us.</p>
-            <p class="mb-6">If we believe you’ve violated these Terms, we can terminate the agreement without notice.
+            <p class="mb-6">If we believe you've violated these Terms, we can terminate the agreement without notice.
                 You will still be responsible for any amounts due up to the termination date, and we may deny you access
                 to our Services.</p>
             <p class="main-title">Force Majeure</p>
@@ -154,10 +154,10 @@
                 or products due to circumstances beyond our control. This includes, but is not limited to, acts of war,
                 natural disasters, fires, floods, strikes, government actions, network failures, or cyberattacks.</p>
             <p class="main-title">Entire Agreement</p>
-            <p class="mb-6">If we don’t enforce any part of these Terms, it doesn’t mean we’ve waived our right to do so
+            <p class="mb-6">If we don't enforce any part of these Terms, it doesn't mean we've waived our right to do so
                 in the future. These Terms, along with any other policies posted on the site, form the complete
                 agreement between you and us, replacing any previous agreements or discussions.</p>
-            <p class="mb-6">If there’s any confusion in interpreting these Terms, it won’t be held against the party
+            <p class="mb-6">If there's any confusion in interpreting these Terms, it won't be held against the party
                 that wrote them.</p>
             <p class="main-title">Governing Law and Jurisdiction</p>
             <p class="mb-6">These Terms and any related agreements are governed by the laws of India. Any disputes will
@@ -189,7 +189,7 @@ export default {
                     text: 'Transparency: What you see is what you get. We believe in being clear about product details, delivery times, and prices — no hidden surprises.'
                 },
                 {
-                    text: 'Customer Satisfaction: We’re here to serve you, not just sell to you. Your satisfaction is our priority, and we’re always ready to assist with any questions or concerns.'
+                    text: "Customer Satisfaction: We're here to serve you, not just sell to you. Your satisfaction is our priority, and we're always ready to assist with any questions or concerns."
                 },
             ],
             prohibitedUse: [
