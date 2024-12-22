@@ -488,20 +488,27 @@
                         }}<span>{{ item.price }}</span>
                       </span>
 
-                      <span class="ot_price"
-                        >{{ GLOBAL.shopPayCurrency }}50
-                        <!-- {{ item.otPrice }} -->
-                      </span>
+
+                      
+                      <!--goodsList 缺少字段 otPrice  造成nan-->
+                      <!-- <span class="ot_price"
+                        >{{ GLOBAL.shopPayCurrency }} 
+                        {{ item.otPrice }}
+                      </span> -->
 
                       <!--goodsList 缺少字段 otPrice  造成nan-->
                       <span class="percent-price-box">
-                        <span class="percent-price">
+
+
+                        <!-- <span class="percent-price">
                           {{
                             Math.round(
                               ((item.otPrice - item.price) / item.otPrice) * 100
                             )
                           }}% OFF
-                        </span>
+                        </span> -->
+
+
                         {{
                           Math.floor(item.sales) + Math.floor(item.ficti) || 0
                         }}
@@ -626,7 +633,7 @@ export default {
       ]);
 
       // console.log(" goods.data.productAttr==", goods.data.productAttr);
-      console.log("goods==", goods);
+      console.log("goods==", goods.data.productInfo.storeInfo);
 
       return {
         productInfo: goods.data.productInfo,
