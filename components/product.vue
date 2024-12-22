@@ -1,7 +1,6 @@
 <template>
   <div
     :class="$nuxt.$route.path == '/merchant/merchant/category' ? 'wrapper' : ''"
-    
   >
     <div
       @click="goDetail(item)"
@@ -18,22 +17,10 @@
       v-for="item in productList"
       :key="item.id"
     >
-
-
       <div
         class="img"
         :style="{ 'background-image': `url(${item.image}` }"
       ></div>
-   
-
-
-<!-- 
-      <el-image :src="item.image">
-        <div slot="placeholder" class="image-slot">
-          loading<span class="dot">...</span>
-        </div>
-      </el-image> -->
-
 
       <div class="goods_content">
         <div
@@ -47,21 +34,34 @@
           :class="$nuxt.$route.path == '/' ? 'acea_row1' : ''"
         >
           <div class="price">{{ GLOBAL.shopPayCurrency }}{{ item.price }}</div>
+
+          <span class="ot-price"
+            >{{ GLOBAL.shopPayCurrency }}{{ item.otPrice }}</span
+          >
+
           <div v-if="$nuxt.$route.path == '/'" class="ot_price1">
+            <span class="percent-price">
+              {{
+                Math.round(((item.otPrice - item.price) / item.otPrice) * 100)
+              }}% OFF
+            </span>
             <span class="sold" style="margin-right: 15px"
               >{{ Math.floor(item.sales) + Math.floor(item.ficti) || 0 }}
               {{ $t(`page.goodsDetail.sold`) }}</span
             >
           </div>
+          <!-- 
           <div v-if="$nuxt.$route.path !== '/'" class="ot_price">
-            <span v-if="$nuxt.$route.path !== '/'" class="lines"
-              >{{ GLOBAL.shopPayCurrency }}{{ item.otPrice }}</span
-            >
+
+            <span v-if="$nuxt.$route.path !== '/'" class="lines">
+              {{ GLOBAL.shopPayCurrency }}{{ item.otPrice }}
+            </span>
+
             <span
               >{{ Math.floor(item.sales) + Math.floor(item.ficti) || 0 }}
               {{ $t(`page.goodsDetail.sold`) }}</span
             >
-          </div>
+          </div>  -->
         </div>
       </div>
     </div>
@@ -89,7 +89,7 @@ export default {
 <style lang="scss" scoped>
 .wrapper {
   width: 915px;
-   //background: red; 
+  //background: red;
   // padding-right: 15px;
 }
 .goods_item {
@@ -104,7 +104,6 @@ export default {
     margin: 20px 20px 8px;
   }
 
- 
   .img {
     margin: 0;
     height: 198px;
@@ -113,7 +112,6 @@ export default {
     background-size: contain;
     background-position: center;
   }
-
 
   .goods_content {
     margin-top: 10px;
@@ -145,7 +143,8 @@ export default {
   }
   .acea_row {
     margin-left: 15px;
-    justify-content: space-between;
+    text-align: left;
+    position: relative;
 
     .price {
       font-size: 16px;
@@ -160,6 +159,26 @@ export default {
         margin-right: 15px;
       }
     }
+
+    .ot-price {
+      font-size: 12px;
+      font-family: DINPro-Regular, DINPro;
+      font-weight: 400;
+      color: #888888;
+      line-height: 23px;
+      text-decoration: line-through;
+      text-align: left;
+      margin-left: 5px;
+    }
+
+    .percent-price {
+      color: rgb(140, 140, 11);
+      text-align: right;
+
+      margin-right: 10px;
+      font-size: 14px;
+    }
+
     .ot_price {
       font-size: 12px;
       font-weight: 400;
@@ -177,7 +196,9 @@ export default {
       font-size: 12px;
       font-weight: 400;
       color: #999999;
-      line-height: 29px;
+      line-height: 23px;
+     position: absolute;
+     right: 5px;
 
       .lines {
         text-decoration: line-through;
@@ -190,7 +211,7 @@ export default {
   height: 330px;
 
   &:nth-child(4n) {
-    margin-right: 0;  
+    margin-right: 0;
   }
 
   .el-image {

@@ -21,7 +21,7 @@
     </div>
     <!-- 店铺街 -->
     <!-- <div class="brandstore"> -->
-      <!-- <div class="left">
+    <!-- <div class="left">
         <div class="left-top" @click="gopage()">
           <div class="title">{{ $t(`page.index.shopStreet`) }}</div>
           <span class="iconfont icon-gengduo"></span>
@@ -69,8 +69,8 @@
           </div>
         </div>
       </div> -->
-      <!-- TOP ONE -->
-      <!-- <div class="right">
+    <!-- TOP ONE -->
+    <!-- <div class="right">
         <div class="right-top" @click="goTopone()">
           <div class="title">{{ $t(`page.index.topOne`) }}</div>
           <span class="iconfont icon-gengduo"></span>
@@ -142,10 +142,10 @@
                 v-for="item in productList.slice(0, 8)"
                 :key="item.id"
               >
-                  <div
-                    class="img"
-                    :style="{ 'background-image': `url(${item.image}` }"
-                  ></div>
+                <div
+                  class="img"
+                  :style="{ 'background-image': `url(${item.image}` }"
+                ></div>
                 <div class="goods_content">
                   <div class="lines2 store_name1">
                     {{ item.storeName }}
@@ -154,7 +154,23 @@
                     <div class="price1">
                       {{ GLOBAL.shopPayCurrency }}{{ item.price }}
                     </div>
+
+                    <span class="ot-price"
+                      >{{ GLOBAL.shopPayCurrency }}{{ item.otPrice }}</span
+                    >
+
+
+
+             
+
                     <div class="ot_price">
+                      <span class="percent-price">
+                        {{
+                          Math.round(
+                            ((item.otPrice - item.price) / item.otPrice) * 100
+                          )
+                        }}% OFF
+                      </span>
                       <span
                         >{{
                           Math.floor(item.sales) + Math.floor(item.ficti) || 0
@@ -190,6 +206,7 @@ import recommended from "@/components/recommended.vue";
 import promotions from "@/components/promotions.vue";
 import firstNew from "@/components/first_new.vue";
 import { goMerchant, goShopDetail } from "@/utils/order.js";
+
 import product from "@/components/product.vue";
 
 export default {
@@ -345,6 +362,10 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+
+
+
+
 .container {
   width: 100%;
   flex: 1;
@@ -638,7 +659,7 @@ export default {
         }
       }
       .store {
-         //  background: red;
+        //  background: red;
       }
       .goods_item {
         display: inline-block;
@@ -649,7 +670,6 @@ export default {
         background: #ffffff;
         cursor: pointer;
 
-  
         .img {
           margin: 0;
           width: 100%;
@@ -690,11 +710,29 @@ export default {
             float: left;
           }
 
+
+          .ot-price {
+            font-size: 12px;
+            font-family: DINPro-Regular, DINPro;
+            font-weight: 400;
+            color: #888888;
+            line-height: 10px;
+            text-decoration: line-through;
+          }
+
+          .percent-price {
+            color: rgb(140, 140, 11);
+            text-align: right;
+           
+            margin-right: 10px;
+            font-size: 14px;
+          }
+
           .ot_price {
             font-size: 12px;
             font-family: ArialMT;
             color: #999999;
-            line-height: 12px;
+            line-height: 24px;
             float: right;
             margin-right: 12px;
           }

@@ -481,17 +481,32 @@
                   </div>
                   <div class="text">
                     <div class="name line2">{{ item.storeName }}</div>
-                    <div class="acea-row row-between-wrapper">
-                      <div class="money">
+
+                    <div class="price-box">
+                      <span class="money">
                         {{ GLOBAL.shopPayCurrency
                         }}<span>{{ item.price }}</span>
-                      </div>
-                      <div class="sales">
+                      </span>
+
+                      <span class="ot_price"
+                        >{{ GLOBAL.shopPayCurrency }}50
+                        <!-- {{ item.otPrice }} -->
+                      </span>
+
+                      <!--goodsList 缺少字段 otPrice  造成nan-->
+                      <span class="percent-price-box">
+                        <span class="percent-price">
+                          {{
+                            Math.round(
+                              ((item.otPrice - item.price) / item.otPrice) * 100
+                            )
+                          }}% OFF
+                        </span>
                         {{
                           Math.floor(item.sales) + Math.floor(item.ficti) || 0
                         }}
                         {{ $t(`message.tips.sold`) }}
-                      </div>
+                      </span>
                     </div>
                   </div>
                 </nuxt-link>
@@ -610,12 +625,14 @@ export default {
         app.$axios.get(`/api/front/product/detail/${params.id}`),
       ]);
 
-      console.log(" goods.data.productAttr==", goods.data.productAttr);
+      // console.log(" goods.data.productAttr==", goods.data.productAttr);
+      console.log("goods==", goods);
 
       return {
         productInfo: goods.data.productInfo,
         productAttr: goods.data.productAttr,
         productValue: goods.data.productValue,
+        //  goodsList 缺少字段 otPrice  造成nan 
         goodsList: goods.data.merchantInfo.proList,
         merchantInfo: goods.data.merchantInfo,
         id: params.id,
@@ -865,6 +882,36 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.price-box {
+  position: relative;
+}
+.percent-price-box {
+  float: right;
+  position: absolute;
+  right: 5px;
+
+  font-size: 12px;
+  font-family: ArialMT;
+  color: #999999;
+  line-height: 24px;
+}
+.percent-price {
+  color: rgb(140, 140, 11);
+  text-align: right;
+ 
+  margin-right: 10px;
+  font-size: 14px;
+}
+.ot_price {
+  font-size: 12px;
+  font-family: DINPro-Regular, DINPro;
+  font-weight: 400;
+  color: #888888;
+  line-height: 23px;
+  text-decoration: line-through;
+  margin-left: 5px;
+}
+
 .coupons-get {
   font-size: 14px;
   font-weight: 400;
@@ -1309,13 +1356,18 @@ export default {
         }
       }
 
-      .sales {
+      .acea-row {
         position: relative;
+      }
+
+      .sales {
+        position: absolute;
+        right: 5px;
         height: 100%;
-        padding-right: 20px;
-        padding-left: 12px;
+
         font-size: 14px;
         color: #e93323;
+        float: right;
 
         &::before {
           content: "";
