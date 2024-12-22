@@ -20,6 +20,8 @@
                 class="picTxt"
               >
                 <div class="pictrue">
+
+               
                   <el-image class="img" :src="item.proImage">
                     <div slot="placeholder" class="image-slot">
                       loading<span class="dot">...</span>

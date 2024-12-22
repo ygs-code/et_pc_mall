@@ -10,15 +10,33 @@
       <div class="seckillList">
         <div v-swiper:myScroll="swiperScroll">
           <div class="swiper-wrapper">
-            <div class="swiper-slide item" v-for="(item, index) in activityData.productList" :key="index">
-              <div class="picTxt" @click="
-                goDetail(item)
-                ">
-                <div class="pictrue"><img :src="item.image" /></div>
-                <div class='line2 pro-info'>{{ item.storeName }}</div>
+            <div
+              class="swiper-slide item"
+              v-for="(item, index) in activityData.productList"
+              :key="index"
+            >
+              <div class="picTxt" @click="goDetail(item)">
+                <!-- {{ item }} -->
+                <div
+                  class="pictrue"
+                  :style="{ 'background-image': `url(${item.image}` }"
+                ></div>
+
+                <div class="line2 pro-info">{{ item.storeName }}</div>
                 <div class="price">
                   <span>{{ GLOBAL.shopPayCurrency }}{{ item.price }}</span>
-                  <span class="ot-price">{{ GLOBAL.shopPayCurrency }}{{ item.otPrice }}</span>
+
+                  <span class="ot-price"
+                    >{{ GLOBAL.shopPayCurrency }}{{ item.otPrice }}</span
+                  >
+
+                  <span class="percent-price">
+                    {{
+                      Math.round(
+                        ((item.otPrice - item.price) / item.otPrice) * 100
+                      )
+                    }}% OFF
+                  </span>
                 </div>
               </div>
             </div>
@@ -28,9 +46,7 @@
         </div>
       </div>
     </div>
-
   </div>
-
 </template>
 
 <script>
@@ -41,45 +57,45 @@ export default {
   props: {
     activityData: {
       type: Object,
-      default: () => { }
-    }
+      default: () => {},
+    },
   },
   data() {
     return {
       tempArr: [],
       params: {
         page: 1,
-        limit: 10
+        limit: 10,
       },
       swiperOption: {
         pagination: {
           el: ".paginationBanner",
-          clickable: true
+          clickable: true,
         },
         navigation: {
           nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev"
+          prevEl: ".swiper-button-prev",
         },
         autoplay: {
           disableOnInteraction: false,
-          delay: 5000
+          delay: 5000,
         },
         loop: true,
         speed: 1000,
         observer: true,
-        observeParents: true
+        observeParents: true,
       },
       swiperScroll: {
         navigation: {
           nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev"
+          prevEl: ".swiper-button-prev",
         },
         freeMode: true,
         freeModeMomentum: false,
         slidesPerView: "auto",
         observer: true,
-        observeParents: true
-      }
+        observeParents: true,
+      },
     };
   },
   methods: {
@@ -89,17 +105,24 @@ export default {
         query: {
           id: this.activityData.id,
           type: this.activityData.type,
-          name: this.activityData.name
-        }
+          name: this.activityData.name,
+        },
       });
     }),
     goDetail: Debounce(function (item) {
       goShopDetail(item.proId, this);
-    })
-  }
+    }),
+  },
 };
 </script>
 <style lang="scss" scoped>
+.percent-price {
+  color: rgb(140, 140, 11);
+  text-align: right;
+  float: right;
+  margin-right: 10px;
+  font-size: 14px;
+}
 .seckill {
   width: 1200px;
   height: 413px;
@@ -142,14 +165,16 @@ export default {
     .item {
       cursor: pointer;
       display: inline-block;
-      width: 250px;
+      width: 288px;
       position: relative;
 
       .picTxt {
-        width: 164px;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0 10px;
       }
 
-      &~.item:before {
+      & ~ .item:before {
         content: " ";
         position: absolute;
         width: 1px;
@@ -160,14 +185,12 @@ export default {
       }
 
       .pictrue {
-        width: 190px;
-        height: 190px;
-        margin: 0 auto;
-
-        img {
-          width: 100%;
-          height: 100%;
-        }
+        margin: 0;
+        width: 100%;
+        height: 198px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
       }
 
       .pro-info {

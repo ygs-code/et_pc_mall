@@ -792,6 +792,39 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.price-box {
+    position: relative;
+}
+
+.percent-price-box {
+    float: right;
+    position: absolute;
+    right: 5px;
+
+    font-size: 12px;
+    font-family: ArialMT;
+    color: #999999;
+    line-height: 24px;
+}
+
+.percent-price {
+    color: rgb(140, 140, 11);
+    text-align: right;
+
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.ot_price {
+    font-size: 12px;
+    font-family: DINPro-Regular, DINPro;
+    font-weight: 400;
+    color: #888888;
+    line-height: 23px;
+    text-decoration: line-through;
+    margin-left: 5px;
+}
+
 .coupons-get {
     font-size: 14px;
     font-weight: 400;
