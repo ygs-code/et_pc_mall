@@ -9,7 +9,10 @@
   
     <transition name="fade">
       <div v-if="hideSubMenu" class="flag-list-box scroll-bar" @click.stop="hideSubMenu = true">
-        <el-input v-model="countryName" type="text" placeholder="$t('guo-jia-ming-zi-the-country-name')" />
+ 
+
+
+        <el-input v-model="countryName" type="text" :placeholder="$t('userDrawer.data[1].name')" />
         <ul class="country-list">
           <li v-for="(item, index) in filterCountries"
               :key="index"
@@ -18,7 +21,7 @@
           >
             <div :class="['flag', `flag-${item.code}`]"></div>
             <span class="country-name">{{item.CNName}}-{{ item.name }}</span>
-            <span class="dial-code"> {{ $t('item-dialcode', [item.dialCode]) }}</span>
+            <span class="dial-code"> {{ item.dialCode }}</span>
           </li>
         </ul>
       </div>

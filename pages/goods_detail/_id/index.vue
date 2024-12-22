@@ -138,7 +138,9 @@
                   class="acea-row size-wrapper"
                 >
                   <div class="label">{{ item.attrName }}</div>
+
                   <div class="acea-row list">
+                
                     <label
                       v-for="(itm, idx) in item.attrValues.split(',')"
                       :key="idx"
@@ -158,6 +160,8 @@
                       </div>
                     </label>
                   </div>
+
+
                 </div>
               </div>
 
@@ -611,6 +615,10 @@ export default {
       ]);
 
       console.log(" goods.data.productAttr==", goods.data.productAttr);
+      console.log("goods==", goods);
+      console.log(" goods.data.productValue==",  goods.data.productValue);
+
+ 
 
       return {
         productInfo: goods.data.productInfo,
